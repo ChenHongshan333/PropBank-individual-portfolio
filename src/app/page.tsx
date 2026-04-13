@@ -130,6 +130,17 @@ function Nav() {
 /* ─────────────────────────────────────────────
    SECTION 0 — HERO
 ───────────────────────────────────────────── */
+const HERO_STARS = [
+  { top: '8%',  left: '6%',  size: 35, delay: '0s',    dur: '3.2s' },
+  { top: '15%', left: '82%', size: 39, delay: '0.6s',  dur: '2.8s' },
+  { top: '72%', left: '9%',  size: 41, delay: '1.1s',  dur: '3.6s' },
+  { top: '80%', left: '88%', size: 33, delay: '0.3s',  dur: '2.5s' },
+  { top: '45%', left: '3%',  size: 45, delay: '1.8s',  dur: '4.0s' },
+  { top: '30%', left: '91%', size: 35, delay: '0.9s',  dur: '3.0s' },
+  { top: '88%', left: '50%', size: 31, delay: '0.4s',  dur: '3.8s' },
+  { top: '5%',  left: '55%', size: 37, delay: '1.4s',  dur: '2.6s' },
+]
+
 function Hero() {
   return (
     <section id="hero" style={{
@@ -140,71 +151,71 @@ function Hero() {
       background: '#ffffff',
       paddingTop: 80,
       overflow: 'hidden',
+      position: 'relative',
     }}>
-      <div style={{ textAlign: 'center', width: '100%', maxWidth: 1000, padding: '0 32px' }}>
+      {/* Floating stars */}
+      {HERO_STARS.map((s, i) => (
+        <span key={i} style={{
+          position: 'absolute',
+          top: s.top,
+          left: s.left,
+          fontSize: s.size,
+          color: '#ffc600',
+          pointerEvents: 'none',
+          animation: `heroFloat ${s.dur} ${s.delay} ease-in-out infinite`,
+          zIndex: 0,
+          userSelect: 'none',
+        }}>★</span>
+      ))}
 
-        {/* Line 1 — PROPBANK (35px) */}
+      <div style={{ textAlign: 'center', width: '100%', padding: '0 32px', position: 'relative', zIndex: 1 }}>
+
+        {/* Line 1 — PROPBANK (70px) */}
         <p style={{
           fontFamily: '"Carter One"',
-          fontSize: 35,
-          lineHeight: 1.3,
+          fontSize: 70,
+          lineHeight: 1,
           margin: 0,
-          marginBottom: 20,
-          position: 'relative',
-          zIndex: 1,
+          marginBottom: 8,
         }}>
           <span style={{ color: '#0a0a0a' }}>PROP</span><span style={{ color: '#e63946' }}>BANK</span>
         </p>
 
-        {/* Line 2 — GEAR LIBRARY & MARKET PLACE (45px) */}
+        {/* Line 2 — MARKET PLACE */}
         <p style={{
           fontFamily: '"Carter One"',
-          fontSize: 45,
-          lineHeight: 1.35,
+          fontSize: 'clamp(100px, 18vw, 100px)',
+          lineHeight: 1,
           margin: 0,
           color: '#0a0a0a',
-          position: 'relative',
-          zIndex: 1,
+          textShadow: '4px 4px 0 #1e96fc',
+          whiteSpace: 'nowrap',
         }}>
-          GEAR LIBRARY &amp;<br />MARKET PLACE
+          MARKET PLACE
         </p>
 
-        {/* Logo — front layer, overlaps lines 2 and 3 */}
-        <div style={{
-          position: 'relative',
-          zIndex: 10,
-          marginTop: -130,
-          marginBottom: -130,
-          display: 'flex',
-          justifyContent: 'center',
-          pointerEvents: 'none',
-        }}>
-          <Image
-            src="/logo_new.png"
-            alt="PropBank Logo"
-            width={380}
-            height={380}
-            style={{ imageRendering: 'pixelated', width: 380, height: 380, mixBlendMode: 'multiply' }}
-          />
-        </div>
-
-        {/* Line 3 — CHEN HONGSHAN (15px) */}
+        {/* CHEN HONGSHAN */}
         <p style={{
           fontFamily: '"Carter One"',
-          fontSize: 15,
+          fontSize: 26,
           color: '#0a0a0a',
           margin: 0,
-          marginBottom: 18,
+          marginTop: 28,
+          marginBottom: 10,
           position: 'relative',
           zIndex: 1,
+          display: 'inline-block',
+          background: '#ffc600',
+          borderRadius: 12,
+          padding: '4px 20px',
         }}>
           CHEN HONGSHAN
         </p>
 
-        {/* Line 4 — A0311136W TUT[06] (10px) */}
+        {/* A0311136W TUT[06] */}
         <p style={{
           fontFamily: '"Carter One"',
-          fontSize: 10,
+          fontSize: 16,
           color: '#888',
           margin: 0,
           position: 'relative',
@@ -255,7 +266,7 @@ function Origin() {
       <Reveal>
         <SectionHeader
           tag="01 · ORIGIN STORY"
-          title={<>WHERE IT ALL <span style={{ color: '#e63946' }}>STARTED</span></>}
+          title={<>WHERE IT ALL <span style={{ color: '#1e96fc' }}>STARTED</span></>}
           sub="The entire PropBank concept — its services, ecosystem vision, and core positioning — originated from my individual ideation. My teammates adopted and built on this foundation."
         />
       </Reveal>
@@ -1027,12 +1038,49 @@ function Reflect() {
 }
 
 /* ─────────────────────────────────────────────
+   GLOBAL FLOATING STARS
+───────────────────────────────────────────── */
+const GLOBAL_STARS = [
+  { top: '5%',  left: '4%',  size: 16, delay: '0s',    dur: '3.4s' },
+  { top: '12%', left: '93%', size: 22, delay: '0.7s',  dur: '2.9s' },
+  { top: '28%', left: '2%',  size: 12, delay: '1.3s',  dur: '4.1s' },
+  { top: '38%', left: '96%', size: 18, delay: '0.4s',  dur: '3.6s' },
+  { top: '52%', left: '5%',  size: 26, delay: '1.9s',  dur: '2.7s' },
+  { top: '60%', left: '91%', size: 14, delay: '0.2s',  dur: '3.9s' },
+  { top: '74%', left: '3%',  size: 20, delay: '1.1s',  dur: '3.2s' },
+  { top: '82%', left: '94%', size: 28, delay: '0.6s',  dur: '2.5s' },
+  { top: '90%', left: '8%',  size: 15, delay: '1.6s',  dur: '4.3s' },
+  { top: '95%', left: '88%', size: 12, delay: '0.9s',  dur: '3.7s' },
+]
+
+function GlobalStars() {
+  return (
+    <>
+      {GLOBAL_STARS.map((s, i) => (
+        <span key={i} style={{
+          position: 'fixed',
+          top: s.top,
+          left: s.left,
+          fontSize: s.size,
+          color: '#ffc600',
+          pointerEvents: 'none',
+          animation: `heroFloat ${s.dur} ${s.delay} ease-in-out infinite`,
+          zIndex: 0,
+          userSelect: 'none',
+        }}>★</span>
+      ))}
+    </>
+  )
+}
+
+/* ─────────────────────────────────────────────
    ROOT PAGE
 ───────────────────────────────────────────── */
 export default function Page() {
   return (
     <>
       <PixelCursor />
+      <GlobalStars />
       <Nav />
       <main>
         <Hero />

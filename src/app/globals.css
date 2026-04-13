@@ -76,7 +76,7 @@ body {
 .pixel-btn {
   border: 1.5px solid var(--black);
   font-family: 'Carter One', sans-serif;
-  font-size: 8px;
+  font-size: 20px;
   padding: 8px 16px;
   cursor: pointer;
   transition: transform 0.1s, box-shadow 0.1s;
@@ -133,6 +133,11 @@ body {
 }
 .mascot-float { animation: float 3s ease-in-out infinite; }
 
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(15deg); }
+}
+
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
@@ -142,7 +147,7 @@ body {
 /* ── Section tags ── */
 .section-tag {
   font-family: 'Carter One', sans-serif;
-  font-size: 7px;
+  font-size: 20px;
   letter-spacing: 0.1em;
   background: transparent;
   border-left: 3px solid var(--red);
@@ -155,7 +160,7 @@ body {
 /* number badge */
 .num-badge {
   font-family: 'Carter One', sans-serif;
-  font-size: 9px;
+  font-size: 20px;
   background: var(--blue);
   color: white;
   width: 28px; height: 28px;
@@ -186,7 +191,7 @@ h2.section-heading::after {
 /* ── Nav links ── */
 .nav-link {
   font-family: 'Carter One', sans-serif;
-  font-size: 7px;
+  font-size: 20px;
   color: var(--black);
   text-decoration: none;
   padding: 4px 0;
@@ -208,7 +213,7 @@ h2.section-heading::after {
 /* ── Inline accent chip ── */
 .chip {
   font-family: 'Carter One', sans-serif;
-  font-size: 7px;
+  font-size: 20px;
   background: var(--pale);
   border: 1px solid var(--blue);
   color: var(--navy);
@@ -245,7 +250,7 @@ h2.section-heading::after {
 }
 .info-label {
   font-family: 'Carter One', sans-serif;
-  font-size: 7px;
+  font-size: 20px;
   color: var(--blue);
   padding-top: 2px;
 }
@@ -261,7 +266,7 @@ h2.section-heading::after {
 }
 .step-num {
   font-family: 'Carter One', sans-serif;
-  font-size: 8px;
+  font-size: 20px;
   color: var(--blue);
 }
 
