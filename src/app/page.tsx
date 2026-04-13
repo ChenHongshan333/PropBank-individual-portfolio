@@ -14,9 +14,9 @@ function PixelCursor() {
   useEffect(() => {
     const move = (e: MouseEvent) => {
       if (cursorRef.current)
-        cursorRef.current.style.transform = `translate(${e.clientX - 6}px, ${e.clientY - 6}px)`
+        cursorRef.current.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`
       if (ringRef.current)
-        ringRef.current.style.transform = `translate(${e.clientX - 12}px, ${e.clientY - 12}px)`
+        ringRef.current.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`
     }
     window.addEventListener('mousemove', move)
     return () => window.removeEventListener('mousemove', move)
@@ -37,13 +37,13 @@ function Reveal({ children, delay = 0, className = '' }: {
   children: React.ReactNode; delay?: number; className?: string
 }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const inView = useInView(ref, { once: true, margin: '-60px' })
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay, ease: 'easeOut' }}
+      transition={{ duration: 0.45, delay, ease: 'easeOut' }}
       className={className}
     >
       {children}
@@ -57,13 +57,13 @@ function Reveal({ children, delay = 0, className = '' }: {
 function FigmaEmbed({ url, title, height = 500 }: { url: string; title: string; height?: number }) {
   const embedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(url)}`
   return (
-    <div className="pixel-card overflow-hidden">
-      <div className="flex items-center justify-between px-4 py-2" style={{ background: '#072ac8', borderBottom: '2px solid #0a0a0a' }}>
-        <span style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#ffc600' }}>
+    <div className="figma-wrap">
+      <div className="figma-bar">
+        <span style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#072ac8' }}>
           ◈ {title}
         </span>
         <a href={url} target="_blank" rel="noopener noreferrer"
-          className="pixel-btn" style={{ fontSize: 6, background: '#ffffff', padding: '4px 8px' }}>
+          className="pixel-btn" style={{ fontSize: 6, padding: '4px 10px' }}>
           OPEN IN FIGMA ↗
         </a>
       </div>
@@ -76,18 +76,6 @@ function FigmaEmbed({ url, title, height = 500 }: { url: string; title: string; 
         title={title}
       />
     </div>
-  )
-}
-
-/* ─────────────────────────────────────────────
-   Pixel Star SVG
-───────────────────────────────────────────── */
-function PixelStar({ color = '#fcf300', size = 32 }: { color?: string; size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 32 32" style={{ imageRendering: 'pixelated' }}>
-      <path d="M16 2 L19 12 L30 12 L21 18 L24 28 L16 22 L8 28 L11 18 L2 12 L13 12 Z"
-        fill={color} stroke="#0a0a0a" strokeWidth="2" />
-    </svg>
   )
 }
 
@@ -115,17 +103,21 @@ function Nav() {
   }, [])
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white border-b-2 border-black' : 'bg-transparent'
-    }`}>
-      <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-        <a href="#hero" className="flex items-center gap-2">
-          <Image src="/logo_new.png" alt="PropBank" width={36} height={36} style={{ imageRendering: 'pixelated' }} />
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+      background: scrolled ? 'rgba(255,255,255,0.97)' : 'transparent',
+      borderBottom: scrolled ? '1px solid rgba(10,10,10,0.1)' : 'none',
+      backdropFilter: scrolled ? 'blur(8px)' : 'none',
+      transition: 'all 0.3s',
+    }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '14px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+          <Image src="/logo_new.png" alt="PropBank" width={28} height={28} style={{ imageRendering: 'pixelated' }} />
           <span style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#0a0a0a' }}>
             PROP<span style={{ color: '#e63946' }}>BANK</span>
           </span>
         </a>
-        <div className="hidden md:flex gap-6">
+        <div className="hidden md:flex" style={{ gap: 24 }}>
           {navItems.map(n => (
             <a key={n.href} href={n.href} className="nav-link">{n.label}</a>
           ))}
@@ -151,25 +143,28 @@ function Hero() {
   }, [])
 
   return (
-    <section id="hero" className="min-h-screen flex items-center relative overflow-hidden pt-20"
-      style={{ background: '#E5F4FE' }}>
+    <section id="hero" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', background: '#ffffff', paddingTop: 80, position: 'relative', overflow: 'hidden' }}>
 
-      {/* Subtle pixel grid */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage: 'linear-gradient(rgba(10,10,10,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.03) 1px, transparent 1px)',
-        backgroundSize: '40px 40px'
+      {/* Subtle blue accent stripe top */}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(90deg, #1e96fc 0%, #e63946 50%, #1e96fc 100%)' }} />
+
+      {/* Background grid */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundImage: 'linear-gradient(rgba(30,150,252,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(30,150,252,0.04) 1px, transparent 1px)',
+        backgroundSize: '48px 48px'
       }} />
 
-      {/* Floating stars — yellow + red */}
-      {[
-        { top: '15%', left: '6%',   size: 36, delay: 0,   fill: '#ffc600' },
-        { top: '70%', left: '4%',   size: 20, delay: 1,   fill: '#e63946' },
-        { top: '25%', right: '8%',  size: 24, delay: 0.5, fill: '#ffc600' },
-        { top: '65%', right: '5%',  size: 40, delay: 0.8, fill: '#e63946' },
-        { top: '45%', right: '12%', size: 16, delay: 0.3, fill: '#ffc600' },
-      ].map((s, i) => (
+      {/* Floating decorative stars */}
+      {([ 
+        { top: '18%', left: '3%',   right: '',    size: 28, delay: 0,   fill: '#1e96fc' },
+        { top: '72%', left: '2%',   right: '',    size: 16, delay: 1,   fill: '#e63946' },
+        { top: '28%', left: '',     right: '4%',  size: 20, delay: 0.5, fill: '#a2d6f9' },
+        { top: '68%', left: '',     right: '3%',  size: 32, delay: 0.8, fill: '#e63946' },
+        { top: '48%', left: '',     right: '9%',  size: 14, delay: 0.3, fill: '#1e96fc' },
+      ]).map((s, i) => (
         <div key={i} className="absolute star-deco pointer-events-none"
-          style={{ top: s.top, left: (s as any).left, right: (s as any).right, animationDelay: `${s.delay}s` }}>
+          style={{ top: s.top, ...(s.left ? { left: s.left } : {}), ...(s.right ? { right: s.right } : {}), animationDelay: `${s.delay}s` }}>
           <svg width={s.size} height={s.size} viewBox="0 0 32 32" style={{ imageRendering: 'pixelated' }}>
             <path d="M16 2 L19 12 L30 12 L21 18 L24 28 L16 22 L8 28 L11 18 L2 12 L13 12 Z"
               fill={s.fill} stroke="#0a0a0a" strokeWidth="2" />
@@ -177,47 +172,51 @@ function Hero() {
         </div>
       ))}
 
-      <div className="max-w-7xl mx-auto px-4 grid gap-8 items-center w-full"
-        style={{ gridTemplateColumns: 'minmax(0, 3fr) minmax(0, 2fr)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center', width: '100%' }}>
 
-        {/* Left — Logo as hero */}
-        <div className="flex flex-col items-center md:items-start w-full">
-          <div className="mascot-float w-full">
-            <Image src="/logo_new.png" alt="PropBank Logo" width={800} height={800}
-              style={{ imageRendering: 'pixelated', width: '100%', height: 'auto', mixBlendMode: 'multiply' }} />
-          </div>
+        {/* Left — Logo */}
+        <div className="mascot-float" style={{ display: 'flex', justifyContent: 'center' }}>
+          <Image src="/logo_new.png" alt="PropBank Logo" width={480} height={480}
+            style={{ imageRendering: 'pixelated', width: '100%', maxWidth: 480, height: 'auto', mixBlendMode: 'multiply' }} />
         </div>
 
-        {/* Right — info */}
+        {/* Right */}
         <div>
-          <div className="section-tag mb-6">CS3240 · IDP INDIVIDUAL PORTFOLIO</div>
+          <div className="section-tag" style={{ marginBottom: 20 }}>CS3240 · IDP INDIVIDUAL PORTFOLIO</div>
 
-          <h1 className="section-heading mb-2" style={{ fontSize: 18, color: '#0a0a0a' }}>
+          <h1 style={{ fontFamily: '"Press Start 2P"', fontSize: 20, lineHeight: 1.6, color: '#0a0a0a', marginBottom: 6 }}>
             CHEN HONG<span style={{ color: '#e63946' }}>SHAN</span>
           </h1>
-          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#aaa', marginBottom: 28 }}>
+          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#999', marginBottom: 32 }}>
             A0311136W · TUT[06]
           </p>
 
-          <div className="pixel-card p-5 mb-6">
-            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#aaa', marginBottom: 8 }}>
+          {/* Service card */}
+          <div style={{
+            border: '1.5px solid #0a0a0a',
+            borderLeft: '4px solid #1e96fc',
+            padding: '20px 24px',
+            marginBottom: 28,
+            background: '#ffffff',
+          }}>
+            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#999', marginBottom: 10 }}>
               SERVICE OWNED
             </p>
-            <p className="section-heading" style={{ fontSize: 11, color: '#1e96fc' }}>
+            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 11, color: '#1e96fc', lineHeight: 1.8 }}>
               {typed}<span className="blink" style={{ color: '#0a0a0a' }}>█</span>
             </p>
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div style={{ marginTop: 14, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {['+ PropMes', '+ Opening Screen', '+ Landing Page'].map(t => (
-                <span key={t} className="pixel-btn" style={{ fontSize: 7, background: '#ffffff', borderColor: '#a2d6f9', boxShadow: '3px 3px 0 #a2d6f9' }}>{t}</span>
+                <span key={t} className="chip">{t}</span>
               ))}
             </div>
           </div>
 
-          <div className="flex gap-3 flex-wrap">
-            <a href="#process" className="pixel-btn" style={{ background: '#0a0a0a', color: '#ffc600' }}>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <a href="#process" className="pixel-btn" style={{ background: '#0a0a0a', color: '#ffffff' }}>
               VIEW PROCESS ↓
             </a>
-            <a href="#prototype" className="pixel-btn" style={{ background: '#ffffff' }}>
+            <a href="#prototype" className="pixel-btn">
               SEE PROTOTYPE ↓
             </a>
           </div>
@@ -225,13 +224,41 @@ function Hero() {
       </div>
 
       {/* Scroll hint */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <div style={{ position: 'absolute', bottom: 28, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
         <p style={{ fontFamily: '"Press Start 2P"', fontSize: 6, color: '#ccc' }}>SCROLL</p>
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.2 }}>
-          <span style={{ fontSize: 20, color: '#aaa' }}>▼</span>
+        <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.2 }}>
+          <span style={{ fontSize: 16, color: '#bbb' }}>▼</span>
         </motion.div>
       </div>
     </section>
+  )
+}
+
+/* ─────────────────────────────────────────────
+   SECTION WRAPPER — consistent padding + max-width
+───────────────────────────────────────────── */
+function Section({ id, children, bg = '#ffffff' }: { id: string; children: React.ReactNode; bg?: string }) {
+  return (
+    <section id={id} style={{ background: bg, padding: '80px 0' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px' }}>
+        {children}
+      </div>
+    </section>
+  )
+}
+
+/* ─────────────────────────────────────────────
+   SECTION HEADER — consistent heading block
+───────────────────────────────────────────── */
+function SectionHeader({ tag, title, sub }: { tag: string; title: React.ReactNode; sub?: string }) {
+  return (
+    <div style={{ marginBottom: 40 }}>
+      <div className="section-tag">{tag}</div>
+      <h2 className="section-heading" style={{ fontSize: 16, color: '#0a0a0a', marginBottom: sub ? 12 : 0 }}>
+        {title}
+      </h2>
+      {sub && <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#555', maxWidth: 580, lineHeight: 1.5 }}>{sub}</p>}
+    </div>
   )
 }
 
@@ -240,81 +267,77 @@ function Hero() {
 ───────────────────────────────────────────── */
 function Origin() {
   return (
-    <section id="origin" className="py-24 px-6" style={{ background: '#ffffff' }}>
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <div className="section-tag">01 · ORIGIN STORY</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            WHERE IT ALL STARTED
-          </h2>
-          <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 32 }}>
-            The entire PropBank concept — its services, ecosystem vision, and core positioning — originated from my individual ideation. My teammates adopted and built on this foundation.
-          </p>
-        </Reveal>
+    <Section id="origin">
+      <Reveal>
+        <SectionHeader
+          tag="01 · ORIGIN STORY"
+          title={<>WHERE IT ALL <span style={{ color: '#e63946' }}>STARTED</span></>}
+          sub="The entire PropBank concept — its services, ecosystem vision, and core positioning — originated from my individual ideation. My teammates adopted and built on this foundation."
+        />
+      </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <Reveal delay={0.1}>
-            <div className="pixel-card p-6" style={{ background: '#ffc600' }}>
-              <p className="section-tag" style={{ background: '#0a0a0a', color: '#ffc600' }}>ORIGINAL PITCH</p>
-              <p className="section-heading" style={{ fontSize: 11, color: '#0a0a0a', marginBottom: 12 }}>
-                THE CORE IDEA
-              </p>
-              <ul style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.7, color: '#0a0a0a' }}>
-                <li>✦ Gear Library & Marketplace → buy / borrow / swap</li>
-                <li>✦ PropScan → one picture → buildable parts list</li>
-                <li>✦ Workshop → unified tutorial directory</li>
-                <li>✦ Creator Hub → help requests & collabs</li>
-              </ul>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.2}>
-            <div className="pixel-card p-6" style={{ background: '#ffc600' }}>
-              <p className="section-tag" style={{ background: '#0a0a0a', color: '#ffc600' }}>THE PROBLEM I SAW</p>
-              <p className="section-heading" style={{ fontSize: 11, color: '#0a0a0a', marginBottom: 12 }}>
-                COSPLAY HAS A COORDINATION CRISIS
-              </p>
-              <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.7, color: '#0a0a0a' }}>
-                Singapore-based ACGN creators — cosplayers, prop makers, fan-film teams, student clubs — lacked a dedicated ecosystem. Their creativity was there. Access and coordination were not.
-              </p>
-              <div className="mt-4 flex gap-2 flex-wrap">
-                {['✓ Creativity', '✗ Access', '✗ Coordination'].map(t => (
-                  <span key={t} className="pixel-btn" style={{ fontSize: 7, background: '#0a0a0a', color: '#ffc600' }}>{t}</span>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Pitch slides placeholder */}
-        <Reveal delay={0.25}>
-          <div className="pixel-card p-6 mt-8" style={{ background: '#ffffff' }}>
-            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#888', marginBottom: 10 }}>
-              ◈ INITIAL PITCH SLIDES — IDEATION STAGE
-            </p>
-            <div style={{ background: '#f5f5f5', border: '2px dashed #ccc', minHeight: 260, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <p style={{ fontFamily: '"VT323"', fontSize: 20, color: '#aaa', textAlign: 'center' }}>
-                [ add ideation pitch slides screenshot here ]
-              </p>
-            </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 32 }}>
+        <Reveal delay={0.1}>
+          <div style={{ borderLeft: '3px solid #1e96fc', padding: '24px', border: '1.5px solid #1e96fc', background: '#ffffff' }}>
+            <div className="section-tag">ORIGINAL PITCH</div>
+            <p className="section-heading" style={{ fontSize: 10, color: '#0a0a0a', marginBottom: 16 }}>THE CORE IDEA</p>
+            <ul style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.8, color: '#333', listStyle: 'none', padding: 0, margin: 0 }}>
+              <li style={{ paddingBottom: 4, borderBottom: '1px solid #E5F4FE', marginBottom: 4 }}>✦ Gear Library & Marketplace → buy / borrow / swap</li>
+              <li style={{ paddingBottom: 4, borderBottom: '1px solid #E5F4FE', marginBottom: 4 }}>✦ PropScan → one picture → buildable parts list</li>
+              <li style={{ paddingBottom: 4, borderBottom: '1px solid #E5F4FE', marginBottom: 4 }}>✦ Workshop → unified tutorial directory</li>
+              <li>✦ Creator Hub → help requests & collabs</li>
+            </ul>
           </div>
         </Reveal>
 
-        <Reveal delay={0.3}>
-          <div className="pixel-card p-6 mt-8" style={{ background: '#072ac8' }}>
-            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#ffc600', marginBottom: 8 }}>
-              → FROM ONE IDEA TO A SUPER-APP
+        <Reveal delay={0.2}>
+          <div style={{ border: '1.5px solid #e63946', padding: '24px', background: '#ffffff' }}>
+            <div className="section-tag">THE PROBLEM I SAW</div>
+            <p className="section-heading" style={{ fontSize: 10, color: '#0a0a0a', marginBottom: 12 }}>COSPLAY HAS A COORDINATION CRISIS</p>
+            <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.7, color: '#444', marginBottom: 16 }}>
+              Singapore-based ACGN creators — cosplayers, prop makers, fan-film teams, student clubs — lacked a dedicated ecosystem. Their creativity was there. Access and coordination were not.
             </p>
-            <p style={{ fontFamily: '"VT323"', fontSize: 22, lineHeight: 1.6, color: 'white' }}>
-              This initial pitch became the shared foundation that all four group members built their individual services upon.
-              My role then evolved into owning <span style={{ color: '#a2d6f9' }}>Gear Library & Marketplace</span>,
-              <span style={{ color: '#E5F4FE' }}> PropMes</span>, and the
-              <span style={{ color: '#ffc600' }}> Opening + Landing screens</span>.
-            </p>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              {[
+                { t: '✓ Creativity', bg: '#E5F4FE', color: '#072ac8' },
+                { t: '✗ Access', bg: '#fff5f5', color: '#e63946' },
+                { t: '✗ Coordination', bg: '#fff5f5', color: '#e63946' },
+              ].map(c => (
+                <span key={c.t} style={{ fontFamily: '"Press Start 2P"', fontSize: 7, background: c.bg, color: c.color, border: `1px solid ${c.color}`, padding: '4px 10px' }}>{c.t}</span>
+              ))}
+            </div>
           </div>
         </Reveal>
       </div>
-    </section>
+
+      {/* Pitch slides placeholder */}
+      <Reveal delay={0.25}>
+        <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', marginBottom: 24 }}>
+          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#888', marginBottom: 12 }}>
+            ◈ INITIAL PITCH SLIDES — IDEATION STAGE
+          </p>
+          <div style={{ background: '#f8f8f8', border: '1.5px dashed #ddd', minHeight: 240, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <p style={{ fontFamily: '"VT323"', fontSize: 20, color: '#bbb', textAlign: 'center' }}>
+              [ add ideation pitch slides screenshot here ]
+            </p>
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal delay={0.3}>
+        <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', borderLeft: '4px solid #1e96fc', padding: '24px' }}>
+          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#072ac8', marginBottom: 8 }}>
+            → FROM ONE IDEA TO A SUPER-APP
+          </p>
+          <p style={{ fontFamily: '"VT323"', fontSize: 21, lineHeight: 1.6, color: '#333' }}>
+            This initial pitch became the shared foundation that all four group members built their individual services upon.
+            My role then evolved into owning <span style={{ color: '#1e96fc', fontWeight: 'bold' }}>Gear Library & Marketplace</span>,
+            <span style={{ color: '#0a0a0a' }}> PropMes</span>, and the
+            <span style={{ color: '#e63946' }}> Opening + Landing screens</span>.
+          </p>
+        </div>
+      </Reveal>
+    </Section>
   )
 }
 
@@ -323,77 +346,83 @@ function Origin() {
 ───────────────────────────────────────────── */
 function Role() {
   const services = [
-    { name: 'Gear Library\n& Marketplace', owner: 'ME', color: '#1e96fc', textColor: 'white', highlight: true },
-    { name: 'CoNews',        owner: 'Xiao Ao', color: '#E5F4FE', textColor: '#072ac8', highlight: false },
-    { name: 'PropScan',      owner: 'Shared',  color: '#a2d6f9', textColor: '#072ac8', highlight: false },
-    { name: 'Workshop',      owner: 'Yuhao',   color: '#E5F4FE', textColor: '#072ac8', highlight: false },
-    { name: 'Creator Hub',   owner: 'Jae',     color: '#E5F4FE', textColor: '#072ac8', highlight: false },
+    { name: 'Gear Library\n& Marketplace', owner: 'ME', highlight: true },
+    { name: 'CoNews',        owner: 'Xiao Ao', highlight: false },
+    { name: 'PropScan',      owner: 'Shared',  highlight: false },
+    { name: 'Workshop',      owner: 'Yuhao',   highlight: false },
+    { name: 'Creator Hub',   owner: 'Jae',     highlight: false },
   ]
 
   return (
-    <section id="role" className="py-24 px-6" style={{ background: '#a2d6f9' }}>
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <div className="section-tag">02 · ECOSYSTEM ROLE</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            MY ROLE IN THE ECOSYSTEM
-          </h2>
-          <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 32 }}>
-            PropBank is a super-app with five distinct services. I owned the Marketplace — the economic core of the ecosystem — plus the shared entry experience.
-          </p>
-        </Reveal>
+    <Section id="role" bg="#E5F4FE">
+      <Reveal>
+        <SectionHeader
+          tag="02 · ECOSYSTEM ROLE"
+          title={<>MY ROLE IN THE <span style={{ color: '#1e96fc' }}>ECOSYSTEM</span></>}
+          sub="PropBank is a super-app with five distinct services. I owned the Marketplace — the economic core of the ecosystem — plus the shared entry experience."
+        />
+      </Reveal>
 
-        {/* Service grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10">
-          {services.map((s, i) => (
-            <Reveal key={s.name} delay={i * 0.1}>
-              <div className={`pixel-card p-4 text-center ${s.highlight ? 'ring-4 ring-offset-2 ring-pb-yellow' : ''}`}
-                style={{ background: s.color }}>
-                <p className="section-heading" style={{ fontSize: 9, color: s.textColor, whiteSpace: 'pre-line', marginBottom: 8 }}>
-                  {s.name}
-                </p>
-                <span className="pixel-btn" style={{
-                  fontSize: 7,
-                  background: s.highlight ? '#fcf300' : 'white',
-                  color: '#0a0a0a',
-                  padding: '4px 8px'
-                }}>
-                  {s.owner}
-                </span>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        {/* Group contributions */}
-        <Reveal delay={0.3}>
-          <div className="pixel-card p-6" style={{ background: 'white' }}>
-            <p className="section-tag">MY GROUP-LEVEL CONTRIBUTIONS</p>
-            <div className="grid md:grid-cols-3 gap-6 mt-4">
-              {[
-                { icon: '🔍', title: 'Key Insights Analysis', desc: 'Led synthesis of all 3 interview transcripts into 5 actionable design findings, framing the MVP priorities for the whole team.' },
-                { icon: '👤', title: 'Group-Level Persona', desc: 'Created Shin Ip Seng — the cross-service persona — and mapped his end-to-end journey across all 5 services.' },
-                { icon: '🗺️', title: 'Marketplace Persona\n& Journey Map', desc: 'Designed Chloe Tan persona and full user journey map for the Gear Library & Marketplace service.' },
-              ].map((c, i) => (
-                <div key={i} className="pixel-card p-4" style={{ background: '#ffffff' }}>
-                  <div style={{ fontSize: 28, marginBottom: 8 }}>{c.icon}</div>
-                  <p className="section-heading" style={{ fontSize: 9, color: '#1e96fc', whiteSpace: 'pre-line', marginBottom: 6 }}>{c.title}</p>
-                  <p style={{ fontFamily: '"VT323"', fontSize: 18, lineHeight: 1.5, color: '#444' }}>{c.desc}</p>
-                </div>
-              ))}
+      {/* Service grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12, marginBottom: 32 }}>
+        {services.map((s, i) => (
+          <Reveal key={s.name} delay={i * 0.08}>
+            <div style={{
+              border: s.highlight ? '2px solid #1e96fc' : '1.5px solid #0a0a0a',
+              background: s.highlight ? '#1e96fc' : '#ffffff',
+              padding: '16px 12px',
+              textAlign: 'center',
+              boxShadow: s.highlight ? '4px 4px 0 #072ac8' : 'none',
+            }}>
+              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: s.highlight ? '#ffffff' : '#0a0a0a', whiteSpace: 'pre-line', marginBottom: 10, lineHeight: 1.8 }}>
+                {s.name}
+              </p>
+              <span style={{
+                fontFamily: '"Press Start 2P"', fontSize: 7,
+                background: s.highlight ? '#ffc600' : '#E5F4FE',
+                color: '#0a0a0a',
+                border: '1px solid #0a0a0a',
+                padding: '4px 8px',
+                display: 'inline-block',
+              }}>
+                {s.owner}
+              </span>
             </div>
+          </Reveal>
+        ))}
+      </div>
+
+      {/* Group contributions */}
+      <Reveal delay={0.3}>
+        <div style={{ border: '1.5px solid #0a0a0a', background: '#ffffff', padding: '28px' }}>
+          <div className="section-tag">MY GROUP-LEVEL CONTRIBUTIONS</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20, marginTop: 16 }}>
+            {[
+              { title: 'Key Insights Analysis', desc: 'Led synthesis of all 3 interview transcripts into 5 actionable design findings, framing the MVP priorities for the whole team.' },
+              { title: 'Group-Level Persona & Journey Map', desc: 'Created Shin Ip Seng — the cross-service persona — and mapped his end-to-end journey across all 5 services.' },
+              { title: 'Marketplace Persona & Journey Map', desc: 'Designed Chloe Tan persona and full user journey map for the Gear Library & Marketplace service.' },
+              { title: 'Hi-Fi Prototype Screens', desc: 'Designed and built the Opening Screen, Landing Screen, and PropMes screens as part of the hi-fi prototype.' },
+            ].map((c, i) => (
+              <div key={i} style={{ borderTop: '2px solid #1e96fc', paddingTop: 14 }}>
+                <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#1e96fc', marginBottom: 8, lineHeight: 1.7 }}>{c.title}</p>
+                <p style={{ fontFamily: '"VT323"', fontSize: 18, lineHeight: 1.5, color: '#555' }}>{c.desc}</p>
+              </div>
+            ))}
           </div>
-        </Reveal>
-        {/* Navigation workflow embed */}
-        <Reveal delay={0.4} className="mt-8">
+        </div>
+      </Reveal>
+
+      {/* Navigation workflow embed */}
+      <Reveal delay={0.4} className="mt-8">
+        <div style={{ marginTop: 32 }}>
           <FigmaEmbed
             url="https://www.figma.com/board/dlTpTF55FrQKmTATqDJw5O/CS3240-overall-navigation-workflow?node-id=0-1&p=f&t=10PYZBdx5EDaWDl7-0"
             title="OVERALL NAVIGATION WORKFLOW"
             height={460}
           />
-        </Reveal>
-      </div>
-    </section>
+        </div>
+      </Reveal>
+    </Section>
   )
 }
 
@@ -403,67 +432,62 @@ function Role() {
 function Problem() {
   const insights = [
     {
-      num: '01', color: '#1e96fc',
+      num: '01',
       title: 'Trust & Coordination Crisis',
       body: 'Cosplay sourcing is not just a browsing problem — it\'s a trust and coordination problem. Users want reviews, seller location, chat, reservation, and item condition info.'
     },
     {
-      num: '02', color: '#1e96fc',
+      num: '02',
       title: 'Fragmented Discovery',
       body: 'Event discovery relies on Instagram algorithms and word-of-mouth. Marketplace items are scattered across Carousell, Telegram, and random shops. No cosplay-specific search exists.'
     },
     {
-      num: '03', color: '#e63946',
+      num: '03',
       title: 'The "Can I Do It?" Problem',
       body: '"Costumes these days add too many things." Users need to evaluate whether to make or buy, how long it takes, and if a guide is credible — before committing.'
     },
   ]
 
   return (
-    <section id="problem" className="py-24 px-6" style={{ background: 'white' }}>
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <div className="section-tag">03 · PROBLEM FRAMING</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            THE REAL PROBLEM WE FOUND
-          </h2>
-          <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 32 }}>
-            Three semi-structured interviews with cosplayers and convention-goers revealed that the core challenge isn't "finding items" — it's building enough trust to act.
-          </p>
-        </Reveal>
+    <Section id="problem">
+      <Reveal>
+        <SectionHeader
+          tag="03 · PROBLEM FRAMING"
+          title={<>THE REAL <span style={{ color: '#e63946' }}>PROBLEM</span> WE FOUND</>}
+          sub={`Three semi-structured interviews with cosplayers and convention-goers revealed that the core challenge isn't "finding items" — it's building enough trust to act.`}
+        />
+      </Reveal>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {insights.map((ins, i) => (
-            <Reveal key={ins.num} delay={i * 0.15}>
-              <div className="pixel-card p-6 h-full" style={{ borderColor: ins.color }}>
-                <p className="section-heading" style={{ fontSize: 28, color: ins.color, marginBottom: 8 }}>
-                  {ins.num}
-                </p>
-                <p className="section-heading" style={{ fontSize: 10, color: '#0a0a0a', marginBottom: 10 }}>
-                  {ins.title}
-                </p>
-                <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.6, color: '#444' }}>
-                  {ins.body}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={0.4}>
-          <div className="pixel-card p-6 mt-8" style={{ background: '#ffffff' }}>
-            <p className="section-heading" style={{ fontSize: 12, color: '#0a0a0a', marginBottom: 8 }}>
-              ★ DESIGN DIRECTION
-            </p>
-            <p style={{ fontFamily: '"VT323"', fontSize: 24, lineHeight: 1.5 }}>
-              PropBank Marketplace should not look like a generic e-commerce feed. It must be built around 
-              <strong> trust signals</strong>, <strong>cosplay-specific filters</strong>, and 
-              <strong> coordination tools</strong> — from first browse to successful handoff.
-            </p>
-          </div>
-        </Reveal>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 32 }}>
+        {insights.map((ins, i) => (
+          <Reveal key={ins.num} delay={i * 0.12}>
+            <div style={{ border: '1.5px solid #0a0a0a', padding: '28px', height: '100%' }}>
+              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 32, color: '#E5F4FE', marginBottom: 2 }}>{ins.num}</p>
+              <div style={{ width: 24, height: 2, background: '#e63946', marginBottom: 12 }} />
+              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#0a0a0a', marginBottom: 12, lineHeight: 1.8 }}>
+                {ins.title}
+              </p>
+              <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.6, color: '#555' }}>
+                {ins.body}
+              </p>
+            </div>
+          </Reveal>
+        ))}
       </div>
-    </section>
+
+      <Reveal delay={0.4}>
+        <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', borderLeft: '4px solid #0a0a0a', padding: '24px 28px' }}>
+          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 10, color: '#0a0a0a', marginBottom: 10 }}>★ DESIGN DIRECTION</p>
+          <p style={{ fontFamily: '"VT323"', fontSize: 22, lineHeight: 1.5, color: '#333' }}>
+            PropBank Marketplace should not look like a generic e-commerce feed. It must be built around{' '}
+            <strong style={{ color: '#1e96fc' }}>trust signals</strong>,{' '}
+            <strong style={{ color: '#1e96fc' }}>cosplay-specific filters</strong>, and{' '}
+            <strong style={{ color: '#1e96fc' }}>coordination tools</strong>{' '}
+            — from first browse to successful handoff.
+          </p>
+        </div>
+      </Reveal>
+    </Section>
   )
 }
 
@@ -472,135 +496,138 @@ function Problem() {
 ───────────────────────────────────────────── */
 function Research() {
   return (
-    <section id="research" className="py-24 px-6" style={{ background: '#E5F4FE' }}>
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <div className="section-tag">04 · USER RESEARCH & PERSONA</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            KNOWING THE USER
-          </h2>
-        </Reveal>
+    <Section id="research" bg="#f7fbff">
+      <Reveal>
+        <SectionHeader
+          tag="04 · USER RESEARCH & PERSONA"
+          title={<>KNOWING THE <span style={{ color: '#1e96fc' }}>USER</span></>}
+        />
+      </Reveal>
 
-        {/* Affinity Diagram */}
-        <Reveal className="mb-10">
+      {/* Affinity Diagram */}
+      <Reveal className="mb-10">
+        <div style={{ marginBottom: 32 }}>
           <FigmaEmbed
             url="https://www.figma.com/board/6KajuIH2XFhA2Ro5eLeb6P/hs---affinity-diagram?node-id=0-3&t=VN8eBxJlXW2eZo0I-1"
             title="AFFINITY DIAGRAM"
             height={460}
           />
-        </Reveal>
+        </div>
+      </Reveal>
 
-        {/* Research methods + quote */}
-        <div className="grid md:grid-cols-2 gap-6 mb-10">
+      {/* Research methods + quote */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 40 }}>
+        <Reveal delay={0.1}>
+          <div style={{ border: '1.5px solid #1e96fc', padding: '24px', background: '#ffffff' }}>
+            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 14 }}>RESEARCH METHODS</p>
+            <div>
+              {[
+                '✦ Semi-structured interviews (3 participants)',
+                '✦ Purposive sampling: cosplayers + ACGN fans',
+                '✦ Affinity diagramming (individual + cross-team)',
+                '✦ User journey mapping in FigJam',
+              ].map(m => (
+                <p key={m} style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.7, color: '#444', borderBottom: '1px solid #E5F4FE', paddingBottom: 6, marginBottom: 6 }}>{m}</p>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <div style={{ border: '1.5px solid #0a0a0a', padding: '28px', background: '#ffffff', borderLeft: '4px solid #e63946' }}>
+            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#0a0a0a', marginBottom: 14 }}>KEY QUOTE</p>
+            <p style={{ fontFamily: '"VT323"', fontSize: 26, lineHeight: 1.4, fontStyle: 'italic', color: '#333', marginBottom: 12 }}>
+              "Preferred locations of the seller matter because running around Singapore is annoying."
+            </p>
+            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#999' }}>
+              — User S, Interview 1
+            </p>
+          </div>
+        </Reveal>
+      </div>
+
+      {/* ── Persona + Journey Map pairs ── */}
+      {[
+        {
+          tag: 'MARKETPLACE PERSONA',
+          tagColor: '#1e96fc',
+          name: 'CHLOE TAN',
+          sub: 'Age 21 · University Student · Singapore',
+          rows: [
+            { label: 'ATTENDS',  value: '3–5 conventions/year, needs costumes fast' },
+            { label: 'GOAL',     value: 'Buy/borrow/swap cosplay gear without wasting time on untrustworthy listings' },
+            { label: 'PAIN',     value: 'Items scattered across Carousell, Telegram, and shops. Hard to verify trust.' },
+            { label: 'NEEDS',    value: 'Reviews, seller location, condition info, chat, reservation, cosplay-specific filters' },
+          ],
+          journeyTitle: 'MARKETPLACE USER JOURNEY MAP',
+          journeyUrl: 'https://www.figma.com/board/wHeMeAwvD9rtvsmIXV4Z1f/hs---user-journey-map?node-id=8-344&t=N6icqzUmCcexXJlS-1',
+        },
+        {
+          tag: 'GROUP PERSONA',
+          tagColor: '#ffc600',
+          name: 'SHIN IP SENG',
+          sub: 'Age 20 · University Student · Active ACGN Participant',
+          rows: [
+            { label: 'BACKGROUND', value: 'Already familiar with ACGN culture. Challenge: journey is inefficient across fragmented platforms.' },
+            { label: 'GOAL',       value: 'Move smoothly between event discovery, sourcing, learning, and community sharing.' },
+            { label: 'PAIN',       value: 'Has to restart the search process every time he switches tasks across platforms.' },
+            { label: 'NEEDS',      value: 'A connected ecosystem where PropScan, Marketplace, Workshop, and CoNews work together.' },
+          ],
+          journeyTitle: 'GROUP PERSONA JOURNEY MAP',
+          journeyUrl: 'https://www.figma.com/board/wHeMeAwvD9rtvsmIXV4Z1f/hs---user-journey-map?node-id=0-1&t=N6icqzUmCcexXJlS-1',
+        },
+        {
+          tag: 'PROPSCAN PERSONA',
+          tagColor: '#a2d6f9',
+          name: 'AARON LIM',
+          sub: 'Age 22 · University Student · Casual ACGN Fan',
+          rows: [
+            { label: 'BACKGROUND', value: 'Casual fan who encounters cool props online but doesn\'t know the character or franchise.' },
+            { label: 'GOAL',       value: 'Go from "this looks cool" to "now I know what it is" with low friction.' },
+            { label: 'PAIN',       value: 'Reverse-searching manually across Google, Reddit, TikTok is inefficient and inaccurate.' },
+            { label: 'NEEDS',      value: 'Upload image → identify prop → find guides, marketplace items, and community content.' },
+          ],
+          journeyTitle: 'PROPSCAN USER JOURNEY MAP',
+          journeyUrl: 'https://www.figma.com/board/wHeMeAwvD9rtvsmIXV4Z1f/hs---user-journey-map?node-id=8-722&t=N6icqzUmCcexXJlS-1',
+        },
+      ].map((persona) => (
+        <div key={persona.name} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 40, alignItems: 'start' }}>
           <Reveal delay={0.1}>
-            <div className="pixel-card p-6" style={{ background: '#072ac8', color: 'white' }}>
-              <p className="section-heading" style={{ fontSize: 10, color: '#fcf300', marginBottom: 10 }}>
-                RESEARCH METHODS
-              </p>
-              <div className="space-y-2">
-                {[
-                  '✦ Semi-structured interviews (3 participants)',
-                  '✦ Purposive sampling: cosplayers + ACGN fans',
-                  '✦ Affinity diagramming (individual + cross-team)',
-                  '✦ User journey mapping in FigJam',
-                ].map(m => (
-                  <p key={m} style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.5 }}>{m}</p>
+            <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', background: '#ffffff', height: '100%' }}>
+              {/* Persona header */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
+                <div style={{ width: 44, height: 44, background: '#E5F4FE', border: '1.5px solid #a2d6f9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <span style={{ fontSize: 22 }}>👤</span>
+                </div>
+                <div>
+                  <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 4 }}>{persona.name}</p>
+                  <p style={{ fontFamily: '"VT323"', fontSize: 17, color: '#999' }}>{persona.sub}</p>
+                </div>
+              </div>
+              <span style={{
+                fontFamily: '"Press Start 2P"', fontSize: 7,
+                background: persona.tagColor === '#ffc600' ? '#ffc600' : persona.tagColor === '#1e96fc' ? '#E5F4FE' : '#E5F4FE',
+                color: persona.tagColor === '#ffc600' ? '#0a0a0a' : '#072ac8',
+                border: `1px solid ${persona.tagColor}`,
+                padding: '3px 8px',
+                display: 'inline-block',
+                marginBottom: 16,
+              }}>{persona.tag}</span>
+              <div>
+                {persona.rows.map(row => (
+                  <div key={row.label} className="info-row">
+                    <span className="info-label">{row.label}</span>
+                    <p style={{ fontFamily: '"VT323"', fontSize: 19, lineHeight: 1.5, color: '#444' }}>{row.value}</p>
+                  </div>
                 ))}
               </div>
             </div>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="pixel-card p-6" style={{ background: '#ffffff' }}>
-              <p className="section-heading" style={{ fontSize: 10, marginBottom: 10 }}>KEY QUOTE</p>
-              <p style={{ fontFamily: '"VT323"', fontSize: 26, lineHeight: 1.4, fontStyle: 'italic' }}>
-                "Preferred locations of the seller matter because running around Singapore is annoying."
-              </p>
-              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#555', marginTop: 8 }}>
-                — User S, Interview 1
-              </p>
-            </div>
+            <FigmaEmbed url={persona.journeyUrl} title={persona.journeyTitle} height={480} />
           </Reveal>
         </div>
-
-        {/* ── Persona + Journey Map pairs ── */}
-        {[
-          {
-            tag: 'MARKETPLACE PERSONA',
-            tagColor: '#a2d6f9',
-            name: 'CHLOE TAN',
-            sub: 'Age 21 · University Student · Singapore',
-            rows: [
-              { label: 'ATTENDS',  value: '3–5 conventions/year, needs costumes fast' },
-              { label: 'GOAL',     value: 'Buy/borrow/swap cosplay gear without wasting time on untrustworthy listings' },
-              { label: 'PAIN',     value: 'Items scattered across Carousell, Telegram, and shops. Hard to verify trust.' },
-              { label: 'NEEDS',    value: 'Reviews, seller location, condition info, chat, reservation, cosplay-specific filters' },
-            ],
-            journeyTitle: 'MARKETPLACE USER JOURNEY MAP',
-            journeyUrl: 'https://www.figma.com/board/wHeMeAwvD9rtvsmIXV4Z1f/hs---user-journey-map?node-id=8-344&t=N6icqzUmCcexXJlS-1',
-          },
-          {
-            tag: 'GROUP PERSONA',
-            tagColor: '#fcf300',
-            name: 'SHIN IP SENG',
-            sub: 'Age 20 · University Student · Active ACGN Participant',
-            rows: [
-              { label: 'BACKGROUND', value: 'Already familiar with ACGN culture. Challenge: journey is inefficient across fragmented platforms.' },
-              { label: 'GOAL',       value: 'Move smoothly between event discovery, sourcing, learning, and community sharing.' },
-              { label: 'PAIN',       value: 'Has to restart the search process every time he switches tasks across platforms.' },
-              { label: 'NEEDS',      value: 'A connected ecosystem where PropScan, Marketplace, Workshop, and CoNews work together.' },
-            ],
-            journeyTitle: 'GROUP PERSONA JOURNEY MAP',
-            journeyUrl: 'https://www.figma.com/board/wHeMeAwvD9rtvsmIXV4Z1f/hs---user-journey-map?node-id=0-1&t=N6icqzUmCcexXJlS-1',
-          },
-          {
-            tag: 'PROPSCAN PERSONA',
-            tagColor: '#a2d6f9',
-            name: 'AARON LIM',
-            sub: 'Age 22 · University Student · Casual ACGN Fan',
-            rows: [
-              { label: 'BACKGROUND', value: 'Casual fan who encounters cool props online but doesn\'t know the character or franchise.' },
-              { label: 'GOAL',       value: 'Go from "this looks cool" to "now I know what it is" with low friction.' },
-              { label: 'PAIN',       value: 'Reverse-searching manually across Google, Reddit, TikTok is inefficient and inaccurate.' },
-              { label: 'NEEDS',      value: 'Upload image → identify prop → find guides, marketplace items, and community content.' },
-            ],
-            journeyTitle: 'PROPSCAN USER JOURNEY MAP',
-            journeyUrl: 'https://www.figma.com/board/wHeMeAwvD9rtvsmIXV4Z1f/hs---user-journey-map?node-id=8-722&t=N6icqzUmCcexXJlS-1',
-          },
-        ].map((persona, idx) => (
-          <div key={persona.name} className="grid md:grid-cols-2 gap-6 mb-10 items-start">
-            <Reveal delay={0.1}>
-              <div className="pixel-card p-6 h-full" style={{ background: 'white' }}>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="pixel-card p-3" style={{ background: '#072ac8', width: 52, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span style={{ fontSize: 24 }}>👤</span>
-                  </div>
-                  <div>
-                    <p className="section-heading" style={{ fontSize: 10, color: '#1e96fc' }}>{persona.name}</p>
-                    <p style={{ fontFamily: '"VT323"', fontSize: 17, color: '#888' }}>{persona.sub}</p>
-                  </div>
-                </div>
-                <p className="section-tag" style={{ background: persona.tagColor }}>{persona.tag}</p>
-                <div className="mt-3 space-y-3">
-                  {persona.rows.map(row => (
-                    <div key={row.label} className="pixel-card p-3" style={{ background: '#ffffff' }}>
-                      <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#888', marginBottom: 3 }}>{row.label}</p>
-                      <p style={{ fontFamily: '"VT323"', fontSize: 18, lineHeight: 1.4 }}>{row.value}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <FigmaEmbed
-                url={persona.journeyUrl}
-                title={persona.journeyTitle}
-                height={480}
-              />
-            </Reveal>
-          </div>
-        ))}
-      </div>
-    </section>
+      ))}
+    </Section>
   )
 }
 
@@ -609,221 +636,217 @@ function Research() {
 ───────────────────────────────────────────── */
 function Process() {
   const tasks = [
-    { id: 'T1', label: 'Browse & Buy',   color: '#ffffff', text: '#0a0a0a' },
-    { id: 'T2', label: 'Borrow',         color: '#072ac8', text: 'white'   },
-    { id: 'T3', label: 'Sell / Rent',    color: '#e63946', text: 'white'   },
-    { id: 'T4', label: 'Swap',           color: '#ffc600', text: '#0a0a0a' },
-    { id: 'T5', label: 'PropMes Chat',   color: '#E5F4FE', text: '#072ac8' },
+    { id: 'T1', label: 'Buy & Borrow' },
+    { id: 'T2', label: 'Sell & Rent' },
+    { id: 'T3', label: 'Swap' },
+    { id: 'T4', label: 'PropMes Chat' },
   ]
 
   return (
-    <section id="process" className="py-24 px-6" style={{ background: 'white' }}>
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <div className="section-tag">05 · DESIGN PROCESS</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            FROM SKETCH TO PROTOTYPE
-          </h2>
-          <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 32 }}>
-            The marketplace went through structured iteration: task workflow → lo-fi paper sketches → mid-fi digital wireframes.
-          </p>
-        </Reveal>
+    <Section id="process">
+      <Reveal>
+        <SectionHeader
+          tag="05 · DESIGN PROCESS"
+          title={<>FROM SKETCH TO <span style={{ color: '#1e96fc' }}>PROTOTYPE</span></>}
+          sub="The marketplace went through structured iteration: task workflow → lo-fi paper sketches → mid-fi digital wireframes."
+        />
+      </Reveal>
 
-        {/* Process timeline — 2 steps only */}
-        <div className="relative mb-12">
-          <div className="absolute top-8 left-0 right-0 h-1" style={{ background: '#0a0a0a' }} />
-          <div className="grid grid-cols-2 gap-4 relative">
-            {[
-              { phase: 'LO-FI', label: 'Paper Sketches', desc: 'Task flows for Buy, Borrow, Sell, Swap drawn on paper. Focus on information hierarchy and trust signals.', color: '#E5F4FE' },
-              { phase: 'MID-FI', label: 'Digital Wireframes', desc: 'Translated to Figma. Defined card components, filter patterns, seller profile structure.', color: '#a2d6f9' },
-            ].map((p, i) => (
-              <Reveal key={p.phase} delay={i * 0.15}>
-                <div className="pt-16">
-                  <div className="pixel-card p-4" style={{ background: p.color }}>
-                    <p className="section-heading" style={{ fontSize: 9, color: '#1e96fc', marginBottom: 4 }}>{p.phase}</p>
-                    <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, marginBottom: 8 }}>{p.label}</p>
-                    <p style={{ fontFamily: '"VT323"', fontSize: 18, lineHeight: 1.5, opacity: 0.85 }}>{p.desc}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
+      {/* Process steps */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
+        {[
+          { phase: 'LO-FI', label: 'Paper Sketches', desc: 'Task flows for Buy, Borrow, Sell, Swap drawn on paper. Focus on information hierarchy and trust signals.' },
+          { phase: 'MID-FI', label: 'Digital Wireframes', desc: 'Translated to Figma. Defined card components, filter patterns, seller profile structure.' },
+        ].map((p, i) => (
+          <Reveal key={p.phase} delay={i * 0.1}>
+            <div style={{ display: 'flex', gap: 16, border: '1.5px solid #0a0a0a', padding: '20px 24px', alignItems: 'flex-start' }}>
+              <div className="num-badge" style={{ flexShrink: 0 }}>{i + 1}</div>
+              <div>
+                <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 4 }}>{p.phase}</p>
+                <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#0a0a0a', marginBottom: 8 }}>{p.label}</p>
+                <p style={{ fontFamily: '"VT323"', fontSize: 18, color: '#555', lineHeight: 1.5 }}>{p.desc}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
 
-        {/* 1. Task workflow embed */}
-        <Reveal delay={0.1} className="mb-8">
-          <p className="section-heading mb-4" style={{ fontSize: 10, color: '#1e96fc' }}>
-            STEP 1 · TASK WORKFLOW & USER TASKS
-          </p>
+      {/* 1. Task workflow embed */}
+      <Reveal delay={0.1}>
+        <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 14 }}>
+          STEP 1 · TASK WORKFLOW & USER TASKS
+        </p>
+        <div style={{ marginBottom: 32 }}>
           <FigmaEmbed
             url="https://www.figma.com/board/Aq90xFScMUubyW4aWzY4wc/hs---task-workflow?node-id=0-1&t=PBeRriCBMjXUIx61-1"
             title="TASK WORKFLOW DIAGRAM — MARKETPLACE"
             height={500}
           />
-        </Reveal>
-
-        {/* User tasks coverage */}
-        <Reveal delay={0.15}>
-          <div className="pixel-card p-6 mb-8" style={{ background: '#1e96fc' }}>
-            <p className="section-heading" style={{ fontSize: 10, color: '#ffc600', marginBottom: 12 }}>
-              USER TASKS DESIGNED
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {tasks.map(t => (
-                <div key={t.id} className="pixel-card px-4 py-3" style={{ background: t.color }}>
-                  <span style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: t.text }}>
-                    {t.id} · {t.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-
-        {/* Design decisions */}
-        <Reveal delay={0.2}>
-          <p className="section-heading mb-6" style={{ fontSize: 10, color: '#1e96fc' }}>
-            KEY DESIGN DECISIONS
-          </p>
-        </Reveal>
-        <div className="grid md:grid-cols-2 gap-6 mb-10">
-          {[
-            { decision: 'Trust Badge System', rationale: 'Users cited reviews and seller credibility as the #1 factor. Designed a visible trust score combining marketplace rating + guide reproducibility rating + transaction count — portable across services.', color: '#072ac8', text: 'white' },
-            { decision: 'Cosplay-Specific Filters', rationale: 'Generic filters (price, date) are insufficient. Added fandom, character, item type, size, and condition filters — mapping directly to what users said they needed.', color: '#1e96fc', text: 'white' },
-            { decision: 'Seller Location Field', rationale: '"Running around Singapore is annoying" (User S). Made seller location a mandatory, prominently-displayed field on every listing.', color: '#a2d6f9', text: '#0a0a0a' },
-            { decision: 'PropMes as Coordination Layer', rationale: 'Chat, offer-making, reservation requests, and meetup coordination all happen within PropMes — keeping the full transaction lifecycle inside PropBank.', color: '#E5F4FE', text: '#0a0a0a' },
-          ].map((d, i) => (
-            <Reveal key={d.decision} delay={i * 0.1}>
-              <div className="pixel-card p-5 h-full" style={{ background: d.color }}>
-                <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, opacity: 0.7, marginBottom: 6, color: d.text }}>DESIGN DECISION</p>
-                <p className="section-heading" style={{ fontSize: 10, color: d.text, marginBottom: 8 }}>{d.decision}</p>
-                <p style={{ fontFamily: '"VT323"', fontSize: 19, lineHeight: 1.5, color: d.text, opacity: 0.9 }}>{d.rationale}</p>
-              </div>
-            </Reveal>
-          ))}
         </div>
+      </Reveal>
 
-        {/* 2. Lo-fi sketches */}
-        <Reveal delay={0.2}>
-          <p className="section-heading mb-4" style={{ fontSize: 10, color: '#1e96fc' }}>
-            STEP 2 · LO-FI PAPER SKETCHES
-          </p>
-          <div className="pixel-card p-6" style={{ background: '#ffffff' }}>
-            <div className="grid md:grid-cols-2 gap-4">
-              {[
-                { label: 'Task 1.1: Buy a Cosplay Item' },
-                { label: 'Task 2.1: Sell a Cosplay Item' },
-                { label: 'Task 3.1: Swap Cosplay Props' },
-                { label: 'Seller Profile Page' },
-              ].map((sketch, i) => (
-                <div key={i} className="pixel-card p-4" style={{ background: 'white', minHeight: 160 }}>
-                  <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#888', marginBottom: 8 }}>{sketch.label}</p>
-                  <div className="flex items-center justify-center" style={{ height: 100, background: '#f5f5f5', border: '2px dashed #ccc' }}>
-                    <p style={{ fontFamily: '"VT323"', fontSize: 18, color: '#aaa' }}>[ add lo-fi screenshot here ]</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+      {/* User tasks coverage */}
+      <Reveal delay={0.15}>
+        <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', padding: '20px 24px', marginBottom: 32, display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#072ac8', flexShrink: 0 }}>USER TASKS DESIGNED</p>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {tasks.map((t) => (
+              <div key={t.id} style={{
+                background: '#ffffff',
+                border: '1.5px solid #1e96fc',
+                padding: '8px 14px',
+              }}>
+                <span style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#072ac8' }}>
+                  {t.id} · {t.label}
+                </span>
+              </div>
+            ))}
           </div>
-        </Reveal>
+        </div>
+      </Reveal>
 
-        {/* 3. Mid-fi */}
-        <Reveal delay={0.2} className="mt-8">
-          <p className="section-heading mb-4" style={{ fontSize: 10, color: '#1e96fc' }}>
-            STEP 3 · MID-FI DIGITAL WIREFRAMES
-          </p>
-          <div className="pixel-card p-6" style={{ background: '#a2d6f9' }}>
-            <div className="grid md:grid-cols-2 gap-4">
-              {[
-                { label: 'Marketplace Home' },
-                { label: 'Browse & Filter' },
-                { label: 'Item Detail & Seller Profile' },
-                { label: 'Publish Listing Flow' },
-              ].map((w, i) => (
-                <div key={i} className="pixel-card p-4" style={{ background: 'white', minHeight: 160 }}>
-                  <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#888', marginBottom: 8 }}>{w.label}</p>
-                  <div className="flex items-center justify-center" style={{ height: 100, background: '#f5f5f5', border: '2px dashed #ccc' }}>
-                    <p style={{ fontFamily: '"VT323"', fontSize: 18, color: '#aaa' }}>[ add mid-fi screenshot here ]</p>
-                  </div>
-                </div>
-              ))}
+      {/* Design decisions */}
+      <Reveal delay={0.2}>
+        <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 20 }}>KEY DESIGN DECISIONS</p>
+      </Reveal>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
+        {[
+          { decision: 'Trust Badge System', rationale: 'Users cited reviews and seller credibility as the #1 factor. Designed a visible trust score combining marketplace rating + guide reproducibility rating + transaction count — portable across services.' },
+          { decision: 'Cosplay-Specific Filters', rationale: 'Generic filters (price, date) are insufficient. Added fandom, character, item type, size, and condition filters — mapping directly to what users said they needed.' },
+          { decision: 'Seller Location Field', rationale: '"Running around Singapore is annoying" (User S). Made seller location a mandatory, prominently-displayed field on every listing.' },
+          { decision: 'PropMes as Coordination Layer', rationale: 'Chat, offer-making, reservation requests, and meetup coordination all happen within PropMes — keeping the full transaction lifecycle inside PropBank.' },
+        ].map((d, i) => (
+          <Reveal key={d.decision} delay={i * 0.08}>
+            <div style={{
+              border: '1.5px solid #0a0a0a',
+              borderTop: '3px solid #1e96fc',
+              padding: '20px',
+              background: '#ffffff',
+              height: '100%',
+            }}>
+              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#999', marginBottom: 6 }}>DESIGN DECISION</p>
+              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#0a0a0a', marginBottom: 10, lineHeight: 1.7 }}>{d.decision}</p>
+              <p style={{ fontFamily: '"VT323"', fontSize: 19, lineHeight: 1.5, color: '#555' }}>{d.rationale}</p>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        ))}
       </div>
-    </section>
+
+      {/* 2. Lo-fi sketches */}
+      <Reveal delay={0.2}>
+        <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 14 }}>STEP 2 · LO-FI PAPER SKETCHES</p>
+        <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', marginBottom: 32 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            {[
+              { label: 'Task 1.1: Buy a Cosplay Item' },
+              { label: 'Task 2.1: Sell a Cosplay Item' },
+              { label: 'Task 3.1: Swap Cosplay Props' },
+              { label: 'Seller Profile Page' },
+            ].map((sketch, i) => (
+              <div key={i} style={{ border: '1.5px solid #ddd', padding: '14px' }}>
+                <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#888', marginBottom: 10 }}>{sketch.label}</p>
+                <div style={{ height: 120, background: '#f8f8f8', border: '1.5px dashed #e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <p style={{ fontFamily: '"VT323"', fontSize: 17, color: '#bbb' }}>[ add lo-fi screenshot here ]</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+
+      {/* 3. Mid-fi */}
+      <Reveal delay={0.2}>
+        <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 14 }}>STEP 3 · MID-FI DIGITAL WIREFRAMES</p>
+        <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', padding: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            {[
+              { label: 'Marketplace Home' },
+              { label: 'Browse & Filter' },
+              { label: 'Item Detail & Seller Profile' },
+              { label: 'Publish Listing Flow' },
+            ].map((w, i) => (
+              <div key={i} style={{ background: '#ffffff', border: '1.5px solid #ddd', padding: '14px' }}>
+                <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#888', marginBottom: 10 }}>{w.label}</p>
+                <div style={{ height: 120, background: '#f8f8f8', border: '1.5px dashed #e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <p style={{ fontFamily: '"VT323"', fontSize: 17, color: '#bbb' }}>[ add mid-fi screenshot here ]</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+    </Section>
   )
 }
-
 
 /* ─────────────────────────────────────────────
    SECTION 6 — PROTOTYPE SHOWCASE
 ───────────────────────────────────────────── */
 function Prototype() {
   return (
-    <section id="prototype" className="py-24 px-6" style={{ background: '#E5F4FE' }}>
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <div className="section-tag">06 · HI-FI PROTOTYPE</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            THE PROTOTYPE
-          </h2>
-          <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 20 }}>
-            Full interactive prototype built in Figma — covering the end-to-end marketplace experience including Opening Screen, Landing Page, Marketplace, and PropMes.
-          </p>
-          <div className="flex flex-wrap gap-3 mb-8">
-            <a href="https://www.figma.com/design/Eam86lpBHu6QkFFpe1IK1o/hs---high-fi-prototype?node-id=0-1&t=OSjcV6uuGgeiJMKo-1"
-              target="_blank" rel="noopener noreferrer"
-              className="pixel-btn" style={{ background: '#072ac8', color: '#fcf300' }}>
-              OPEN FIGMA FILE ↗
-            </a>
-            <a href="https://www.figma.com/proto/Eam86lpBHu6QkFFpe1IK1o/hs---high-fi-prototype?node-id=2-4192&p=f&viewport=32%2C28%2C0.09&t=vS9orOujYH8i2UTq-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2%3A4192&page-id=0%3A1&show-proto-sidebar=1"
-              target="_blank" rel="noopener noreferrer"
-              className="pixel-btn" style={{ background: '#ffffff' }}>
-              PLAY PROTOTYPE ▶
-            </a>
-          </div>
-        </Reveal>
+    <Section id="prototype" bg="#f7fbff">
+      <Reveal>
+        <SectionHeader
+          tag="06 · HI-FI PROTOTYPE"
+          title={<>THE <span style={{ color: '#1e96fc' }}>PROTOTYPE</span></>}
+          sub="Full interactive prototype built in Figma — covering the end-to-end marketplace experience including Opening Screen, Landing Page, Marketplace, and PropMes."
+        />
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 32 }}>
+          <a href="https://www.figma.com/design/Eam86lpBHu6QkFFpe1IK1o/hs---high-fi-prototype?node-id=0-1&t=OSjcV6uuGgeiJMKo-1"
+            target="_blank" rel="noopener noreferrer"
+            className="pixel-btn" style={{ background: '#1e96fc', color: '#ffffff', borderColor: '#1e96fc' }}>
+            OPEN FIGMA FILE ↗
+          </a>
+          <a href="https://www.figma.com/proto/Eam86lpBHu6QkFFpe1IK1o/hs---high-fi-prototype?node-id=2-4192&p=f&viewport=32%2C28%2C0.09&t=vS9orOujYH8i2UTq-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2%3A4192&page-id=0%3A1&show-proto-sidebar=1"
+            target="_blank" rel="noopener noreferrer"
+            className="pixel-btn">
+            PLAY PROTOTYPE ▶
+          </a>
+        </div>
+      </Reveal>
 
-        {/* Interactive prototype embed */}
-        <Reveal delay={0.1} className="mb-8">
+      {/* Interactive prototype embed */}
+      <Reveal delay={0.1}>
+        <div style={{ marginBottom: 28 }}>
           <FigmaEmbed
             url="https://www.figma.com/proto/Eam86lpBHu6QkFFpe1IK1o/hs---high-fi-prototype?node-id=2-4192&p=f&viewport=32%2C28%2C0.09&t=vS9orOujYH8i2UTq-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2%3A4192&page-id=0%3A1&show-proto-sidebar=1"
             title="INTERACTIVE PROTOTYPE — CLICK TO PLAY"
             height={680}
           />
-        </Reveal>
+        </div>
+      </Reveal>
 
-        {/* Design file embed */}
-        <Reveal delay={0.15} className="mb-8">
+      {/* Design file embed */}
+      <Reveal delay={0.15}>
+        <div style={{ marginBottom: 28 }}>
           <FigmaEmbed
             url="https://www.figma.com/design/Eam86lpBHu6QkFFpe1IK1o/hs---high-fi-prototype?node-id=0-1&t=OSjcV6uuGgeiJMKo-1"
             title="HI-FI DESIGN FILE — ALL SCREENS"
             height={600}
           />
-        </Reveal>
-
-        {/* Screen descriptions */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-          {[
-            { label: 'Opening Screen',   desc: 'Pixel mascot, PropBank branding, Log In / Create Account.' },
-            { label: 'Landing Page',     desc: 'Interactive star nav — each star leads to a different service.' },
-            { label: 'Marketplace Home', desc: 'Buy / Borrow / Sell / Rent / Swap action bubbles.' },
-            { label: 'Browse & Buy',     desc: 'Search + cosplay-specific filters, trust badge, seller info.' },
-            { label: 'Sell / Rent',      desc: 'Publish flow with AI tag suggestions + transparent override.' },
-            { label: 'Swap',             desc: 'Publish item → send swap request → approval/pending status.' },
-            { label: 'PropMes',          desc: 'In-app chat for reservation, offers, meetup coordination.' },
-          ].map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.06}>
-              <div className="pixel-card p-4 h-full" style={{ background: 'white' }}>
-                <p className="section-heading" style={{ fontSize: 8, color: '#1e96fc', marginBottom: 6 }}>{s.label}</p>
-                <p style={{ fontFamily: '"VT323"', fontSize: 18, color: '#555', lineHeight: 1.5 }}>{s.desc}</p>
-              </div>
-            </Reveal>
-          ))}
         </div>
+      </Reveal>
+
+      {/* Screen descriptions */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+        {[
+          { label: 'Opening Screen',   desc: 'Pixel mascot, PropBank branding, Log In / Create Account.' },
+          { label: 'Landing Page',     desc: 'Interactive star nav — each star leads to a different service.' },
+          { label: 'Marketplace Home', desc: 'Buy / Borrow / Sell / Rent / Swap action bubbles.' },
+          { label: 'Browse & Buy',     desc: 'Search + cosplay-specific filters, trust badge, seller info.' },
+          { label: 'Sell / Rent',      desc: 'Publish flow with AI tag suggestions + transparent override.' },
+          { label: 'Swap',             desc: 'Publish item → send swap request → approval/pending status.' },
+          { label: 'PropMes',          desc: 'In-app chat for reservation, offers, meetup coordination.' },
+        ].map((s, i) => (
+          <Reveal key={s.label} delay={i * 0.05}>
+            <div style={{ border: '1.5px solid #0a0a0a', borderTop: i < 4 ? '2px solid #1e96fc' : '2px solid #e63946', padding: '16px', background: '#ffffff' }}>
+              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#0a0a0a', marginBottom: 8, lineHeight: 1.7 }}>{s.label}</p>
+              <p style={{ fontFamily: '"VT323"', fontSize: 18, color: '#666', lineHeight: 1.5 }}>{s.desc}</p>
+            </div>
+          </Reveal>
+        ))}
       </div>
-    </section>
+    </Section>
   )
 }
 
@@ -832,62 +855,60 @@ function Prototype() {
 ───────────────────────────────────────────── */
 function AIFeature() {
   return (
-    <section id="ai" className="py-24 px-6" style={{ background: '#a2d6f9' }}>
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <div className="section-tag">07 · AI FEATURE</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            AI-ASSISTED TAG GENERATION
-          </h2>
-          <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#072ac8', maxWidth: 600, marginBottom: 32 }}>
-            When a seller uploads a photo of their item, AI automatically generates relevant tags. Critically, the user stays in full control.
-          </p>
-        </Reveal>
+    <Section id="ai">
+      <Reveal>
+        <SectionHeader
+          tag="07 · AI FEATURE"
+          title={<>AI-ASSISTED TAG <span style={{ color: '#1e96fc' }}>GENERATION</span></>}
+          sub="When a seller uploads a photo of their item, AI automatically generates relevant tags. Critically, the user stays in full control."
+        />
+      </Reveal>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {[
-            { step: '01', icon: '📸', label: 'Upload Photo', desc: 'Seller uploads an image of their cosplay item when creating a listing.', color: '#1e96fc' },
-            { step: '02', icon: '🤖', label: 'AI Generates Tags', desc: 'Computer vision identifies the item and suggests relevant tags (character, fandom, item type, materials).', color: '#ffc600' },
-            { step: '03', icon: '✋', label: 'User Decides', desc: 'Clear UI label: "These tags are AI-generated." User can dismiss any tag (×) and add their own manually.', color: '#fcf300' },
-          ].map((s, i) => (
-            <Reveal key={s.step} delay={i * 0.15}>
-              <div className="pixel-card p-5 h-full" style={{ background: s.color }}>
-                <div style={{ fontSize: 32, marginBottom: 8 }}>{s.icon}</div>
-                <p className="section-heading" style={{ fontSize: 9, color: '#0a0a0a', marginBottom: 6 }}>
-                  STEP {s.step} · {s.label}
-                </p>
-                <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.5, color: '#0a0a0a' }}>
-                  {s.desc}
-                </p>
+      {/* Steps */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 32 }}>
+        {[
+          { step: '01', icon: '📸', label: 'Upload Photo', desc: 'Seller uploads an image of their cosplay item when creating a listing.' },
+          { step: '02', icon: '🤖', label: 'AI Generates Tags', desc: 'Computer vision identifies the item and suggests relevant tags (character, fandom, item type, materials).' },
+          { step: '03', icon: '✋', label: 'User Decides', desc: 'Clear UI label: "These tags are AI-generated." User can dismiss any tag (×) and add their own manually.' },
+        ].map((s, i) => (
+          <Reveal key={s.step} delay={i * 0.12}>
+            <div style={{ border: '1.5px solid #0a0a0a', padding: '28px', height: '100%' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
+                <span style={{ fontSize: 28 }}>{s.icon}</span>
+                <div className="num-badge">{s.step}</div>
               </div>
-            </Reveal>
-          ))}
-        </div>
-
-        {/* Design principles for this AI feature */}
-        <Reveal delay={0.3}>
-          <div className="pixel-card p-6" style={{ background: '#1e96fc' }}>
-            <p className="section-heading" style={{ fontSize: 10, color: '#ffc600', marginBottom: 12 }}>
-              WHY THIS DESIGN?
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                { principle: 'Transparency', body: 'The UI explicitly labels tags as AI-generated. Users are never deceived about the source of suggestions — they can evaluate and override.', icon: '👁️' },
-                { principle: 'Human Override', body: 'Every AI tag has a visible × button. Sellers who disagree with the AI\'s categorization can remove tags individually and type their own.', icon: '🎮' },
-                { principle: 'Reduces Friction', body: 'Sellers often don\'t know how to categorize niche items. AI suggestions lower the barrier to publishing a good listing without forcing compliance.', icon: '⚡' },
-                { principle: 'Non-Intrusive', body: 'AI operates at one specific moment: item upload. It doesn\'t persistently recommend, rerank, or alter the experience in hidden ways.', icon: '🤫' },
-              ].map((p, i) => (
-                <div key={p.principle} className="pixel-card p-4" style={{ background: '#072ac8' }}>
-                  <p style={{ fontSize: 24, marginBottom: 6 }}>{p.icon}</p>
-                  <p className="section-heading" style={{ fontSize: 8, color: '#ffc600', marginBottom: 6 }}>{p.principle}</p>
-                  <p style={{ fontFamily: '"VT323"', fontSize: 19, color: '#E5F4FE', lineHeight: 1.5 }}>{p.body}</p>
-                </div>
-              ))}
+              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#0a0a0a', marginBottom: 10, lineHeight: 1.8 }}>
+                {s.label}
+              </p>
+              <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.5, color: '#555' }}>{s.desc}</p>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        ))}
       </div>
-    </section>
+
+      {/* Design principles */}
+      <Reveal delay={0.3}>
+        <div style={{ border: '1.5px solid #1e96fc', background: '#E5F4FE', padding: '28px' }}>
+          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#072ac8', marginBottom: 20 }}>WHY THIS DESIGN?</p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            {[
+              { principle: 'Transparency', body: 'The UI explicitly labels tags as AI-generated. Users are never deceived about the source of suggestions — they can evaluate and override.', icon: '👁️' },
+              { principle: 'Human Override', body: 'Every AI tag has a visible × button. Sellers who disagree with the AI\'s categorization can remove tags individually and type their own.', icon: '🎮' },
+              { principle: 'Reduces Friction', body: 'Sellers often don\'t know how to categorize niche items. AI suggestions lower the barrier to publishing a good listing without forcing compliance.', icon: '⚡' },
+              { principle: 'Non-Intrusive', body: 'AI operates at one specific moment: item upload. It doesn\'t persistently recommend, rerank, or alter the experience in hidden ways.', icon: '🤫' },
+            ].map((p) => (
+              <div key={p.principle} style={{ border: '1.5px solid #a2d6f9', background: '#ffffff', padding: '18px 20px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+                  <span style={{ fontSize: 20 }}>{p.icon}</span>
+                  <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#1e96fc' }}>{p.principle}</p>
+                </div>
+                <p style={{ fontFamily: '"VT323"', fontSize: 19, color: '#555', lineHeight: 1.5 }}>{p.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+    </Section>
   )
 }
 
@@ -896,65 +917,59 @@ function AIFeature() {
 ───────────────────────────────────────────── */
 function Testing() {
   return (
-    <section id="testing" className="py-24 px-6" style={{ background: 'white' }}>
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <div className="section-tag">08 · USABILITY TESTING</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            TESTING WITH REAL USERS
-          </h2>
-          <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 12 }}>
-            Usability tests conducted via Maze. Results informed the final round of iteration before submission.
-          </p>
-          <a href="https://t.maze.co/520978199" target="_blank" rel="noopener noreferrer"
-            className="pixel-btn inline-block mb-10" style={{ background: '#072ac8', color: '#fcf300' }}>
-            VIEW MAZE REPORT ↗
-          </a>
-        </Reveal>
+    <Section id="testing" bg="#f7fbff">
+      <Reveal>
+        <SectionHeader
+          tag="08 · USABILITY TESTING"
+          title={<>TESTING WITH <span style={{ color: '#e63946' }}>REAL USERS</span></>}
+          sub="Usability tests conducted via Maze. Results informed the final round of iteration before submission."
+        />
+        <a href="https://t.maze.co/520978199" target="_blank" rel="noopener noreferrer"
+          className="pixel-btn" style={{ display: 'inline-block', marginBottom: 36, background: '#1e96fc', color: '#ffffff', borderColor: '#1e96fc' }}>
+          VIEW MAZE REPORT ↗
+        </a>
+      </Reveal>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          {[
-            { metric: '—', label: 'Task Completion Rate', note: 'Add from Maze report', color: '#E5F4FE' },
-            { metric: '—', label: 'Avg. Time on Task',    note: 'Add from Maze report', color: '#E5F4FE' },
-            { metric: '—', label: 'Misclick Rate',        note: 'Add from Maze report', color: '#E5F4FE' },
-          ].map((m, i) => (
-            <Reveal key={m.label} delay={i * 0.1}>
-              <div className="pixel-card p-6 text-center" style={{ background: m.color }}>
-                <p className="section-heading" style={{ fontSize: 28, color: '#1e96fc', marginBottom: 4 }}>{m.metric}</p>
-                <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#444', marginBottom: 4 }}>{m.label}</p>
-                <p style={{ fontFamily: '"VT323"', fontSize: 16, color: '#888' }}>{m.note}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={0.2}>
-          <div className="pixel-card p-6" style={{ background: '#ffffff' }}>
-            <p className="section-heading" style={{ fontSize: 10, color: '#1e96fc', marginBottom: 12 }}>
-              KEY FINDINGS & ITERATIONS
-            </p>
-            <div className="space-y-4">
-              {[
-                { finding: 'Finding 1', action: 'Add your key usability finding here', iteration: 'Describe what you changed in response', color: '#1e96fc' },
-                { finding: 'Finding 2', action: 'Add your key usability finding here', iteration: 'Describe what you changed in response', color: '#1e96fc' },
-                { finding: 'Finding 3', action: 'Add your key usability finding here', iteration: 'Describe what you changed in response', color: '#ffc600' },
-              ].map((f, i) => (
-                <div key={i} className="pixel-card p-4 grid md:grid-cols-2 gap-4" style={{ background: 'white' }}>
-                  <div>
-                    <span className="pixel-btn" style={{ fontSize: 7, background: f.color, color: 'white' }}>{f.finding}</span>
-                    <p style={{ fontFamily: '"VT323"', fontSize: 19, color: '#444', marginTop: 6 }}>{f.action}</p>
-                  </div>
-                  <div>
-                    <span className="pixel-btn" style={{ fontSize: 7, background: '#ffc600' }}>ITERATION</span>
-                    <p style={{ fontFamily: '"VT323"', fontSize: 19, color: '#444', marginTop: 6 }}>{f.iteration}</p>
-                  </div>
-                </div>
-              ))}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 32 }}>
+        {[
+          { metric: '—', label: 'Task Completion Rate', note: 'Add from Maze report' },
+          { metric: '—', label: 'Avg. Time on Task',    note: 'Add from Maze report' },
+          { metric: '—', label: 'Misclick Rate',        note: 'Add from Maze report' },
+        ].map((m, i) => (
+          <Reveal key={m.label} delay={i * 0.1}>
+            <div style={{ border: '1.5px solid #0a0a0a', background: '#ffffff', padding: '24px', textAlign: 'center' }}>
+              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 32, color: '#1e96fc', marginBottom: 8 }}>{m.metric}</p>
+              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#444', marginBottom: 6 }}>{m.label}</p>
+              <p style={{ fontFamily: '"VT323"', fontSize: 17, color: '#999' }}>{m.note}</p>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        ))}
       </div>
-    </section>
+
+      <Reveal delay={0.2}>
+        <div style={{ border: '1.5px solid #0a0a0a', padding: '28px', background: '#ffffff' }}>
+          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 20 }}>KEY FINDINGS & ITERATIONS</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {[
+              { finding: 'Finding 1', action: 'Add your key usability finding here', iteration: 'Describe what you changed in response', accent: '#1e96fc' },
+              { finding: 'Finding 2', action: 'Add your key usability finding here', iteration: 'Describe what you changed in response', accent: '#1e96fc' },
+              { finding: 'Finding 3', action: 'Add your key usability finding here', iteration: 'Describe what you changed in response', accent: '#e63946' },
+            ].map((f, i) => (
+              <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, border: '1.5px solid #eee' }}>
+                <div style={{ padding: '16px 20px', borderRight: '1px solid #eee' }}>
+                  <span style={{ fontFamily: '"Press Start 2P"', fontSize: 7, background: f.accent, color: '#ffffff', padding: '3px 8px', display: 'inline-block', marginBottom: 8 }}>{f.finding}</span>
+                  <p style={{ fontFamily: '"VT323"', fontSize: 19, color: '#444', marginTop: 4 }}>{f.action}</p>
+                </div>
+                <div style={{ padding: '16px 20px' }}>
+                  <span style={{ fontFamily: '"Press Start 2P"', fontSize: 7, background: '#E5F4FE', color: '#072ac8', border: '1px solid #a2d6f9', padding: '3px 8px', display: 'inline-block', marginBottom: 8 }}>ITERATION</span>
+                  <p style={{ fontFamily: '"VT323"', fontSize: 19, color: '#444', marginTop: 4 }}>{f.iteration}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+    </Section>
   )
 }
 
@@ -963,72 +978,67 @@ function Testing() {
 ───────────────────────────────────────────── */
 function Reflect() {
   return (
-    <section id="reflect" className="py-24 px-6" style={{ background: '#E5F4FE' }}>
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <div className="section-tag">09 · REFLECTION</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            WHAT I LEARNED
-          </h2>
-        </Reveal>
+    <Section id="reflect" bg="#E5F4FE">
+      <Reveal>
+        <SectionHeader
+          tag="09 · REFLECTION"
+          title={<>WHAT I <span style={{ color: '#e63946' }}>LEARNED</span></>}
+        />
+      </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          {[
-            {
-              title: 'Trade-offs',
-              color: '#1e96fc', text: 'white',
-              body: 'Balancing feature richness with interface simplicity was the core tension. The marketplace could have 20 filters — but users needed the 5 most relevant ones front-and-center, not buried in an overflow menu.'
-            },
-            {
-              title: 'Ecosystem Integration',
-              color: '#fcf300', text: '#0a0a0a',
-              body: 'The marketplace doesn\'t stand alone. PropScan feeds into it (scan → find similar listing). Workshop links out to it (guide → buy materials). Designing these entry/exit flows required constant alignment with teammates.'
-            },
-            {
-              title: 'AI Limitations',
-              color: '#1e96fc', text: 'white',
-              body: 'AI tag generation works well for common cosplay items but may misidentify niche or handmade props. The override mechanism wasn\'t just a nice-to-have — it was essential to maintain listing accuracy.'
-            },
-            {
-              title: 'Process Reflection',
-              color: '#ffc600', text: '#0a0a0a',
-              body: 'Starting from user interviews rather than assumptions changed the design significantly. The seller location field and trust badge system would not have existed without the interview data.'
-            },
-          ].map((r, i) => (
-            <Reveal key={r.title} delay={i * 0.1}>
-              <div className="pixel-card p-6 h-full" style={{ background: r.color }}>
-                <p className="section-heading" style={{ fontSize: 10, color: r.text, marginBottom: 10 }}>{r.title}</p>
-                <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.6, color: r.text, opacity: 0.9 }}>{r.body}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        {/* Final card */}
-        <Reveal delay={0.4}>
-          <div className="pixel-card p-8 text-center" style={{ background: '#072ac8' }}>
-            <div className="mascot-float mb-6">
-              <Image src="/mascot.png" alt="mascot" width={80} height={80}
-                style={{ imageRendering: 'pixelated', margin: '0 auto' }} />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 32 }}>
+        {[
+          {
+            title: 'Trade-offs',
+            accent: '#1e96fc',
+            body: 'Balancing feature richness with interface simplicity was the core tension. The marketplace could have 20 filters — but users needed the 5 most relevant ones front-and-center, not buried in an overflow menu.'
+          },
+          {
+            title: 'Ecosystem Integration',
+            accent: '#ffc600',
+            body: 'The marketplace doesn\'t stand alone. PropScan feeds into it (scan → find similar listing). Workshop links out to it (guide → buy materials). Designing these entry/exit flows required constant alignment with teammates.'
+          },
+          {
+            title: 'AI Limitations',
+            accent: '#1e96fc',
+            body: 'AI tag generation works well for common cosplay items but may misidentify niche or handmade props. The override mechanism wasn\'t just a nice-to-have — it was essential to maintain listing accuracy.'
+          },
+          {
+            title: 'Process Reflection',
+            accent: '#e63946',
+            body: 'Starting from user interviews rather than assumptions changed the design significantly. The seller location field and trust badge system would not have existed without the interview data.'
+          },
+        ].map((r) => (
+          <Reveal key={r.title} delay={0.1}>
+            <div style={{ border: '1.5px solid #0a0a0a', borderTop: `3px solid ${r.accent}`, padding: '24px', background: '#ffffff', height: '100%' }}>
+              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#0a0a0a', marginBottom: 12, lineHeight: 1.8 }}>{r.title}</p>
+              <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.6, color: '#555' }}>{r.body}</p>
             </div>
-            <p className="section-heading" style={{ fontSize: 14, color: '#ffc600', marginBottom: 8 }}>
-              CHEN HONGSHAN
-            </p>
-            <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#a2d6f9', marginBottom: 16 }}>
-              A0311136W · CS3240 · TUT[06]
-            </p>
-            <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#E5F4FE', maxWidth: 500, margin: '0 auto 24px' }}>
-              From one ideation slide to a full super-app ecosystem — this project taught me that good UX design begins with listening, not sketching.
-            </p>
-            <a href="https://www.figma.com/design/Rb3NBiOCgCPaXdcylqQa3L/Propbank-playground?node-id=125-467"
-              target="_blank" rel="noopener noreferrer"
-              className="pixel-btn" style={{ background: '#ffffff' }}>
-              VIEW FULL PROTOTYPE ↗
-            </a>
-          </div>
-        </Reveal>
+          </Reveal>
+        ))}
       </div>
-    </section>
+
+      {/* Final card */}
+      <Reveal delay={0.4}>
+        <div style={{ border: '1.5px solid #0a0a0a', background: '#ffffff', padding: '40px', textAlign: 'center' }}>
+          <div className="mascot-float" style={{ marginBottom: 20 }}>
+            <Image src="/mascot.png" alt="mascot" width={72} height={72}
+              style={{ imageRendering: 'pixelated', margin: '0 auto' }} />
+          </div>
+          <div style={{ width: 32, height: 2, background: '#e63946', margin: '0 auto 16px' }} />
+          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 12, color: '#0a0a0a', marginBottom: 6 }}>CHEN HONGSHAN</p>
+          <p style={{ fontFamily: '"VT323"', fontSize: 20, color: '#999', marginBottom: 20 }}>A0311136W · CS3240 · TUT[06]</p>
+          <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#555', maxWidth: 520, margin: '0 auto 28px', lineHeight: 1.5 }}>
+            From one ideation slide to a full super-app ecosystem — this project taught me that good UX design begins with listening, not sketching.
+          </p>
+          <a href="https://www.figma.com/design/Rb3NBiOCgCPaXdcylqQa3L/Propbank-playground?node-id=125-467"
+            target="_blank" rel="noopener noreferrer"
+            className="pixel-btn" style={{ background: '#1e96fc', color: '#ffffff', borderColor: '#1e96fc' }}>
+            VIEW FULL PROTOTYPE ↗
+          </a>
+        </div>
+      </Reveal>
+    </Section>
   )
 }
 
@@ -1062,8 +1072,8 @@ export default function Page() {
         <Reflect />
       </main>
 
-      <footer className="border-t-2 border-black py-6 text-center" style={{ background: '#ffffff' }}>
-        <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#aaa' }}>
+      <footer style={{ borderTop: '1px solid rgba(10,10,10,0.08)', padding: '24px', textAlign: 'center', background: '#ffffff' }}>
+        <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#bbb' }}>
           © 2025 CHEN HONGSHAN · CS3240 IDP · PROPBANK
         </p>
       </footer>

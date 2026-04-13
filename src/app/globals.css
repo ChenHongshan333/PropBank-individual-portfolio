@@ -26,40 +26,51 @@ body {
   cursor: none;
 }
 
+/* ── Cursor ── */
 .cursor {
-  width: 10px; height: 10px;
+  width: 8px; height: 8px;
   background: var(--red);
   position: fixed;
   top: 0; left: 0;
   pointer-events: none;
   z-index: 9999;
+  border-radius: 0;
 }
 .cursor-ring {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
+  width: 20px; height: 20px;
+  border: 1.5px solid var(--blue);
   position: fixed;
   top: 0; left: 0;
   pointer-events: none;
   z-index: 9998;
-  transition: transform 0.12s ease;
+  transition: transform 0.1s ease;
 }
 
+/* ── Cards ── */
 .pixel-card {
-  border: 2px solid var(--black);
-  box-shadow: 4px 4px 0px var(--black);
-  transition: transform 0.12s, box-shadow 0.12s;
+  border: 1.5px solid var(--black);
   background: #ffffff;
+  transition: transform 0.12s, box-shadow 0.12s;
 }
 .pixel-card:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px var(--black);
+  box-shadow: 4px 4px 0px var(--blue);
 }
 
+/* shadow variants */
+.card-blue {
+  border: 1.5px solid var(--blue);
+  background: #ffffff;
+}
+.card-red {
+  border: 1.5px solid var(--red);
+}
+
+/* ── Buttons ── */
 .pixel-btn {
-  border: 2px solid var(--black);
-  box-shadow: 3px 3px 0px var(--black);
+  border: 1.5px solid var(--black);
   font-family: 'Press Start 2P', monospace;
-  font-size: 9px;
+  font-size: 8px;
   padding: 8px 16px;
   cursor: pointer;
   transition: transform 0.1s, box-shadow 0.1s;
@@ -67,25 +78,43 @@ body {
   text-decoration: none;
   background: white;
   color: var(--black);
+  box-shadow: 2px 2px 0px var(--black);
 }
 .pixel-btn:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0px var(--black);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--blue);
 }
 .pixel-btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0px var(--black);
+  transform: translate(1px, 1px);
+  box-shadow: none;
 }
 
+/* ── Dividers ── */
 .section-divider {
   height: 1px;
-  background: rgba(10,10,10,0.1);
+  background: rgba(10,10,10,0.08);
 }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #f5f5f5; }
-::-webkit-scrollbar-thumb { background: var(--black); border: 2px solid white; }
+.blue-bar {
+  height: 3px;
+  background: var(--blue);
+  width: 40px;
+  margin-bottom: 16px;
+}
 
+.red-bar {
+  height: 3px;
+  background: var(--red);
+  width: 24px;
+  margin-bottom: 12px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f8f8f8; }
+::-webkit-scrollbar-thumb { background: var(--blue); }
+
+/* ── Animations ── */
 @keyframes twinkle {
   0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
   50% { opacity: 0.6; transform: scale(0.88) rotate(8deg); }
@@ -94,7 +123,7 @@ body {
 
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
 }
 .mascot-float { animation: float 3s ease-in-out infinite; }
 
@@ -104,41 +133,142 @@ body {
 }
 .blink { animation: blink 1s step-end infinite; }
 
+/* ── Section tags ── */
 .section-tag {
   font-family: 'Press Start 2P', monospace;
-  font-size: 8px;
-  letter-spacing: 0.12em;
-  background: var(--yellow);
-  border: 2px solid var(--black);
-  padding: 4px 10px;
+  font-size: 7px;
+  letter-spacing: 0.1em;
+  background: transparent;
+  border-left: 3px solid var(--red);
+  padding: 3px 8px;
   display: inline-block;
-  margin-bottom: 14px;
-  color: var(--black);
-}
-
-.section-tag::before {
-  content: '★ ';
+  margin-bottom: 12px;
   color: var(--red);
 }
 
+/* number badge */
+.num-badge {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  background: var(--blue);
+  color: white;
+  width: 28px; height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Headings ── */
 .section-heading {
   font-family: 'Press Start 2P', monospace;
   line-height: 1.7;
 }
 
 h2.section-heading {
-  text-shadow: 3px 3px 0 var(--red);
+  position: relative;
+}
+h2.section-heading::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: var(--red);
+  margin-top: 8px;
 }
 
+/* ── Nav links ── */
 .nav-link {
   font-family: 'Press Start 2P', monospace;
   font-size: 7px;
   color: var(--black);
   text-decoration: none;
   padding: 4px 0;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.15s;
+  position: relative;
 }
-.nav-link:hover {
-  border-bottom-color: var(--yellow);
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transition: transform 0.15s;
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Inline accent chip ── */
+.chip {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  background: var(--pale);
+  border: 1px solid var(--blue);
+  color: var(--navy);
+  padding: 3px 8px;
+  display: inline-block;
+}
+.chip-red {
+  background: #fff5f5;
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* ── Figma embed wrapper ── */
+.figma-wrap {
+  border: 1.5px solid var(--black);
+  overflow: hidden;
+}
+.figma-bar {
+  background: var(--pale);
+  border-bottom: 1px solid var(--sky);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Table-style info rows ── */
+.info-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--pale);
+  padding: 10px 0;
+}
+.info-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: var(--blue);
+  padding-top: 2px;
+}
+
+/* ── Step pill ── */
+.step-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--pale);
+  border: 1.5px solid var(--sky);
+  padding: 8px 14px;
+}
+.step-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: var(--blue);
+}
+
+/* ── Thin horizontal rule ── */
+hr.thin {
+  border: none;
+  border-top: 1px solid var(--pale);
+  margin: 24px 0;
+}
+
+/* ── Side accent line for blockquote-style ── */
+.quote-block {
+  border-left: 3px solid var(--sky);
+  padding: 12px 16px;
+  background: var(--pale);
 }
