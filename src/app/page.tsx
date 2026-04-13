@@ -59,7 +59,7 @@ function FigmaEmbed({ url, title, height = 500 }: { url: string; title: string; 
   return (
     <div className="figma-wrap">
       <div className="figma-bar">
-        <span style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#072ac8' }}>
+        <span style={{ fontFamily: '"Carter One"', fontSize: 7, color: '#072ac8' }}>
           ◈ {title}
         </span>
         <a href={url} target="_blank" rel="noopener noreferrer"
@@ -113,7 +113,7 @@ function Nav() {
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '14px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
           <Image src="/logo_new.png" alt="PropBank" width={28} height={28} style={{ imageRendering: 'pixelated' }} />
-          <span style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#0a0a0a' }}>
+          <span style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#0a0a0a' }}>
             PROP<span style={{ color: '#e63946' }}>BANK</span>
           </span>
         </a>
@@ -132,83 +132,87 @@ function Nav() {
 ───────────────────────────────────────────── */
 function Hero() {
   return (
-    <section id="hero" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', background: '#ffffff', paddingTop: 80, position: 'relative', overflow: 'hidden' }}>
+    <section id="hero" style={{
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: '#ffffff',
+      paddingTop: 80,
+      overflow: 'hidden',
+    }}>
+      <div style={{ textAlign: 'center', width: '100%', maxWidth: 1000, padding: '0 32px' }}>
 
-      {/* Subtle blue accent stripe top */}
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(90deg, #1e96fc 0%, #e63946 50%, #1e96fc 100%)' }} />
+        {/* Line 1 — PROPBANK (35px) */}
+        <p style={{
+          fontFamily: '"Carter One"',
+          fontSize: 35,
+          lineHeight: 1.3,
+          margin: 0,
+          marginBottom: 20,
+          position: 'relative',
+          zIndex: 1,
+        }}>
+          <span style={{ color: '#0a0a0a' }}>PROP</span><span style={{ color: '#e63946' }}>BANK</span>
+        </p>
 
-      {/* Background grid */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none',
-        backgroundImage: 'linear-gradient(rgba(30,150,252,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(30,150,252,0.04) 1px, transparent 1px)',
-        backgroundSize: '48px 48px'
-      }} />
+        {/* Line 2 — GEAR LIBRARY & MARKET PLACE (45px) */}
+        <p style={{
+          fontFamily: '"Carter One"',
+          fontSize: 45,
+          lineHeight: 1.35,
+          margin: 0,
+          color: '#0a0a0a',
+          position: 'relative',
+          zIndex: 1,
+        }}>
+          GEAR LIBRARY &amp;<br />MARKET PLACE
+        </p>
 
-      {/* Floating decorative stars */}
-      {([ 
-        { top: '18%', left: '3%',   right: '',    size: 28, delay: 0,   fill: '#1e96fc' },
-        { top: '72%', left: '2%',   right: '',    size: 16, delay: 1,   fill: '#e63946' },
-        { top: '28%', left: '',     right: '4%',  size: 20, delay: 0.5, fill: '#a2d6f9' },
-        { top: '68%', left: '',     right: '3%',  size: 32, delay: 0.8, fill: '#e63946' },
-        { top: '48%', left: '',     right: '9%',  size: 14, delay: 0.3, fill: '#1e96fc' },
-      ]).map((s, i) => (
-        <div key={i} className="absolute star-deco pointer-events-none"
-          style={{ top: s.top, ...(s.left ? { left: s.left } : {}), ...(s.right ? { right: s.right } : {}), animationDelay: `${s.delay}s` }}>
-          <svg width={s.size} height={s.size} viewBox="0 0 32 32" style={{ imageRendering: 'pixelated' }}>
-            <path d="M16 2 L19 12 L30 12 L21 18 L24 28 L16 22 L8 28 L11 18 L2 12 L13 12 Z"
-              fill={s.fill} stroke="#0a0a0a" strokeWidth="2" />
-          </svg>
+        {/* Logo — front layer, overlaps lines 2 and 3 */}
+        <div style={{
+          position: 'relative',
+          zIndex: 10,
+          marginTop: -130,
+          marginBottom: -130,
+          display: 'flex',
+          justifyContent: 'center',
+          pointerEvents: 'none',
+        }}>
+          <Image
+            src="/logo_new.png"
+            alt="PropBank Logo"
+            width={380}
+            height={380}
+            style={{ imageRendering: 'pixelated', width: 380, height: 380, mixBlendMode: 'multiply' }}
+          />
         </div>
-      ))}
 
-      <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 16px', display: 'grid', gridTemplateColumns: '3fr 2fr', gap: 24, alignItems: 'center', width: '100%' }}>
+        {/* Line 3 — CHEN HONGSHAN (15px) */}
+        <p style={{
+          fontFamily: '"Carter One"',
+          fontSize: 15,
+          color: '#0a0a0a',
+          margin: 0,
+          marginBottom: 18,
+          position: 'relative',
+          zIndex: 1,
+        }}>
+          CHEN HONGSHAN
+        </p>
 
-        {/* Left — Logo, fills full left column */}
-        <div className="mascot-float" style={{ display: 'flex', justifyContent: 'center' }}>
-          <Image src="/logo_new.png" alt="PropBank Logo" width={900} height={900}
-            style={{ imageRendering: 'pixelated', width: '100%', height: 'auto', mixBlendMode: 'multiply' }} />
-        </div>
+        {/* Line 4 — A0311136W TUT[06] (10px) */}
+        <p style={{
+          fontFamily: '"Carter One"',
+          fontSize: 10,
+          color: '#888',
+          margin: 0,
+          position: 'relative',
+          zIndex: 1,
+        }}>
+          A0311136W &nbsp;&nbsp; TUT[06]
+        </p>
 
-        {/* Right */}
-        <div>
-          <div className="section-tag" style={{ marginBottom: 20 }}>CS3240 · IDP INDIVIDUAL PORTFOLIO</div>
-
-          {/* Main hero title — Service name */}
-          <h1 style={{ fontFamily: '"Press Start 2P"', fontSize: 32, lineHeight: 1.75, color: '#0a0a0a', marginBottom: 20 }}>
-            GEAR<br />LIBRARY<br />&amp;<br /><span style={{ color: '#1e96fc' }}>MARKET<br />PLACE</span>
-          </h1>
-
-          {/* Author */}
-          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 10, color: '#0a0a0a', marginBottom: 4 }}>
-            CHEN HONG<span style={{ color: '#e63946' }}>SHAN</span>
-          </p>
-          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#999', marginBottom: 24 }}>
-            A0311136W · TUT[06]
-          </p>
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 24 }}>
-            {['+ PropMes', '+ Opening Screen', '+ Landing Page'].map(t => (
-              <span key={t} className="chip">{t}</span>
-            ))}
-          </div>
-
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <a href="#process" className="pixel-btn" style={{ background: '#0a0a0a', color: '#ffffff' }}>
-              VIEW PROCESS ↓
-            </a>
-            <a href="#prototype" className="pixel-btn">
-              SEE PROTOTYPE ↓
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Scroll hint */}
-      <div style={{ position: 'absolute', bottom: 28, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-        <p style={{ fontFamily: '"Press Start 2P"', fontSize: 6, color: '#ccc' }}>SCROLL</p>
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.2 }}>
-          <span style={{ fontSize: 16, color: '#bbb' }}>▼</span>
-        </motion.div>
       </div>
     </section>
   )
@@ -237,7 +241,7 @@ function SectionHeader({ tag, title, sub }: { tag: string; title: React.ReactNod
       <h2 className="section-heading" style={{ fontSize: 22, color: '#0a0a0a', marginBottom: sub ? 12 : 0 }}>
         {title}
       </h2>
-      {sub && <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#555', maxWidth: 580, lineHeight: 1.5 }}>{sub}</p>}
+      {sub && <p style={{ fontFamily: '"Carter One"', fontSize: 22, color: '#555', maxWidth: 580, lineHeight: 1.5 }}>{sub}</p>}
     </div>
   )
 }
@@ -261,7 +265,7 @@ function Origin() {
           <div style={{ borderLeft: '3px solid #1e96fc', padding: '24px', border: '1.5px solid #1e96fc', background: '#ffffff' }}>
             <div className="section-tag">ORIGINAL PITCH</div>
             <p className="section-heading" style={{ fontSize: 10, color: '#0a0a0a', marginBottom: 16 }}>THE CORE IDEA</p>
-            <ul style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.8, color: '#333', listStyle: 'none', padding: 0, margin: 0 }}>
+            <ul style={{ fontFamily: '"Carter One"', fontSize: 20, lineHeight: 1.8, color: '#333', listStyle: 'none', padding: 0, margin: 0 }}>
               <li style={{ paddingBottom: 4, borderBottom: '1px solid #E5F4FE', marginBottom: 4 }}>✦ Gear Library & Marketplace → buy / borrow / swap</li>
               <li style={{ paddingBottom: 4, borderBottom: '1px solid #E5F4FE', marginBottom: 4 }}>✦ PropScan → one picture → buildable parts list</li>
               <li style={{ paddingBottom: 4, borderBottom: '1px solid #E5F4FE', marginBottom: 4 }}>✦ Workshop → unified tutorial directory</li>
@@ -274,7 +278,7 @@ function Origin() {
           <div style={{ border: '1.5px solid #e63946', padding: '24px', background: '#ffffff' }}>
             <div className="section-tag">THE PROBLEM I SAW</div>
             <p className="section-heading" style={{ fontSize: 10, color: '#0a0a0a', marginBottom: 12 }}>COSPLAY HAS A COORDINATION CRISIS</p>
-            <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.7, color: '#444', marginBottom: 16 }}>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, lineHeight: 1.7, color: '#444', marginBottom: 16 }}>
               Singapore-based ACGN creators — cosplayers, prop makers, fan-film teams, student clubs — lacked a dedicated ecosystem. Their creativity was there. Access and coordination were not.
             </p>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -283,7 +287,7 @@ function Origin() {
                 { t: '✗ Access', bg: '#fff5f5', color: '#e63946' },
                 { t: '✗ Coordination', bg: '#fff5f5', color: '#e63946' },
               ].map(c => (
-                <span key={c.t} style={{ fontFamily: '"Press Start 2P"', fontSize: 7, background: c.bg, color: c.color, border: `1px solid ${c.color}`, padding: '4px 10px' }}>{c.t}</span>
+                <span key={c.t} style={{ fontFamily: '"Carter One"', fontSize: 7, background: c.bg, color: c.color, border: `1px solid ${c.color}`, padding: '4px 10px' }}>{c.t}</span>
               ))}
             </div>
           </div>
@@ -293,11 +297,11 @@ function Origin() {
       {/* Pitch slides placeholder */}
       <Reveal delay={0.25}>
         <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', marginBottom: 24 }}>
-          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#888', marginBottom: 12 }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 7, color: '#888', marginBottom: 12 }}>
             ◈ INITIAL PITCH SLIDES — IDEATION STAGE
           </p>
           <div style={{ background: '#f8f8f8', border: '1.5px dashed #ddd', minHeight: 240, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <p style={{ fontFamily: '"VT323"', fontSize: 20, color: '#bbb', textAlign: 'center' }}>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#bbb', textAlign: 'center' }}>
               [ add ideation pitch slides screenshot here ]
             </p>
           </div>
@@ -306,10 +310,10 @@ function Origin() {
 
       <Reveal delay={0.3}>
         <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', borderLeft: '4px solid #1e96fc', padding: '24px' }}>
-          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#072ac8', marginBottom: 8 }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 8, color: '#072ac8', marginBottom: 8 }}>
             → FROM ONE IDEA TO A SUPER-APP
           </p>
-          <p style={{ fontFamily: '"VT323"', fontSize: 21, lineHeight: 1.6, color: '#333' }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 21, lineHeight: 1.6, color: '#333' }}>
             This initial pitch became the shared foundation that all four group members built their individual services upon.
             My role then evolved into owning <span style={{ color: '#1e96fc', fontWeight: 'bold' }}>Gear Library & Marketplace</span>,
             <span style={{ color: '#0a0a0a' }}> PropMes</span>, and the
@@ -354,11 +358,11 @@ function Role() {
               textAlign: 'center',
               boxShadow: s.highlight ? '4px 4px 0 #072ac8' : 'none',
             }}>
-              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: s.highlight ? '#ffffff' : '#0a0a0a', whiteSpace: 'pre-line', marginBottom: 10, lineHeight: 1.8 }}>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 8, color: s.highlight ? '#ffffff' : '#0a0a0a', whiteSpace: 'pre-line', marginBottom: 10, lineHeight: 1.8 }}>
                 {s.name}
               </p>
               <span style={{
-                fontFamily: '"Press Start 2P"', fontSize: 7,
+                fontFamily: '"Carter One"', fontSize: 7,
                 background: s.highlight ? '#ffc600' : '#E5F4FE',
                 color: '#0a0a0a',
                 border: '1px solid #0a0a0a',
@@ -384,8 +388,8 @@ function Role() {
               { title: 'Hi-Fi Prototype Screens', desc: 'Designed and built the Opening Screen, Landing Screen, and PropMes screens as part of the hi-fi prototype.' },
             ].map((c, i) => (
               <div key={i} style={{ borderTop: '2px solid #1e96fc', paddingTop: 14 }}>
-                <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#1e96fc', marginBottom: 8, lineHeight: 1.7 }}>{c.title}</p>
-                <p style={{ fontFamily: '"VT323"', fontSize: 18, lineHeight: 1.5, color: '#555' }}>{c.desc}</p>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 8, color: '#1e96fc', marginBottom: 8, lineHeight: 1.7 }}>{c.title}</p>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 18, lineHeight: 1.5, color: '#555' }}>{c.desc}</p>
               </div>
             ))}
           </div>
@@ -442,12 +446,12 @@ function Problem() {
         {insights.map((ins, i) => (
           <Reveal key={ins.num} delay={i * 0.12}>
             <div style={{ border: '1.5px solid #0a0a0a', padding: '28px', height: '100%' }}>
-              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 32, color: '#E5F4FE', marginBottom: 2 }}>{ins.num}</p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 32, color: '#E5F4FE', marginBottom: 2 }}>{ins.num}</p>
               <div style={{ width: 24, height: 2, background: '#e63946', marginBottom: 12 }} />
-              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#0a0a0a', marginBottom: 12, lineHeight: 1.8 }}>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#0a0a0a', marginBottom: 12, lineHeight: 1.8 }}>
                 {ins.title}
               </p>
-              <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.6, color: '#555' }}>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 20, lineHeight: 1.6, color: '#555' }}>
                 {ins.body}
               </p>
             </div>
@@ -457,8 +461,8 @@ function Problem() {
 
       <Reveal delay={0.4}>
         <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', borderLeft: '4px solid #0a0a0a', padding: '24px 28px' }}>
-          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 10, color: '#0a0a0a', marginBottom: 10 }}>★ DESIGN DIRECTION</p>
-          <p style={{ fontFamily: '"VT323"', fontSize: 22, lineHeight: 1.5, color: '#333' }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 10, color: '#0a0a0a', marginBottom: 10 }}>★ DESIGN DIRECTION</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 22, lineHeight: 1.5, color: '#333' }}>
             PropBank Marketplace should not look like a generic e-commerce feed. It must be built around{' '}
             <strong style={{ color: '#1e96fc' }}>trust signals</strong>,{' '}
             <strong style={{ color: '#1e96fc' }}>cosplay-specific filters</strong>, and{' '}
@@ -499,7 +503,7 @@ function Research() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 40 }}>
         <Reveal delay={0.1}>
           <div style={{ border: '1.5px solid #1e96fc', padding: '24px', background: '#ffffff' }}>
-            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 14 }}>RESEARCH METHODS</p>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#1e96fc', marginBottom: 14 }}>RESEARCH METHODS</p>
             <div>
               {[
                 '✦ Semi-structured interviews (3 participants)',
@@ -507,18 +511,18 @@ function Research() {
                 '✦ Affinity diagramming (individual + cross-team)',
                 '✦ User journey mapping in FigJam',
               ].map(m => (
-                <p key={m} style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.7, color: '#444', borderBottom: '1px solid #E5F4FE', paddingBottom: 6, marginBottom: 6 }}>{m}</p>
+                <p key={m} style={{ fontFamily: '"Carter One"', fontSize: 20, lineHeight: 1.7, color: '#444', borderBottom: '1px solid #E5F4FE', paddingBottom: 6, marginBottom: 6 }}>{m}</p>
               ))}
             </div>
           </div>
         </Reveal>
         <Reveal delay={0.2}>
           <div style={{ border: '1.5px solid #0a0a0a', padding: '28px', background: '#ffffff', borderLeft: '4px solid #e63946' }}>
-            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#0a0a0a', marginBottom: 14 }}>KEY QUOTE</p>
-            <p style={{ fontFamily: '"VT323"', fontSize: 26, lineHeight: 1.4, fontStyle: 'italic', color: '#333', marginBottom: 12 }}>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#0a0a0a', marginBottom: 14 }}>KEY QUOTE</p>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 26, lineHeight: 1.4, fontStyle: 'italic', color: '#333', marginBottom: 12 }}>
               "Preferred locations of the seller matter because running around Singapore is annoying."
             </p>
-            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#999' }}>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 7, color: '#999' }}>
               — User S, Interview 1
             </p>
           </div>
@@ -579,12 +583,12 @@ function Research() {
                   <span style={{ fontSize: 22 }}>👤</span>
                 </div>
                 <div>
-                  <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 4 }}>{persona.name}</p>
-                  <p style={{ fontFamily: '"VT323"', fontSize: 17, color: '#999' }}>{persona.sub}</p>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#1e96fc', marginBottom: 4 }}>{persona.name}</p>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 17, color: '#999' }}>{persona.sub}</p>
                 </div>
               </div>
               <span style={{
-                fontFamily: '"Press Start 2P"', fontSize: 7,
+                fontFamily: '"Carter One"', fontSize: 7,
                 background: persona.tagColor === '#ffc600' ? '#ffc600' : persona.tagColor === '#1e96fc' ? '#E5F4FE' : '#E5F4FE',
                 color: persona.tagColor === '#ffc600' ? '#0a0a0a' : '#072ac8',
                 border: `1px solid ${persona.tagColor}`,
@@ -596,7 +600,7 @@ function Research() {
                 {persona.rows.map(row => (
                   <div key={row.label} className="info-row">
                     <span className="info-label">{row.label}</span>
-                    <p style={{ fontFamily: '"VT323"', fontSize: 19, lineHeight: 1.5, color: '#444' }}>{row.value}</p>
+                    <p style={{ fontFamily: '"Carter One"', fontSize: 19, lineHeight: 1.5, color: '#444' }}>{row.value}</p>
                   </div>
                 ))}
               </div>
@@ -642,9 +646,9 @@ function Process() {
             <div style={{ display: 'flex', gap: 16, border: '1.5px solid #0a0a0a', padding: '20px 24px', alignItems: 'flex-start' }}>
               <div className="num-badge" style={{ flexShrink: 0 }}>{i + 1}</div>
               <div>
-                <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 4 }}>{p.phase}</p>
-                <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#0a0a0a', marginBottom: 8 }}>{p.label}</p>
-                <p style={{ fontFamily: '"VT323"', fontSize: 18, color: '#555', lineHeight: 1.5 }}>{p.desc}</p>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#1e96fc', marginBottom: 4 }}>{p.phase}</p>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 7, color: '#0a0a0a', marginBottom: 8 }}>{p.label}</p>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 18, color: '#555', lineHeight: 1.5 }}>{p.desc}</p>
               </div>
             </div>
           </Reveal>
@@ -653,7 +657,7 @@ function Process() {
 
       {/* 1. Task workflow embed */}
       <Reveal delay={0.1}>
-        <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 14 }}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#1e96fc', marginBottom: 14 }}>
           STEP 1 · TASK WORKFLOW & USER TASKS
         </p>
         <div style={{ marginBottom: 32 }}>
@@ -668,7 +672,7 @@ function Process() {
       {/* User tasks coverage */}
       <Reveal delay={0.15}>
         <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', padding: '20px 24px', marginBottom: 32, display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#072ac8', flexShrink: 0 }}>USER TASKS DESIGNED</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 8, color: '#072ac8', flexShrink: 0 }}>USER TASKS DESIGNED</p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {tasks.map((t) => (
               <div key={t.id} style={{
@@ -676,7 +680,7 @@ function Process() {
                 border: '1.5px solid #1e96fc',
                 padding: '8px 14px',
               }}>
-                <span style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#072ac8' }}>
+                <span style={{ fontFamily: '"Carter One"', fontSize: 7, color: '#072ac8' }}>
                   {t.id} · {t.label}
                 </span>
               </div>
@@ -687,7 +691,7 @@ function Process() {
 
       {/* Design decisions */}
       <Reveal delay={0.2}>
-        <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 20 }}>KEY DESIGN DECISIONS</p>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#1e96fc', marginBottom: 20 }}>KEY DESIGN DECISIONS</p>
       </Reveal>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
         {[
@@ -704,9 +708,9 @@ function Process() {
               background: '#ffffff',
               height: '100%',
             }}>
-              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#999', marginBottom: 6 }}>DESIGN DECISION</p>
-              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#0a0a0a', marginBottom: 10, lineHeight: 1.7 }}>{d.decision}</p>
-              <p style={{ fontFamily: '"VT323"', fontSize: 19, lineHeight: 1.5, color: '#555' }}>{d.rationale}</p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 7, color: '#999', marginBottom: 6 }}>DESIGN DECISION</p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#0a0a0a', marginBottom: 10, lineHeight: 1.7 }}>{d.decision}</p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 19, lineHeight: 1.5, color: '#555' }}>{d.rationale}</p>
             </div>
           </Reveal>
         ))}
@@ -714,7 +718,7 @@ function Process() {
 
       {/* 2. Lo-fi sketches */}
       <Reveal delay={0.2}>
-        <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 14 }}>STEP 2 · LO-FI PAPER SKETCHES</p>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#1e96fc', marginBottom: 14 }}>STEP 2 · LO-FI PAPER SKETCHES</p>
         <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', marginBottom: 32 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             {[
@@ -724,9 +728,9 @@ function Process() {
               { label: 'Seller Profile Page' },
             ].map((sketch, i) => (
               <div key={i} style={{ border: '1.5px solid #ddd', padding: '14px' }}>
-                <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#888', marginBottom: 10 }}>{sketch.label}</p>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 7, color: '#888', marginBottom: 10 }}>{sketch.label}</p>
                 <div style={{ height: 120, background: '#f8f8f8', border: '1.5px dashed #e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <p style={{ fontFamily: '"VT323"', fontSize: 17, color: '#bbb' }}>[ add lo-fi screenshot here ]</p>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 17, color: '#bbb' }}>[ add lo-fi screenshot here ]</p>
                 </div>
               </div>
             ))}
@@ -736,7 +740,7 @@ function Process() {
 
       {/* 3. Mid-fi */}
       <Reveal delay={0.2}>
-        <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 14 }}>STEP 3 · MID-FI DIGITAL WIREFRAMES</p>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#1e96fc', marginBottom: 14 }}>STEP 3 · MID-FI DIGITAL WIREFRAMES</p>
         <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', padding: '24px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             {[
@@ -746,9 +750,9 @@ function Process() {
               { label: 'Publish Listing Flow' },
             ].map((w, i) => (
               <div key={i} style={{ background: '#ffffff', border: '1.5px solid #ddd', padding: '14px' }}>
-                <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#888', marginBottom: 10 }}>{w.label}</p>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 7, color: '#888', marginBottom: 10 }}>{w.label}</p>
                 <div style={{ height: 120, background: '#f8f8f8', border: '1.5px dashed #e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <p style={{ fontFamily: '"VT323"', fontSize: 17, color: '#bbb' }}>[ add mid-fi screenshot here ]</p>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 17, color: '#bbb' }}>[ add mid-fi screenshot here ]</p>
                 </div>
               </div>
             ))}
@@ -820,8 +824,8 @@ function Prototype() {
         ].map((s, i) => (
           <Reveal key={s.label} delay={i * 0.05}>
             <div style={{ border: '1.5px solid #0a0a0a', borderTop: i < 4 ? '2px solid #1e96fc' : '2px solid #e63946', padding: '16px', background: '#ffffff' }}>
-              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#0a0a0a', marginBottom: 8, lineHeight: 1.7 }}>{s.label}</p>
-              <p style={{ fontFamily: '"VT323"', fontSize: 18, color: '#666', lineHeight: 1.5 }}>{s.desc}</p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 8, color: '#0a0a0a', marginBottom: 8, lineHeight: 1.7 }}>{s.label}</p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 18, color: '#666', lineHeight: 1.5 }}>{s.desc}</p>
             </div>
           </Reveal>
         ))}
@@ -857,10 +861,10 @@ function AIFeature() {
                 <span style={{ fontSize: 28 }}>{s.icon}</span>
                 <div className="num-badge">{s.step}</div>
               </div>
-              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#0a0a0a', marginBottom: 10, lineHeight: 1.8 }}>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#0a0a0a', marginBottom: 10, lineHeight: 1.8 }}>
                 {s.label}
               </p>
-              <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.5, color: '#555' }}>{s.desc}</p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 20, lineHeight: 1.5, color: '#555' }}>{s.desc}</p>
             </div>
           </Reveal>
         ))}
@@ -869,7 +873,7 @@ function AIFeature() {
       {/* Design principles */}
       <Reveal delay={0.3}>
         <div style={{ border: '1.5px solid #1e96fc', background: '#E5F4FE', padding: '28px' }}>
-          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#072ac8', marginBottom: 20 }}>WHY THIS DESIGN?</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#072ac8', marginBottom: 20 }}>WHY THIS DESIGN?</p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             {[
               { principle: 'Transparency', body: 'The UI explicitly labels tags as AI-generated. Users are never deceived about the source of suggestions — they can evaluate and override.', icon: '👁️' },
@@ -880,9 +884,9 @@ function AIFeature() {
               <div key={p.principle} style={{ border: '1.5px solid #a2d6f9', background: '#ffffff', padding: '18px 20px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
                   <span style={{ fontSize: 20 }}>{p.icon}</span>
-                  <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#1e96fc' }}>{p.principle}</p>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 8, color: '#1e96fc' }}>{p.principle}</p>
                 </div>
-                <p style={{ fontFamily: '"VT323"', fontSize: 19, color: '#555', lineHeight: 1.5 }}>{p.body}</p>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 19, color: '#555', lineHeight: 1.5 }}>{p.body}</p>
               </div>
             ))}
           </div>
@@ -918,9 +922,9 @@ function Testing() {
         ].map((m, i) => (
           <Reveal key={m.label} delay={i * 0.1}>
             <div style={{ border: '1.5px solid #0a0a0a', background: '#ffffff', padding: '24px', textAlign: 'center' }}>
-              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 32, color: '#1e96fc', marginBottom: 8 }}>{m.metric}</p>
-              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#444', marginBottom: 6 }}>{m.label}</p>
-              <p style={{ fontFamily: '"VT323"', fontSize: 17, color: '#999' }}>{m.note}</p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 32, color: '#1e96fc', marginBottom: 8 }}>{m.metric}</p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 7, color: '#444', marginBottom: 6 }}>{m.label}</p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 17, color: '#999' }}>{m.note}</p>
             </div>
           </Reveal>
         ))}
@@ -928,7 +932,7 @@ function Testing() {
 
       <Reveal delay={0.2}>
         <div style={{ border: '1.5px solid #0a0a0a', padding: '28px', background: '#ffffff' }}>
-          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#1e96fc', marginBottom: 20 }}>KEY FINDINGS & ITERATIONS</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#1e96fc', marginBottom: 20 }}>KEY FINDINGS & ITERATIONS</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {[
               { finding: 'Finding 1', action: 'Add your key usability finding here', iteration: 'Describe what you changed in response', accent: '#1e96fc' },
@@ -937,12 +941,12 @@ function Testing() {
             ].map((f, i) => (
               <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, border: '1.5px solid #eee' }}>
                 <div style={{ padding: '16px 20px', borderRight: '1px solid #eee' }}>
-                  <span style={{ fontFamily: '"Press Start 2P"', fontSize: 7, background: f.accent, color: '#ffffff', padding: '3px 8px', display: 'inline-block', marginBottom: 8 }}>{f.finding}</span>
-                  <p style={{ fontFamily: '"VT323"', fontSize: 19, color: '#444', marginTop: 4 }}>{f.action}</p>
+                  <span style={{ fontFamily: '"Carter One"', fontSize: 7, background: f.accent, color: '#ffffff', padding: '3px 8px', display: 'inline-block', marginBottom: 8 }}>{f.finding}</span>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 19, color: '#444', marginTop: 4 }}>{f.action}</p>
                 </div>
                 <div style={{ padding: '16px 20px' }}>
-                  <span style={{ fontFamily: '"Press Start 2P"', fontSize: 7, background: '#E5F4FE', color: '#072ac8', border: '1px solid #a2d6f9', padding: '3px 8px', display: 'inline-block', marginBottom: 8 }}>ITERATION</span>
-                  <p style={{ fontFamily: '"VT323"', fontSize: 19, color: '#444', marginTop: 4 }}>{f.iteration}</p>
+                  <span style={{ fontFamily: '"Carter One"', fontSize: 7, background: '#E5F4FE', color: '#072ac8', border: '1px solid #a2d6f9', padding: '3px 8px', display: 'inline-block', marginBottom: 8 }}>ITERATION</span>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 19, color: '#444', marginTop: 4 }}>{f.iteration}</p>
                 </div>
               </div>
             ))}
@@ -991,8 +995,8 @@ function Reflect() {
         ].map((r) => (
           <Reveal key={r.title} delay={0.1}>
             <div style={{ border: '1.5px solid #0a0a0a', borderTop: `3px solid ${r.accent}`, padding: '24px', background: '#ffffff', height: '100%' }}>
-              <p style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#0a0a0a', marginBottom: 12, lineHeight: 1.8 }}>{r.title}</p>
-              <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.6, color: '#555' }}>{r.body}</p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 9, color: '#0a0a0a', marginBottom: 12, lineHeight: 1.8 }}>{r.title}</p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 20, lineHeight: 1.6, color: '#555' }}>{r.body}</p>
             </div>
           </Reveal>
         ))}
@@ -1006,9 +1010,9 @@ function Reflect() {
               style={{ imageRendering: 'pixelated', margin: '0 auto' }} />
           </div>
           <div style={{ width: 32, height: 2, background: '#e63946', margin: '0 auto 16px' }} />
-          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 12, color: '#0a0a0a', marginBottom: 6 }}>CHEN HONGSHAN</p>
-          <p style={{ fontFamily: '"VT323"', fontSize: 20, color: '#999', marginBottom: 20 }}>A0311136W · CS3240 · TUT[06]</p>
-          <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#555', maxWidth: 520, margin: '0 auto 28px', lineHeight: 1.5 }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 12, color: '#0a0a0a', marginBottom: 6 }}>CHEN HONGSHAN</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#999', marginBottom: 20 }}>A0311136W · CS3240 · TUT[06]</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 22, color: '#555', maxWidth: 520, margin: '0 auto 28px', lineHeight: 1.5 }}>
             From one ideation slide to a full super-app ecosystem — this project taught me that good UX design begins with listening, not sketching.
           </p>
           <a href="https://www.figma.com/design/Rb3NBiOCgCPaXdcylqQa3L/Propbank-playground?node-id=125-467"
@@ -1053,7 +1057,7 @@ export default function Page() {
       </main>
 
       <footer style={{ borderTop: '1px solid rgba(10,10,10,0.08)', padding: '24px', textAlign: 'center', background: '#ffffff' }}>
-        <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#bbb' }}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 7, color: '#bbb' }}>
           © 2025 CHEN HONGSHAN · CS3240 IDP · PROPBANK
         </p>
       </footer>

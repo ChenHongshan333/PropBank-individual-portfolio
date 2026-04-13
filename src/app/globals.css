@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap');
+@font-face {
+  font-family: 'Carter One';
+  src: url('/fonts/CarterOne-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -21,7 +27,7 @@ html { scroll-behavior: smooth; }
 body {
   background: #ffffff;
   color: var(--black);
-  font-family: 'VT323', monospace;
+  font-family: 'Carter One', sans-serif;
   font-size: 20px;
   cursor: none;
 }
@@ -69,7 +75,7 @@ body {
 /* ── Buttons ── */
 .pixel-btn {
   border: 1.5px solid var(--black);
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Carter One', sans-serif;
   font-size: 8px;
   padding: 8px 16px;
   cursor: pointer;
@@ -135,7 +141,7 @@ body {
 
 /* ── Section tags ── */
 .section-tag {
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Carter One', sans-serif;
   font-size: 7px;
   letter-spacing: 0.1em;
   background: transparent;
@@ -148,7 +154,7 @@ body {
 
 /* number badge */
 .num-badge {
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Carter One', sans-serif;
   font-size: 9px;
   background: var(--blue);
   color: white;
@@ -161,7 +167,7 @@ body {
 
 /* ── Headings ── */
 .section-heading {
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Carter One', sans-serif;
   line-height: 1.7;
 }
 
@@ -179,7 +185,7 @@ h2.section-heading::after {
 
 /* ── Nav links ── */
 .nav-link {
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Carter One', sans-serif;
   font-size: 7px;
   color: var(--black);
   text-decoration: none;
@@ -201,7 +207,7 @@ h2.section-heading::after {
 
 /* ── Inline accent chip ── */
 .chip {
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Carter One', sans-serif;
   font-size: 7px;
   background: var(--pale);
   border: 1px solid var(--blue);
@@ -238,7 +244,7 @@ h2.section-heading::after {
   padding: 10px 0;
 }
 .info-label {
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Carter One', sans-serif;
   font-size: 7px;
   color: var(--blue);
   padding-top: 2px;
@@ -254,7 +260,7 @@ h2.section-heading::after {
   padding: 8px 14px;
 }
 .step-num {
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Carter One', sans-serif;
   font-size: 8px;
   color: var(--blue);
 }
