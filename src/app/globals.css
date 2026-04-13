@@ -179,14 +179,6 @@ body {
 h2.section-heading {
   position: relative;
 }
-h2.section-heading::after {
-  content: '';
-  display: block;
-  width: 32px;
-  height: 3px;
-  background: var(--red);
-  margin-top: 8px;
-}
 
 /* ── Nav links ── */
 .nav-link {
