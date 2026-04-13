@@ -120,7 +120,7 @@ function Nav() {
     }`}>
       <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
         <a href="#hero" className="flex items-center gap-2">
-          <Image src="/logo.png" alt="PropBank" width={36} height={36} style={{ imageRendering: 'pixelated' }} />
+          <Image src="/logo_new.png" alt="PropBank" width={36} height={36} style={{ imageRendering: 'pixelated' }} />
           <span style={{ fontFamily: '"Press Start 2P"', fontSize: 9, color: '#0a0a0a' }}>
             PROP<span style={{ color: '#e63946' }}>BANK</span>
           </span>
@@ -160,28 +160,30 @@ function Hero() {
         backgroundSize: '40px 40px'
       }} />
 
-      {/* Floating stars — yellow only, sparse */}
+      {/* Floating stars — yellow + red */}
       {[
-        { top: '15%', left: '6%',   size: 36, delay: 0 },
-        { top: '70%', left: '4%',   size: 20, delay: 1 },
-        { top: '25%', right: '8%',  size: 24, delay: 0.5 },
-        { top: '65%', right: '5%',  size: 40, delay: 0.8 },
+        { top: '15%', left: '6%',   size: 36, delay: 0,   fill: '#ffc600' },
+        { top: '70%', left: '4%',   size: 20, delay: 1,   fill: '#e63946' },
+        { top: '25%', right: '8%',  size: 24, delay: 0.5, fill: '#ffc600' },
+        { top: '65%', right: '5%',  size: 40, delay: 0.8, fill: '#e63946' },
+        { top: '45%', right: '12%', size: 16, delay: 0.3, fill: '#ffc600' },
       ].map((s, i) => (
         <div key={i} className="absolute star-deco pointer-events-none"
           style={{ top: s.top, left: (s as any).left, right: (s as any).right, animationDelay: `${s.delay}s` }}>
           <svg width={s.size} height={s.size} viewBox="0 0 32 32" style={{ imageRendering: 'pixelated' }}>
             <path d="M16 2 L19 12 L30 12 L21 18 L24 28 L16 22 L8 28 L11 18 L2 12 L13 12 Z"
-              fill="#ffc600" stroke="#0a0a0a" strokeWidth="2" />
+              fill={s.fill} stroke="#0a0a0a" strokeWidth="2" />
           </svg>
         </div>
       ))}
 
-      <div className="max-w-6xl mx-auto px-8 grid md:grid-cols-2 gap-16 items-center w-full">
+      <div className="max-w-7xl mx-auto px-4 grid gap-8 items-center w-full"
+        style={{ gridTemplateColumns: 'minmax(0, 3fr) minmax(0, 2fr)' }}>
 
         {/* Left — Logo as hero */}
         <div className="flex flex-col items-center md:items-start w-full">
           <div className="mascot-float w-full">
-            <Image src="/logo.png" alt="PropBank Logo" width={600} height={600}
+            <Image src="/logo_new.png" alt="PropBank Logo" width={800} height={800}
               style={{ imageRendering: 'pixelated', width: '100%', height: 'auto', mixBlendMode: 'multiply' }} />
           </div>
         </div>
@@ -243,7 +245,7 @@ function Origin() {
         <Reveal>
           <div className="section-tag">01 · ORIGIN STORY</div>
           <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            WHERE IT ALL<br />STARTED
+            WHERE IT ALL STARTED
           </h2>
           <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 32 }}>
             The entire PropBank concept — its services, ecosystem vision, and core positioning — originated from my individual ideation. My teammates adopted and built on this foundation.
@@ -252,12 +254,12 @@ function Origin() {
 
         <div className="grid md:grid-cols-2 gap-8">
           <Reveal delay={0.1}>
-            <div className="pixel-card p-6" style={{ background: '#ffffff' }}>
-              <p className="section-tag" style={{ background: '#ffffff' }}>ORIGINAL PITCH</p>
-              <p className="section-heading" style={{ fontSize: 11, color: '#1e96fc', marginBottom: 12 }}>
+            <div className="pixel-card p-6" style={{ background: '#ffc600' }}>
+              <p className="section-tag" style={{ background: '#0a0a0a', color: '#ffc600' }}>ORIGINAL PITCH</p>
+              <p className="section-heading" style={{ fontSize: 11, color: '#0a0a0a', marginBottom: 12 }}>
                 THE CORE IDEA
               </p>
-              <ul style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.7, color: '#333' }}>
+              <ul style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.7, color: '#0a0a0a' }}>
                 <li>✦ Gear Library & Marketplace → buy / borrow / swap</li>
                 <li>✦ PropScan → one picture → buildable parts list</li>
                 <li>✦ Workshop → unified tutorial directory</li>
@@ -267,22 +269,36 @@ function Origin() {
           </Reveal>
 
           <Reveal delay={0.2}>
-            <div className="pixel-card p-6" style={{ background: '#ffffff' }}>
-              <p className="section-tag">THE PROBLEM I SAW</p>
-              <p className="section-heading" style={{ fontSize: 11, color: '#1e96fc', marginBottom: 12 }}>
-                COSPLAY HAS A<br />COORDINATION CRISIS
+            <div className="pixel-card p-6" style={{ background: '#ffc600' }}>
+              <p className="section-tag" style={{ background: '#0a0a0a', color: '#ffc600' }}>THE PROBLEM I SAW</p>
+              <p className="section-heading" style={{ fontSize: 11, color: '#0a0a0a', marginBottom: 12 }}>
+                COSPLAY HAS A COORDINATION CRISIS
               </p>
-              <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.7 }}>
+              <p style={{ fontFamily: '"VT323"', fontSize: 20, lineHeight: 1.7, color: '#0a0a0a' }}>
                 Singapore-based ACGN creators — cosplayers, prop makers, fan-film teams, student clubs — lacked a dedicated ecosystem. Their creativity was there. Access and coordination were not.
               </p>
               <div className="mt-4 flex gap-2 flex-wrap">
                 {['✓ Creativity', '✗ Access', '✗ Coordination'].map(t => (
-                  <span key={t} className="pixel-btn bg-white" style={{ fontSize: 7 }}>{t}</span>
+                  <span key={t} className="pixel-btn" style={{ fontSize: 7, background: '#0a0a0a', color: '#ffc600' }}>{t}</span>
                 ))}
               </div>
             </div>
           </Reveal>
         </div>
+
+        {/* Pitch slides placeholder */}
+        <Reveal delay={0.25}>
+          <div className="pixel-card p-6 mt-8" style={{ background: '#ffffff' }}>
+            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#888', marginBottom: 10 }}>
+              ◈ INITIAL PITCH SLIDES — IDEATION STAGE
+            </p>
+            <div style={{ background: '#f5f5f5', border: '2px dashed #ccc', minHeight: 260, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <p style={{ fontFamily: '"VT323"', fontSize: 20, color: '#aaa', textAlign: 'center' }}>
+                [ add ideation pitch slides screenshot here ]
+              </p>
+            </div>
+          </div>
+        </Reveal>
 
         <Reveal delay={0.3}>
           <div className="pixel-card p-6 mt-8" style={{ background: '#072ac8' }}>
@@ -320,7 +336,7 @@ function Role() {
         <Reveal>
           <div className="section-tag">02 · ECOSYSTEM ROLE</div>
           <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            MY ROLE IN THE<br />ECOSYSTEM
+            MY ROLE IN THE ECOSYSTEM
           </h2>
           <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 32 }}>
             PropBank is a super-app with five distinct services. I owned the Marketplace — the economic core of the ecosystem — plus the shared entry experience.
@@ -409,7 +425,7 @@ function Problem() {
         <Reveal>
           <div className="section-tag">03 · PROBLEM FRAMING</div>
           <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            THE REAL PROBLEM<br />WE FOUND
+            THE REAL PROBLEM WE FOUND
           </h2>
           <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 32 }}>
             Three semi-structured interviews with cosplayers and convention-goers revealed that the core challenge isn't "finding items" — it's building enough trust to act.
@@ -461,7 +477,7 @@ function Research() {
         <Reveal>
           <div className="section-tag">04 · USER RESEARCH & PERSONA</div>
           <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            KNOWING THE<br />USER
+            KNOWING THE USER
           </h2>
         </Reveal>
 
@@ -593,11 +609,11 @@ function Research() {
 ───────────────────────────────────────────── */
 function Process() {
   const tasks = [
-    { id: 'T1', label: 'Browse & Buy',   color: '#1e96fc', text: 'white' },
-    { id: 'T2', label: 'Borrow',         color: '#1e96fc', text: 'white' },
-    { id: 'T3', label: 'Sell / Rent',    color: '#ffc600', text: '#0a0a0a' },
-    { id: 'T4', label: 'Swap',           color: '#fcf300', text: '#0a0a0a' },
-    { id: 'T5', label: 'PropMes Chat',   color: '#a2d6f9', text: '#0a0a0a' },
+    { id: 'T1', label: 'Browse & Buy',   color: '#ffffff', text: '#0a0a0a' },
+    { id: 'T2', label: 'Borrow',         color: '#072ac8', text: 'white'   },
+    { id: 'T3', label: 'Sell / Rent',    color: '#e63946', text: 'white'   },
+    { id: 'T4', label: 'Swap',           color: '#ffc600', text: '#0a0a0a' },
+    { id: 'T5', label: 'PropMes Chat',   color: '#E5F4FE', text: '#072ac8' },
   ]
 
   return (
@@ -606,7 +622,7 @@ function Process() {
         <Reveal>
           <div className="section-tag">05 · DESIGN PROCESS</div>
           <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            FROM SKETCH<br />TO PROTOTYPE
+            FROM SKETCH TO PROTOTYPE
           </h2>
           <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 32 }}>
             The marketplace went through structured iteration: task workflow → lo-fi paper sketches → mid-fi digital wireframes.
@@ -672,10 +688,10 @@ function Process() {
         </Reveal>
         <div className="grid md:grid-cols-2 gap-6 mb-10">
           {[
-            { decision: 'Trust Badge System', rationale: 'Users cited reviews and seller credibility as the #1 factor. Designed a visible trust score combining marketplace rating + guide reproducibility rating + transaction count — portable across services.', color: '#1e96fc', text: 'white' },
-            { decision: 'Cosplay-Specific Filters', rationale: 'Generic filters (price, date) are insufficient. Added fandom, character, item type, size, and condition filters — mapping directly to what users said they needed.', color: '#fcf300', text: '#0a0a0a' },
-            { decision: 'Seller Location Field', rationale: '"Running around Singapore is annoying" (User S). Made seller location a mandatory, prominently-displayed field on every listing.', color: '#1e96fc', text: 'white' },
-            { decision: 'PropMes as Coordination Layer', rationale: 'Chat, offer-making, reservation requests, and meetup coordination all happen within PropMes — keeping the full transaction lifecycle inside PropBank.', color: '#ffc600', text: '#0a0a0a' },
+            { decision: 'Trust Badge System', rationale: 'Users cited reviews and seller credibility as the #1 factor. Designed a visible trust score combining marketplace rating + guide reproducibility rating + transaction count — portable across services.', color: '#072ac8', text: 'white' },
+            { decision: 'Cosplay-Specific Filters', rationale: 'Generic filters (price, date) are insufficient. Added fandom, character, item type, size, and condition filters — mapping directly to what users said they needed.', color: '#1e96fc', text: 'white' },
+            { decision: 'Seller Location Field', rationale: '"Running around Singapore is annoying" (User S). Made seller location a mandatory, prominently-displayed field on every listing.', color: '#a2d6f9', text: '#0a0a0a' },
+            { decision: 'PropMes as Coordination Layer', rationale: 'Chat, offer-making, reservation requests, and meetup coordination all happen within PropMes — keeping the full transaction lifecycle inside PropBank.', color: '#E5F4FE', text: '#0a0a0a' },
           ].map((d, i) => (
             <Reveal key={d.decision} delay={i * 0.1}>
               <div className="pixel-card p-5 h-full" style={{ background: d.color }}>
@@ -821,7 +837,7 @@ function AIFeature() {
         <Reveal>
           <div className="section-tag">07 · AI FEATURE</div>
           <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            AI-ASSISTED<br />TAG GENERATION
+            AI-ASSISTED TAG GENERATION
           </h2>
           <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#072ac8', maxWidth: 600, marginBottom: 32 }}>
             When a seller uploads a photo of their item, AI automatically generates relevant tags. Critically, the user stays in full control.
@@ -885,7 +901,7 @@ function Testing() {
         <Reveal>
           <div className="section-tag">08 · USABILITY TESTING</div>
           <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            TESTING WITH<br />REAL USERS
+            TESTING WITH REAL USERS
           </h2>
           <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 12 }}>
             Usability tests conducted via Maze. Results informed the final round of iteration before submission.
@@ -952,7 +968,7 @@ function Reflect() {
         <Reveal>
           <div className="section-tag">09 · REFLECTION</div>
           <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
-            WHAT I<br />LEARNED
+            WHAT I LEARNED
           </h2>
         </Reveal>
 

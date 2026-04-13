@@ -28,7 +28,7 @@ body {
 
 .cursor {
   width: 10px; height: 10px;
-  background: var(--black);
+  background: var(--red);
   position: fixed;
   top: 0; left: 0;
   pointer-events: none;
@@ -116,9 +116,18 @@ body {
   color: var(--black);
 }
 
+.section-tag::before {
+  content: '★ ';
+  color: var(--red);
+}
+
 .section-heading {
   font-family: 'Press Start 2P', monospace;
   line-height: 1.7;
+}
+
+h2.section-heading {
+  text-shadow: 3px 3px 0 var(--red);
 }
 
 .nav-link {
