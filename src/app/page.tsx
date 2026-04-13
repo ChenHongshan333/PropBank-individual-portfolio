@@ -58,7 +58,7 @@ function FigmaEmbed({ url, title, height = 500 }: { url: string; title: string; 
   const embedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(url)}`
   return (
     <div className="pixel-card overflow-hidden">
-      <div className="flex items-center justify-between px-4 py-2" style={{ background: '#0a0a0a', borderBottom: '2px solid #0a0a0a' }}>
+      <div className="flex items-center justify-between px-4 py-2" style={{ background: '#072ac8', borderBottom: '2px solid #0a0a0a' }}>
         <span style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#ffc600' }}>
           ◈ {title}
         </span>
@@ -152,7 +152,7 @@ function Hero() {
 
   return (
     <section id="hero" className="min-h-screen flex items-center relative overflow-hidden pt-20"
-      style={{ background: '#ffffff' }}>
+      style={{ background: '#E5F4FE' }}>
 
       {/* Subtle pixel grid */}
       <div className="absolute inset-0 pointer-events-none" style={{
@@ -179,10 +179,10 @@ function Hero() {
       <div className="max-w-6xl mx-auto px-8 grid md:grid-cols-2 gap-16 items-center w-full">
 
         {/* Left — Logo as hero */}
-        <div className="flex flex-col items-center md:items-start">
-          <div className="mascot-float mb-6">
-            <Image src="/logo.png" alt="PropBank Logo" width={280} height={280}
-              style={{ imageRendering: 'pixelated' }} />
+        <div className="flex flex-col items-center md:items-start w-full">
+          <div className="mascot-float w-full">
+            <Image src="/logo.png" alt="PropBank Logo" width={600} height={600}
+              style={{ imageRendering: 'pixelated', width: '100%', height: 'auto', mixBlendMode: 'multiply' }} />
           </div>
         </div>
 
@@ -242,8 +242,8 @@ function Origin() {
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <div className="section-tag">01 · ORIGIN STORY</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#1e96fc' }}>
-            WHERE IT ALL<br /><span style={{ color: '#e63946' }}>STARTED</span>
+          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
+            WHERE IT ALL<br />STARTED
           </h2>
           <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 32 }}>
             The entire PropBank concept — its services, ecosystem vision, and core positioning — originated from my individual ideation. My teammates adopted and built on this foundation.
@@ -285,14 +285,14 @@ function Origin() {
         </div>
 
         <Reveal delay={0.3}>
-          <div className="pixel-card p-6 mt-8" style={{ background: '#0a0a0a' }}>
-            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#fcf300', marginBottom: 8 }}>
+          <div className="pixel-card p-6 mt-8" style={{ background: '#072ac8' }}>
+            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#ffc600', marginBottom: 8 }}>
               → FROM ONE IDEA TO A SUPER-APP
             </p>
-            <p style={{ fontFamily: '"VT323"', fontSize: 22, lineHeight: 1.6 }}>
+            <p style={{ fontFamily: '"VT323"', fontSize: 22, lineHeight: 1.6, color: 'white' }}>
               This initial pitch became the shared foundation that all four group members built their individual services upon.
-              My role then evolved into owning <span style={{ color: '#1e96fc' }}>Gear Library & Marketplace</span>, 
-              <span style={{ color: '#a2d6f9' }}> PropMes</span>, and the 
+              My role then evolved into owning <span style={{ color: '#a2d6f9' }}>Gear Library & Marketplace</span>,
+              <span style={{ color: '#E5F4FE' }}> PropMes</span>, and the
               <span style={{ color: '#ffc600' }}> Opening + Landing screens</span>.
             </p>
           </div>
@@ -315,11 +315,11 @@ function Role() {
   ]
 
   return (
-    <section id="role" className="py-24 px-6" style={{ background: '#ffffff' }}>
+    <section id="role" className="py-24 px-6" style={{ background: '#a2d6f9' }}>
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <div className="section-tag">02 · ECOSYSTEM ROLE</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#1e96fc' }}>
+          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
             MY ROLE IN THE<br />ECOSYSTEM
           </h2>
           <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 32 }}>
@@ -408,8 +408,8 @@ function Problem() {
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <div className="section-tag">03 · PROBLEM FRAMING</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#1e96fc' }}>
-            THE REAL PROBLEM<br /><span style={{ color: '#e63946' }}>WE FOUND</span>
+          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
+            THE REAL PROBLEM<br />WE FOUND
           </h2>
           <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 32 }}>
             Three semi-structured interviews with cosplayers and convention-goers revealed that the core challenge isn't "finding items" — it's building enough trust to act.
@@ -456,11 +456,11 @@ function Problem() {
 ───────────────────────────────────────────── */
 function Research() {
   return (
-    <section id="research" className="py-24 px-6" style={{ background: '#ffffff' }}>
+    <section id="research" className="py-24 px-6" style={{ background: '#E5F4FE' }}>
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <div className="section-tag">04 · USER RESEARCH & PERSONA</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#1e96fc' }}>
+          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
             KNOWING THE<br />USER
           </h2>
         </Reveal>
@@ -605,8 +605,8 @@ function Process() {
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <div className="section-tag">05 · DESIGN PROCESS</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#1e96fc' }}>
-            FROM SKETCH<br /><span style={{ color: '#e63946' }}>TO PROTOTYPE</span>
+          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
+            FROM SKETCH<br />TO PROTOTYPE
           </h2>
           <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 32 }}>
             The marketplace went through structured iteration: task workflow → lo-fi paper sketches → mid-fi digital wireframes.
@@ -648,8 +648,8 @@ function Process() {
 
         {/* User tasks coverage */}
         <Reveal delay={0.15}>
-          <div className="pixel-card p-6 mb-8" style={{ background: '#0a0a0a' }}>
-            <p className="section-heading" style={{ fontSize: 10, color: '#fcf300', marginBottom: 12 }}>
+          <div className="pixel-card p-6 mb-8" style={{ background: '#1e96fc' }}>
+            <p className="section-heading" style={{ fontSize: 10, color: '#ffc600', marginBottom: 12 }}>
               USER TASKS DESIGNED
             </p>
             <div className="flex flex-wrap gap-3">
@@ -745,11 +745,11 @@ function Process() {
 ───────────────────────────────────────────── */
 function Prototype() {
   return (
-    <section id="prototype" className="py-24 px-6" style={{ background: '#ffffff' }}>
+    <section id="prototype" className="py-24 px-6" style={{ background: '#E5F4FE' }}>
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <div className="section-tag">06 · HI-FI PROTOTYPE</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#1e96fc' }}>
+          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
             THE PROTOTYPE
           </h2>
           <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 20 }}>
@@ -816,14 +816,14 @@ function Prototype() {
 ───────────────────────────────────────────── */
 function AIFeature() {
   return (
-    <section id="ai" className="py-24 px-6" style={{ background: '#0a0a0a' }}>
+    <section id="ai" className="py-24 px-6" style={{ background: '#a2d6f9' }}>
       <div className="max-w-6xl mx-auto">
         <Reveal>
-          <div className="section-tag" style={{ background: '#ffffff' }}>07 · AI FEATURE</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#fcf300' }}>
+          <div className="section-tag">07 · AI FEATURE</div>
+          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
             AI-ASSISTED<br />TAG GENERATION
           </h2>
-          <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#a2d6f9', maxWidth: 600, marginBottom: 32 }}>
+          <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#072ac8', maxWidth: 600, marginBottom: 32 }}>
             When a seller uploads a photo of their item, AI automatically generates relevant tags. Critically, the user stays in full control.
           </p>
         </Reveal>
@@ -850,8 +850,8 @@ function AIFeature() {
 
         {/* Design principles for this AI feature */}
         <Reveal delay={0.3}>
-          <div className="pixel-card p-6" style={{ background: '#0a0a0a' }}>
-            <p className="section-heading" style={{ fontSize: 10, color: '#fcf300', marginBottom: 12 }}>
+          <div className="pixel-card p-6" style={{ background: '#1e96fc' }}>
+            <p className="section-heading" style={{ fontSize: 10, color: '#ffc600', marginBottom: 12 }}>
               WHY THIS DESIGN?
             </p>
             <div className="grid md:grid-cols-2 gap-6">
@@ -861,10 +861,10 @@ function AIFeature() {
                 { principle: 'Reduces Friction', body: 'Sellers often don\'t know how to categorize niche items. AI suggestions lower the barrier to publishing a good listing without forcing compliance.', icon: '⚡' },
                 { principle: 'Non-Intrusive', body: 'AI operates at one specific moment: item upload. It doesn\'t persistently recommend, rerank, or alter the experience in hidden ways.', icon: '🤫' },
               ].map((p, i) => (
-                <div key={p.principle} className="pixel-card p-4" style={{ background: '#1a1a1a' }}>
+                <div key={p.principle} className="pixel-card p-4" style={{ background: '#072ac8' }}>
                   <p style={{ fontSize: 24, marginBottom: 6 }}>{p.icon}</p>
-                  <p className="section-heading" style={{ fontSize: 8, color: '#fcf300', marginBottom: 6 }}>{p.principle}</p>
-                  <p style={{ fontFamily: '"VT323"', fontSize: 19, color: '#ccc', lineHeight: 1.5 }}>{p.body}</p>
+                  <p className="section-heading" style={{ fontSize: 8, color: '#ffc600', marginBottom: 6 }}>{p.principle}</p>
+                  <p style={{ fontFamily: '"VT323"', fontSize: 19, color: '#E5F4FE', lineHeight: 1.5 }}>{p.body}</p>
                 </div>
               ))}
             </div>
@@ -884,7 +884,7 @@ function Testing() {
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <div className="section-tag">08 · USABILITY TESTING</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#1e96fc' }}>
+          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
             TESTING WITH<br />REAL USERS
           </h2>
           <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#444', maxWidth: 600, marginBottom: 12 }}>
@@ -947,12 +947,12 @@ function Testing() {
 ───────────────────────────────────────────── */
 function Reflect() {
   return (
-    <section id="reflect" className="py-24 px-6" style={{ background: '#0a0a0a' }}>
+    <section id="reflect" className="py-24 px-6" style={{ background: '#E5F4FE' }}>
       <div className="max-w-6xl mx-auto">
         <Reveal>
-          <div className="section-tag" style={{ background: '#ffffff' }}>09 · REFLECTION</div>
-          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: 'white' }}>
-            WHAT I<br /><span style={{ color: '#fcf300' }}>LEARNED</span>
+          <div className="section-tag">09 · REFLECTION</div>
+          <h2 className="section-heading text-xl md:text-2xl mb-4" style={{ color: '#0a0a0a' }}>
+            WHAT I<br />LEARNED
           </h2>
         </Reveal>
 
@@ -990,18 +990,18 @@ function Reflect() {
 
         {/* Final card */}
         <Reveal delay={0.4}>
-          <div className="pixel-card p-8 text-center" style={{ background: '#1a1a1a' }}>
+          <div className="pixel-card p-8 text-center" style={{ background: '#072ac8' }}>
             <div className="mascot-float mb-6">
               <Image src="/mascot.png" alt="mascot" width={80} height={80}
                 style={{ imageRendering: 'pixelated', margin: '0 auto' }} />
             </div>
-            <p className="section-heading" style={{ fontSize: 14, color: '#fcf300', marginBottom: 8 }}>
+            <p className="section-heading" style={{ fontSize: 14, color: '#ffc600', marginBottom: 8 }}>
               CHEN HONGSHAN
             </p>
-            <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#888', marginBottom: 16 }}>
+            <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#a2d6f9', marginBottom: 16 }}>
               A0311136W · CS3240 · TUT[06]
             </p>
-            <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#ccc', maxWidth: 500, margin: '0 auto 24px' }}>
+            <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#E5F4FE', maxWidth: 500, margin: '0 auto 24px' }}>
               From one ideation slide to a full super-app ecosystem — this project taught me that good UX design begins with listening, not sketching.
             </p>
             <a href="https://www.figma.com/design/Rb3NBiOCgCPaXdcylqQa3L/Propbank-playground?node-id=125-467"
