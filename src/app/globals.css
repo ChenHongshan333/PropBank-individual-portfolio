@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black:  #0a0a0a;
+  --white:  #ffffff;
+  --red:    #e63946;
+  --yellow: #ffc600;
+  --blue:   #1e96fc;
+  --sky:    #a2d6f9;
+  --pale:   #E5F4FE;
+  --navy:   #072ac8;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: #ffffff;
+  color: var(--black);
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  cursor: none;
+}
+
+.cursor {
+  width: 10px; height: 10px;
+  background: var(--black);
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+.cursor-ring {
+  width: 22px; height: 22px;
+  border: 2px solid var(--blue);
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.12s ease;
+}
+
+.pixel-card {
+  border: 2px solid var(--black);
+  box-shadow: 4px 4px 0px var(--black);
+  transition: transform 0.12s, box-shadow 0.12s;
+  background: #ffffff;
+}
+.pixel-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--black);
+}
+
+.pixel-btn {
+  border: 2px solid var(--black);
+  box-shadow: 3px 3px 0px var(--black);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  background: white;
+  color: var(--black);
+}
+.pixel-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px var(--black);
+}
+.pixel-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--black);
+}
+
+.section-divider {
+  height: 1px;
+  background: rgba(10,10,10,0.1);
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f5f5f5; }
+::-webkit-scrollbar-thumb { background: var(--black); border: 2px solid white; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  50% { opacity: 0.6; transform: scale(0.88) rotate(8deg); }
+}
+.star-deco { animation: twinkle 2.5s ease-in-out infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.mascot-float { animation: float 3s ease-in-out infinite; }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.blink { animation: blink 1s step-end infinite; }
+
+.section-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  background: var(--yellow);
+  border: 2px solid var(--black);
+  padding: 4px 10px;
+  display: inline-block;
+  margin-bottom: 14px;
+  color: var(--black);
+}
+
+.section-heading {
+  font-family: 'Press Start 2P', monospace;
+  line-height: 1.7;
+}
+
+.nav-link {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: var(--black);
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+.nav-link:hover {
+  border-bottom-color: var(--yellow);
+}
