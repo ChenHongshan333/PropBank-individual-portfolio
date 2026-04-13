@@ -131,17 +131,6 @@ function Nav() {
    SECTION 0 — HERO
 ───────────────────────────────────────────── */
 function Hero() {
-  const [typed, setTyped] = useState('')
-  const full = 'Gear Library & Marketplace'
-  useEffect(() => {
-    let i = 0
-    const t = setInterval(() => {
-      setTyped(full.slice(0, ++i))
-      if (i >= full.length) clearInterval(t)
-    }, 60)
-    return () => clearInterval(t)
-  }, [])
-
   return (
     <section id="hero" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', background: '#ffffff', paddingTop: 80, position: 'relative', overflow: 'hidden' }}>
 
@@ -172,44 +161,35 @@ function Hero() {
         </div>
       ))}
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center', width: '100%' }}>
+      <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 16px', display: 'grid', gridTemplateColumns: '3fr 2fr', gap: 24, alignItems: 'center', width: '100%' }}>
 
-        {/* Left — Logo */}
+        {/* Left — Logo, fills full left column */}
         <div className="mascot-float" style={{ display: 'flex', justifyContent: 'center' }}>
-          <Image src="/logo_new.png" alt="PropBank Logo" width={480} height={480}
-            style={{ imageRendering: 'pixelated', width: '100%', maxWidth: 480, height: 'auto', mixBlendMode: 'multiply' }} />
+          <Image src="/logo_new.png" alt="PropBank Logo" width={900} height={900}
+            style={{ imageRendering: 'pixelated', width: '100%', height: 'auto', mixBlendMode: 'multiply' }} />
         </div>
 
         {/* Right */}
         <div>
           <div className="section-tag" style={{ marginBottom: 20 }}>CS3240 · IDP INDIVIDUAL PORTFOLIO</div>
 
-          <h1 style={{ fontFamily: '"Press Start 2P"', fontSize: 20, lineHeight: 1.6, color: '#0a0a0a', marginBottom: 6 }}>
-            CHEN HONG<span style={{ color: '#e63946' }}>SHAN</span>
+          {/* Main hero title — Service name */}
+          <h1 style={{ fontFamily: '"Press Start 2P"', fontSize: 32, lineHeight: 1.75, color: '#0a0a0a', marginBottom: 20 }}>
+            GEAR<br />LIBRARY<br />&amp;<br /><span style={{ color: '#1e96fc' }}>MARKET<br />PLACE</span>
           </h1>
-          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 8, color: '#999', marginBottom: 32 }}>
+
+          {/* Author */}
+          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 10, color: '#0a0a0a', marginBottom: 4 }}>
+            CHEN HONG<span style={{ color: '#e63946' }}>SHAN</span>
+          </p>
+          <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#999', marginBottom: 24 }}>
             A0311136W · TUT[06]
           </p>
 
-          {/* Service card */}
-          <div style={{
-            border: '1.5px solid #0a0a0a',
-            borderLeft: '4px solid #1e96fc',
-            padding: '20px 24px',
-            marginBottom: 28,
-            background: '#ffffff',
-          }}>
-            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 7, color: '#999', marginBottom: 10 }}>
-              SERVICE OWNED
-            </p>
-            <p style={{ fontFamily: '"Press Start 2P"', fontSize: 11, color: '#1e96fc', lineHeight: 1.8 }}>
-              {typed}<span className="blink" style={{ color: '#0a0a0a' }}>█</span>
-            </p>
-            <div style={{ marginTop: 14, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {['+ PropMes', '+ Opening Screen', '+ Landing Page'].map(t => (
-                <span key={t} className="chip">{t}</span>
-              ))}
-            </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 24 }}>
+            {['+ PropMes', '+ Opening Screen', '+ Landing Page'].map(t => (
+              <span key={t} className="chip">{t}</span>
+            ))}
           </div>
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -254,7 +234,7 @@ function SectionHeader({ tag, title, sub }: { tag: string; title: React.ReactNod
   return (
     <div style={{ marginBottom: 40 }}>
       <div className="section-tag">{tag}</div>
-      <h2 className="section-heading" style={{ fontSize: 16, color: '#0a0a0a', marginBottom: sub ? 12 : 0 }}>
+      <h2 className="section-heading" style={{ fontSize: 22, color: '#0a0a0a', marginBottom: sub ? 12 : 0 }}>
         {title}
       </h2>
       {sub && <p style={{ fontFamily: '"VT323"', fontSize: 22, color: '#555', maxWidth: 580, lineHeight: 1.5 }}>{sub}</p>}
