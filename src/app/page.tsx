@@ -332,7 +332,7 @@ function Origin() {
           <p style={{ fontFamily: '"Carter One"', fontSize: 21, lineHeight: 1.6, color: '#333' }}>
             This initial pitch became the shared foundation that all four group members built their individual services upon.
             My role then evolved into owning <span style={{ color: '#1e96fc', fontWeight: 'bold' }}>Marketplace</span>,
-            <span style={{ color: '#0a0a0a' }}> PropMes</span>, and the
+            <span style={{ color: '#ffc600' }}> PropMes</span>, and the
             <span style={{ color: '#e63946' }}> Opening & Landing screens</span>.
           </p>
         </div>
@@ -361,6 +361,16 @@ function Role() {
           title={<>MY ROLE IN THE <span style={{ color: '#0a0a0a' }}>ECOSYSTEM</span></>}
           sub="PropBank is a super-app with five distinct services. I owned the Marketplace — the economic core of the ecosystem — plus the shared entry experience."
         />
+      </Reveal>
+
+      <Reveal delay={0.05}>
+        <div style={{ border: '1.5px solid #1e96fc', background: '#ffffff', padding: '18px 22px', marginBottom: 24 }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 8 }}>SERVICE BOUNDARY (INDIVIDUAL OWNERSHIP)</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#444', lineHeight: 1.6 }}>
+            Owned scope: Gear Library & Marketplace end-to-end flows (Buy & Borrow, Sell & Rent, Swap, and PropMes coordination). Shared contribution: Opening and Landing entry screens.
+            Integrated touchpoints with CoNews, Workshop, PropScan, and Creator Hub are intentionally connected but not claimed as my owned service scope.
+          </p>
+        </div>
       </Reveal>
 
       {/* Service grid */}
@@ -645,7 +655,7 @@ function Research() {
               </div>
             </Reveal>
             <Reveal delay={0.2}>
-              <FigmaEmbed url={persona.journeyUrl} title={persona.journeyTitle} height={459} />
+              <FigmaEmbed url={persona.journeyUrl} title={persona.journeyTitle} height={450} />
             </Reveal>
           </div>
         )
@@ -707,6 +717,46 @@ function Process() {
                 </span>
               </div>
             ))}
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal delay={0.18}>
+        <div style={{ border: '1.5px solid #0a0a0a', background: '#ffffff', padding: '20px 24px', marginBottom: 32 }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 10 }}>ENTRY / EXIT FLOW (END-TO-END)</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#444', lineHeight: 1.6 }}>
+            Entry: Landing Screen to Marketplace Home, then Browse/Filter, Item Detail, and PropMes negotiation.
+          </p>
+          <div style={{ border: '1.5px dashed #ddd', background: '#f8f8f8', padding: '14px', margin: '14px 0' }}>
+            <div style={{ display: 'flex', alignItems: 'stretch', gap: 10, overflowX: 'auto' }}>
+              {[
+                'Screenshot 1',
+                'Screenshot 2',
+                'Screenshot 3',
+                '...',
+              ].map((label, i) => (
+                <div key={label + i} style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+                  <div style={{ width: 220, border: '1.5px solid #ddd', background: '#ffffff', padding: 10 }}>
+                    <div style={{ height: 120, background: '#f3f3f3', border: '1.5px dashed #e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
+                      <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#aaa', textAlign: 'center' }}>[ image ]</p>
+                    </div>
+                    <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#666', textAlign: 'center' }}>{label} description</p>
+                  </div>
+                  {i < 3 && <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc' }}>→</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#444', lineHeight: 1.6 }}>
+            Exit: Reservation or purchase decision, then return to listing confirmation, saved items, Marketplace Home, or jump to Workshop/PropScan via cross-service links.
+          </p>
+          <div style={{ border: '1.5px dashed #ddd', background: '#f8f8f8', padding: 14, marginTop: 10 }}>
+            <div style={{ width: 280, border: '1.5px solid #ddd', background: '#ffffff', padding: 10 }}>
+              <div style={{ height: 130, background: '#f3f3f3', border: '1.5px dashed #e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#aaa', textAlign: 'center' }}>[ exit image ]</p>
+              </div>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#666', textAlign: 'center' }}>Exit screenshot description</p>
+            </div>
           </div>
         </div>
       </Reveal>
@@ -931,6 +981,18 @@ function AIFeature() {
           </div>
         </div>
       </Reveal>
+
+      <Reveal delay={0.35}>
+        <div style={{ border: '1.5px solid #0a0a0a', background: '#ffffff', padding: '24px' }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 10 }}>AI IN DESIGN PROCESS (MY DOCUMENTED USAGE)</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.6 }}>
+            I used AI tools during design to draft alternative tag taxonomies and interaction copy variants for upload flow prompts. I accepted suggestions that improved clarity and consistency with user language.
+          </p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.6 }}>
+            I rejected suggestions that were too automation-heavy (e.g., auto-applying tags without confirmation). Final decision was human-controlled: users must explicitly review, remove, or override AI-generated tags before publishing.
+          </p>
+        </div>
+      </Reveal>
     </Section>
   )
 }
@@ -969,6 +1031,12 @@ function Testing() {
         ))}
       </div>
 
+      <Reveal delay={0.15}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#777', marginBottom: 20 }}>
+          Testing scope note: insights are directional (Maze task testing + short interviews), used to guide iteration priorities rather than claim statistical significance.
+        </p>
+      </Reveal>
+
       <Reveal delay={0.2}>
         <div style={{ border: '1.5px solid #0a0a0a', padding: '28px', background: '#ffffff' }}>
           <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 20 }}>KEY FINDINGS & ITERATIONS</p>
@@ -977,19 +1045,19 @@ function Testing() {
               {
                 finding: 'Finding 1 · Information Density',
                 action: 'Interview feedback (CJY): "The UI is clean and straightforward, but some pages feel text-heavy and lack clear color and font-size separation between sections."',
-                iteration: 'Reduced visual crowding by improving section grouping, strengthening hierarchy, and using clearer color contrast between functional blocks.',
+                iteration: 'Before -> After: dense text blocks -> clearer section grouping with stronger typographic hierarchy and color separation between functional blocks.',
                 accent: '#e63946'
               },
               {
                 finding: 'Finding 2 · Guidance Ambiguity in Later Tasks',
                 action: 'Maze & interview feedback (CJY): the last two tasks were harder because multiple blue-highlight prompts appeared simultaneously, making the next action unclear.',
-                iteration: 'Refined hint logic to prioritize one primary next action at a time, and increased distinction between primary guidance and secondary interactive elements.',
+                iteration: 'Before -> After: multiple simultaneous highlight cues -> one primary next-action cue with clearer visual priority over secondary clickable elements.',
                 accent: '#e63946'
               },
               {
                 finding: 'Finding 3 · Click Responsiveness & Affordance',
                 action: 'Interview feedback (WJT): some buttons felt unresponsive and required repeated taps; on the product list page, users were unsure which items were actually clickable.',
-                iteration: 'Strengthened click affordance and feedback states (hover/press/loading), expanded clear tappable areas, and added more explicit cues so guidance frames are recognized as instructions.',
+                iteration: 'Before -> After: ambiguous clickable states -> stronger tap feedback (press/loading), clearer tappable boundaries, and explicit instructional cues for guided actions.',
                 accent: '#e63946'
               },
             ].map((f, i) => (
@@ -1040,6 +1108,11 @@ function Reflect() {
             title: 'AI Limitations',
             accent: '#1e96fc',
             body: 'AI tag generation works well for common cosplay items but may misidentify niche or handmade props. The override mechanism wasn\'t just a nice-to-have — it was essential to maintain listing accuracy.'
+          },
+          {
+            title: 'Conflict Resolved',
+            accent: '#ffc600',
+            body: 'A repeated team-level conflict was scope vs clarity: how much listing detail should appear immediately versus progressively. We resolved this by keeping trust-critical information (reviews, condition, location) visible upfront while moving secondary details into structured sections to reduce cognitive load.'
           },
           {
             title: 'Process Reflection',
