@@ -833,11 +833,102 @@ function Research() {
    SECTION 4 — TASKS
 ───────────────────────────────────────────── */
 function Tasks() {
-  const tasks = [
-    { id: 'T1', label: 'Buy & Borrow' },
-    { id: 'T2', label: 'Sell & Rent' },
-    { id: 'T3', label: 'Swap' },
-    { id: 'T4', label: 'PropMes Chat' },
+  const [expandedTasks, setExpandedTasks] = useState<Record<string, boolean>>({})
+  const collapsedTaskHeight = 450
+
+  const taskPills = [
+    { id: 'T1', label: 'Buy' },
+    { id: 'T2', label: 'Borrow' },
+    { id: 'T3', label: 'Sell' },
+    { id: 'T4', label: 'Rent' },
+    { id: 'T5', label: 'Swap' },
+  ]
+
+  const taskFlows = [
+    {
+      id: 'T1',
+      label: 'BUY',
+      tagColor: '#1e96fc',
+      role: 'Buyer',
+      goal: 'Find a trustworthy cosplay item to purchase and complete a transaction.',
+      steps: [
+        { step: 'Entry', desc: 'Opens Marketplace from Landing/Home screen.' },
+        { step: 'Browse & Filter', desc: 'Searches by character, fandom, item type, size, or condition. Views trust badge and seller rating on listing cards.' },
+        { step: 'Item Detail', desc: 'Reviews full item info — photos, condition, seller location, trust score, and reviews.' },
+        { step: 'Add to Cart', desc: 'Adds selected item to cart for checkout.' },
+        { step: 'Contact Seller', desc: 'Opens PropMes to negotiate or confirm logistics before payment.' },
+        { step: 'Checkout & Pay', desc: 'Completes payment within the app.' },
+        { step: 'Exit', desc: 'Views order confirmation and returns to Marketplace or My Orders.' },
+      ],
+      figmaUrl: 'https://www.figma.com/board/Aq90xFScMUubyW4aWzY4wc/hs---task-workflow?node-id=114-535&t=gcnzIxy31Thrdn0h-1',
+    },
+    {
+      id: 'T2',
+      label: 'BORROW',
+      tagColor: '#072ac8',
+      role: 'Borrower',
+      goal: 'Source a cosplay item on a short-term loan without committing to a full purchase.',
+      steps: [
+        { step: 'Entry', desc: 'Opens Marketplace and filters by transaction mode: Borrow.' },
+        { step: 'Browse Listings', desc: 'Views borrowable items with borrow duration, condition, and seller rating.' },
+        { step: 'Item Detail', desc: 'Reviews borrow terms, duration range, and seller availability.' },
+        { step: 'Add Borrow Details', desc: 'Fills in desired borrow period and submits request.' },
+        { step: 'Awaits Confirmation', desc: 'Seller reviews and approves or declines the borrow request.' },
+        { step: 'Exit', desc: 'Borrow request confirmed — returns to listings or PropMes chat thread.' },
+      ],
+      figmaUrl: 'https://www.figma.com/board/Aq90xFScMUubyW4aWzY4wc/hs---task-workflow?node-id=114-657&t=gcnzIxy31Thrdn0h-1',
+    },
+    {
+      id: 'T3',
+      label: 'SELL',
+      tagColor: '#e63946',
+      role: 'Seller',
+      goal: 'List a cosplay item for sale and complete a transaction with a buyer.',
+      steps: [
+        { step: 'Entry', desc: 'Taps Sell from Marketplace Home action bubbles.' },
+        { step: 'Upload Image', desc: 'Photographs and uploads the item.' },
+        { step: 'Fill Listing Details', desc: 'Adds title, size, colour, and condition. Reviews AI-generated tags, edits or accepts.' },
+        { step: 'Add Description & Publish', desc: 'Writes a description and publishes the listing live.' },
+        { step: 'Manage Listing', desc: 'Views published items, tracks interest, receives buyer messages in PropMes.' },
+        { step: 'Arrange Delivery', desc: 'Coordinates delivery or meetup with buyer.' },
+        { step: 'Exit', desc: 'Transaction marked complete — views in My Orders.' },
+      ],
+      figmaUrl: 'https://www.figma.com/board/Aq90xFScMUubyW4aWzY4wc/hs---task-workflow?node-id=114-803&t=gcnzIxy31Thrdn0h-1',
+    },
+    {
+      id: 'T4',
+      label: 'RENT',
+      tagColor: '#e63946',
+      role: 'Lender',
+      goal: 'List a cosplay item for rent, reach interested borrowers, and complete a rental transaction.',
+      steps: [
+        { step: 'Entry', desc: 'Taps Rent from Marketplace Home action bubbles.' },
+        { step: 'Upload & Fill Details', desc: 'Uploads image, sets item name, colour, size, and AI-reviewed tags.' },
+        { step: 'Set Rental Terms', desc: 'Specifies availability window, rental price, and any conditions.' },
+        { step: 'Publish Listing', desc: 'Listing goes live with view count and contact interest visible.' },
+        { step: 'Receive Inquiries', desc: 'Responds to rental requests through PropMes.' },
+        { step: 'Confirm & Arrange', desc: 'Confirms shipment or meetup details with the renter.' },
+        { step: 'Exit', desc: 'Rental transaction completed — tracked in My Orders.' },
+      ],
+      figmaUrl: 'https://www.figma.com/board/Aq90xFScMUubyW4aWzY4wc/hs---task-workflow?node-id=114-950&t=gcnzIxy31Thrdn0h-1',
+    },
+    {
+      id: 'T5',
+      label: 'SWAP',
+      tagColor: '#ffc600',
+      role: 'Swapper',
+      goal: 'Exchange an owned cosplay item for another listed item without monetary payment.',
+      steps: [
+        { step: 'Entry', desc: 'Opens Marketplace and switches to Swap mode.' },
+        { step: 'Browse Swappable Items', desc: 'Views items others have listed as available for swap.' },
+        { step: 'Item Detail', desc: 'Reviews item details and confirms swap eligibility.' },
+        { step: 'Fill Swap Request', desc: 'Writes a swap proposal and specifies what they are offering in return.' },
+        { step: 'Select Own Swap Item', desc: 'Picks one of their own published items as the offer.' },
+        { step: 'Send Request', desc: 'Submits swap request — status shows as Pending.' },
+        { step: 'Exit', desc: 'Request accepted → coordinate exchange via PropMes; or declined → return to swap list.' },
+      ],
+      figmaUrl: 'https://www.figma.com/board/Aq90xFScMUubyW4aWzY4wc/hs---task-workflow?node-id=114-1121&t=gcnzIxy31Thrdn0h-1',
+    },
   ]
 
   return (
@@ -846,90 +937,91 @@ function Tasks() {
         <SectionHeader
           tag="04 · TASKS"
           title={<>TASK WORKFLOW & <span style={{ color: '#0a0a0a' }}>DESIGN DECISIONS</span></>}
-          sub="Defined the end-to-end task flows for each marketplace mode, mapped entry/exit paths, and translated user needs into concrete design decisions."
+          sub="Five end-to-end task flows designed for the Marketplace — each mapped from entry to exit with cosplay-specific interaction patterns."
         />
       </Reveal>
 
-      {/* Task workflow embed */}
-      <Reveal delay={0.1}>
-        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 14 }}>
-          TASK WORKFLOW DIAGRAM
-        </p>
-        <div style={{ marginBottom: 32 }}>
-          <FigmaEmbed
-            url="https://www.figma.com/board/Aq90xFScMUubyW4aWzY4wc/hs---task-workflow?node-id=0-1&t=PBeRriCBMjXUIx61-1"
-            title="TASK WORKFLOW DIAGRAM — MARKETPLACE"
-            height={500}
-          />
-        </div>
-      </Reveal>
-
-      {/* User tasks coverage */}
-      <Reveal delay={0.15}>
-        <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', padding: '20px 24px', marginBottom: 32, display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8', flexShrink: 0 }}>USER TASKS DESIGNED</p>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            {tasks.map((t) => (
-              <div key={t.id} style={{
-                background: '#ffffff',
-                border: '1.5px solid #1e96fc',
-                padding: '8px 14px',
-              }}>
-                <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8' }}>
-                  {t.id} · {t.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Reveal>
-
-      {/* Entry / Exit flow */}
-      <Reveal delay={0.18}>
-        <div style={{ border: '1.5px solid #0a0a0a', background: '#ffffff', padding: '20px 24px', marginBottom: 32 }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 12, flexWrap: 'wrap' }}>
-            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc' }}>ENTRY / EXIT FLOW (TEXT VERSION)</p>
-            <a href="#hifi-workflow" className="pixel-btn" style={{ fontSize: 20, padding: '6px 12px' }}>
-              JUMP TO HI-FI WORKFLOW DEMO↓
+      {/* User tasks designed — pills at the top */}
+      <Reveal delay={0.05}>
+        <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', padding: '20px 24px', marginBottom: 40 }}>
+          {/* Label row */}
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8', marginBottom: 14 }}>USER TASKS DESIGNED</p>
+          {/* Pills + button row */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              {taskPills.map((t) => (
+                <div key={t.id} style={{ background: '#ffffff', border: '1.5px solid #1e96fc', padding: '8px 14px' }}>
+                  <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8' }}>
+                    {t.id} · {t.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <a href="#hifi-workflow" className="pixel-btn" style={{ fontSize: 20, padding: '8px 14px', whiteSpace: 'nowrap' }}>
+              VIEW HI-FI WORKFLOW ↓
             </a>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 12 }}>
-            {[
-              {
-                task: 'BUY',
-                entry: 'Entry: Landing/Home -> Marketplace -> Search & Filter -> Item Detail -> Add to Cart -> Checkout.',
-                exit: 'Exit: Payment successful -> View order details -> return to Marketplace Home or My Orders.'
-              },
-              {
-                task: 'BORROW',
-                entry: 'Entry: Landing/Home -> Marketplace -> Browse borrowable listings -> Item Detail -> Contact seller in PropMes.',
-                exit: 'Exit: Borrow request confirmed -> order/arrangement summary -> return to listings or chat thread.'
-              },
-              {
-                task: 'SELL',
-                entry: 'Entry: Marketplace Home -> Publish Item -> Fill title/size/color/tags -> Add description -> Publish.',
-                exit: 'Exit: Listing published -> View my published items -> continue managing listings/orders.'
-              },
-              {
-                task: 'RENT',
-                entry: 'Entry: Marketplace Home -> Publish rental listing -> Set condition/pricing/availability -> Publish and handle inquiries.',
-                exit: 'Exit: Rental transaction confirmed -> delivery/meetup arrangement -> view order status and history.'
-              },
-              {
-                task: 'SWAP',
-                entry: 'Entry: Marketplace Home -> View swappable items -> Item Detail -> Fill swap request -> Select own swap item -> Send request.',
-                exit: 'Exit: Swap request sent/accepted -> coordination in chat -> return to swap list or request status view.'
-              },
-            ].map((flow) => (
-              <div key={flow.task} style={{ border: '1.5px solid #eee', background: '#fafafa', padding: '14px 16px' }}>
-                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 6 }}>{flow.task}</p>
-                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#444', lineHeight: 1.55, marginBottom: 6 }}>{flow.entry}</p>
-                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#666', lineHeight: 1.55 }}>{flow.exit}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </Reveal>
+
+      {/* Task flows — left text / right Figma embed */}
+      {taskFlows.map((task, i) => {
+        const isExpanded = Boolean(expandedTasks[task.id])
+        return (
+          <div key={task.id} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 40, alignItems: 'start' }}>
+            <Reveal delay={0.1}>
+              <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', background: '#ffffff', height: isExpanded ? 'auto' : collapsedTaskHeight, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                {/* Header */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14, flexShrink: 0 }}>
+                  <span style={{
+                    fontFamily: '"Carter One"', fontSize: 20,
+                    background: task.tagColor === '#ffc600' ? '#ffc600' : '#E5F4FE',
+                    color: task.tagColor === '#ffc600' ? '#0a0a0a' : task.tagColor,
+                    border: `1.5px solid ${task.tagColor}`,
+                    padding: '3px 10px',
+                    display: 'inline-block',
+                  }}>{task.id}</span>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: task.tagColor, margin: 0 }}>{task.label}</p>
+                </div>
+                {/* Role & Goal */}
+                <div style={{ borderBottom: '1px solid #E5F4FE', paddingBottom: 12, marginBottom: 14, flexShrink: 0 }}>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#999', marginBottom: 2 }}>ROLE</p>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a' }}>{task.role}</p>
+                </div>
+                <div style={{ borderBottom: '1px solid #E5F4FE', paddingBottom: 12, marginBottom: 14, flexShrink: 0 }}>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#999', marginBottom: 2 }}>GOAL</p>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#333', lineHeight: 1.6 }}>{task.goal}</p>
+                </div>
+                {/* Steps */}
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#999', marginBottom: 10, flexShrink: 0 }}>STEPS</p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6, overflow: 'hidden', flex: isExpanded ? 'unset' : 1 }}>
+                  {task.steps.map((s, si) => (
+                    <div key={si} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                      <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: task.tagColor, flexShrink: 0, minWidth: 20 }}>{si + 1}.</span>
+                      <div>
+                        <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a' }}>{s.step} — </span>
+                        <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.5 }}>{s.desc}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setExpandedTasks(prev => ({ ...prev, [task.id]: !prev[task.id] }))}
+                  className="pixel-btn"
+                  style={{ marginTop: 12, alignSelf: 'flex-end', fontSize: 20, padding: '6px 10px', flexShrink: 0 }}
+                  aria-label={isExpanded ? `Collapse ${task.label} task` : `Expand ${task.label} task`}
+                >
+                  {isExpanded ? '▴ COLLAPSE' : '▾ EXPAND'}
+                </button>
+              </div>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <FigmaEmbed url={task.figmaUrl} title={`${task.label} TASK WORKFLOW`} height={393} />
+            </Reveal>
+          </div>
+        )
+      })}
 
       {/* Key Design Decisions */}
       <Reveal delay={0.2}>
@@ -1285,10 +1377,35 @@ function Testing() {
           title={<>TESTING WITH <span style={{ color: '#0a0a0a' }}>REAL USERS</span></>}
           sub="Maze-based task testing and short follow-up interviews were used to evaluate flow clarity, interaction responsiveness, and onboarding guidance in the Marketplace prototype."
         />
-        <a href="https://app.maze.co/report/CS3240-MarketPlace-Usability-Test/pciqs7mnwp0t6j" target="_blank" rel="noopener noreferrer"
+        {/* <a href="https://app.maze.co/report/CS3240-MarketPlace-Usability-Test/pciqs7mnwp0t6j" target="_blank" rel="noopener noreferrer"
           className="pixel-btn" style={{ display: 'inline-block', marginBottom: 36, background: '#1e96fc', color: '#ffffff', borderColor: '#1e96fc' }}>
           VIEW MAZE REPORT ↗
-        </a>
+        </a> */}
+      </Reveal>
+
+      {/* Maze embed */}
+      <Reveal delay={0.05}>
+        <div style={{ marginBottom: 32 }}>
+          <div className="figma-wrap">
+            <div className="figma-bar">
+              <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8' }}>
+                ◈ MAZE USABILITY TEST RESULTS
+              </span>
+              <a href="https://app.maze.co/report/CS3240-MarketPlace-Usability-Test/pciqs7mnwp0t6j" target="_blank" rel="noopener noreferrer"
+                className="pixel-btn" style={{ fontSize: 20, padding: '4px 10px', whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                OPEN IN MAZE ↗
+              </a>
+            </div>
+            <iframe
+              src="https://app.maze.co/report/CS3240-MarketPlace-Usability-Test/pciqs7mnwp0t6j/intro/embed"
+              width="100%"
+              height={600}
+              style={{ border: 'none', display: 'block' }}
+              allowFullScreen
+              title="Maze Usability Test Results"
+            />
+          </div>
+        </div>
       </Reveal>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 32 }}>
