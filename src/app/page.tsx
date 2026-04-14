@@ -723,40 +723,46 @@ function Process() {
 
       <Reveal delay={0.18}>
         <div style={{ border: '1.5px solid #0a0a0a', background: '#ffffff', padding: '20px 24px', marginBottom: 32 }}>
-          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 10 }}>ENTRY / EXIT FLOW (END-TO-END)</p>
-          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#444', lineHeight: 1.6 }}>
-            Entry: Landing Screen to Marketplace Home, then Browse/Filter, Item Detail, and PropMes negotiation.
-          </p>
-          <div style={{ border: '1.5px dashed #ddd', background: '#f8f8f8', padding: '14px', margin: '14px 0' }}>
-            <div style={{ display: 'flex', alignItems: 'stretch', gap: 10, overflowX: 'auto' }}>
-              {[
-                'Screenshot 1',
-                'Screenshot 2',
-                'Screenshot 3',
-                '...',
-              ].map((label, i) => (
-                <div key={label + i} style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-                  <div style={{ width: 220, border: '1.5px solid #ddd', background: '#ffffff', padding: 10 }}>
-                    <div style={{ height: 120, background: '#f3f3f3', border: '1.5px dashed #e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
-                      <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#aaa', textAlign: 'center' }}>[ image ]</p>
-                    </div>
-                    <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#666', textAlign: 'center' }}>{label} description</p>
-                  </div>
-                  {i < 3 && <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc' }}>→</span>}
-                </div>
-              ))}
-            </div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 12, flexWrap: 'wrap' }}>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc' }}>ENTRY / EXIT FLOW (TEXT VERSION)</p>
+            <a href="#hifi-workflow" className="pixel-btn" style={{ fontSize: 20, padding: '6px 12px' }}>
+              JUMP TO HI-FI WORKFLOW DEMO↓
+            </a>
           </div>
-          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#444', lineHeight: 1.6 }}>
-            Exit: Reservation or purchase decision, then return to listing confirmation, saved items, Marketplace Home, or jump to Workshop/PropScan via cross-service links.
-          </p>
-          <div style={{ border: '1.5px dashed #ddd', background: '#f8f8f8', padding: 14, marginTop: 10 }}>
-            <div style={{ width: 280, border: '1.5px solid #ddd', background: '#ffffff', padding: 10 }}>
-              <div style={{ height: 130, background: '#f3f3f3', border: '1.5px dashed #e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
-                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#aaa', textAlign: 'center' }}>[ exit image ]</p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 12 }}>
+            {[
+              {
+                task: 'BUY',
+                entry: 'Entry: Landing/Home -> Marketplace -> Search & Filter -> Item Detail -> Add to Cart -> Checkout.',
+                exit: 'Exit: Payment successful -> View order details -> return to Marketplace Home or My Orders.'
+              },
+              {
+                task: 'BORROW',
+                entry: 'Entry: Landing/Home -> Marketplace -> Browse borrowable listings -> Item Detail -> Contact seller in PropMes.',
+                exit: 'Exit: Borrow request confirmed -> order/arrangement summary -> return to listings or chat thread.'
+              },
+              {
+                task: 'SELL',
+                entry: 'Entry: Marketplace Home -> Publish Item -> Fill title/size/color/tags -> Add description -> Publish.',
+                exit: 'Exit: Listing published -> View my published items -> continue managing listings/orders.'
+              },
+              {
+                task: 'RENT',
+                entry: 'Entry: Marketplace Home -> Publish rental listing -> Set condition/pricing/availability -> Publish and handle inquiries.',
+                exit: 'Exit: Rental transaction confirmed -> delivery/meetup arrangement -> view order status and history.'
+              },
+              {
+                task: 'SWAP',
+                entry: 'Entry: Marketplace Home -> View swappable items -> Item Detail -> Fill swap request -> Select own swap item -> Send request.',
+                exit: 'Exit: Swap request sent/accepted -> coordination in chat -> return to swap list or request status view.'
+              },
+            ].map((flow) => (
+              <div key={flow.task} style={{ border: '1.5px solid #eee', background: '#fafafa', padding: '14px 16px' }}>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 6 }}>{flow.task}</p>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#444', lineHeight: 1.55, marginBottom: 6 }}>{flow.entry}</p>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#666', lineHeight: 1.55 }}>{flow.exit}</p>
               </div>
-              <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#666', textAlign: 'center' }}>Exit screenshot description</p>
-            </div>
+            ))}
           </div>
         </div>
       </Reveal>
@@ -828,18 +834,24 @@ function Process() {
           </div>
         </div>
         <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', padding: '24px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
             {[
-              { label: 'Marketplace Home' },
-              { label: 'Browse & Filter' },
-              { label: 'Item Detail & Seller Profile' },
-              { label: 'Publish Listing Flow' },
+              { label: 'Landing & Search Page', src: '/mid_landing_search.png' },
+              { label: 'Buy', src: '/mid_buy.png' },
+              { label: 'Borrow', src: '/mid_borrow.png' },
+              { label: 'Sell & Rent', src: '/mid_sell_rent.png' },
+              { label: 'Swap', src: '/mid_swap.png' },
+              { label: 'Seller Profile, Contacts & Chat', src: '/mid_seller_profile_chat.png' },
             ].map((w, i) => (
               <div key={i} style={{ background: '#ffffff', border: '1.5px solid #ddd', padding: '14px' }}>
                 <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#888', marginBottom: 10 }}>{w.label}</p>
-                <div style={{ height: 120, background: '#f8f8f8', border: '1.5px dashed #e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#bbb' }}>[ add mid-fi screenshot here ]</p>
-                </div>
+                <Image
+                  src={w.src}
+                  alt={`${w.label} mid-fi wireframe`}
+                  width={1200}
+                  height={675}
+                  style={{ width: '100%', height: 'auto', objectFit: 'contain', border: '1.5px solid #e0e0e0', display: 'block', background: '#ffffff' }}
+                />
               </div>
             ))}
           </div>
@@ -905,6 +917,82 @@ function Prototype() {
           </Reveal>
         ))}
       </div>
+
+      <Reveal delay={0.2}>
+        <div id="hifi-workflow" style={{ border: '1.5px solid #0a0a0a', background: '#ffffff', padding: '20px 24px', marginTop: 24 }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 14 }}>END-TO-END WORKFLOW</p>
+          {[
+            {
+              group: 'Buy & Borrow',
+              steps: [
+                { label: 'Marketplace Home', src: '/b_marketplace_home.png', desc: 'Enter marketplace homepage.' },
+                { label: 'Search & Browse', src: '/b_search_browse.png', desc: 'Search and filter relevant items.' },
+                { label: 'Item Details', src: '/b_item_detail.png', desc: 'Review details, condition, and trust signals.' },
+                { label: 'Add to Cart', src: '/b_add_to_cart.png', desc: 'Add selected item for checkout.' },
+                { label: 'View Cart', src: '/b_view_cart.png', desc: 'Confirm selected item(s) before payment.' },
+                { label: 'Contact Seller', src: '/b_contact_seller.png', desc: 'Open seller contact options.' },
+                { label: 'Chat with Seller', src: '/b_chat_seller.png', desc: 'Negotiate and confirm logistics.' },
+                { label: 'Payment Success', src: '/b_payment_success.png', desc: 'Complete payment successfully.' },
+                { label: 'View Your Order', src: '/b_view_order.png', desc: 'Check final order status.' },
+              ],
+            },
+            {
+              group: 'Sell & Rent',
+              steps: [
+                { label: 'Home Page', src: '/s_home_page.png', desc: 'Start from marketplace homepage.' },
+                { label: 'Publish an Item', src: '/s_publish_item.png', desc: 'Open the publish listing flow.' },
+                { label: 'Add Title, Details & Tags', src: '/s_add_title_size_color_tags.png', desc: 'Fill title, size, color, and AI-suggested tags.' },
+                { label: 'Add Description & Publish', src: '/s_add_description_publish.png', desc: 'Complete details and submit listing.' },
+                { label: 'Publish Successful', src: '/s_publish_successful.png', desc: 'Listing is published successfully.' },
+                { label: 'View Published Items', src: '/s_view_published_items.png', desc: 'Check all active published listings.' },
+                { label: 'Delivery', src: '/s_delivery.png', desc: 'Arrange delivery for confirmed order.' },
+                { label: 'View My Orders', src: '/s_view_orders.png', desc: 'Track order records and statuses.' },
+                { label: 'Selling Successful', src: '/s_selling_successful.png', desc: 'Transaction is completed successfully.' },
+              ],
+            },
+            {
+              group: 'Swap',
+              steps: [
+                { label: 'Home Page', src: '/p_home_page.png', desc: 'Start from marketplace homepage.' },
+                { label: 'View Swappable Items', src: '/p_view_swappable_items.png', desc: 'Browse all available swap listings.' },
+                { label: 'Item Details', src: '/p_item_detail.png', desc: 'Review item details before requesting swap.' },
+                { label: 'Fill Swap Request', src: '/p_fill_swap_request.png', desc: 'Fill in swap request details.' },
+                { label: 'List My Swap Item', src: '/p_list_swap_item_send_request.png', desc: 'Select your swap item and submit request.' },
+                { label: 'Swap Request Sent', src: '/p_swap_request_sent.png', desc: 'Request is sent successfully.' },
+              ],
+            },
+          ].map((flow) => (
+            <div key={flow.group} style={{ border: '1.5px dashed #ddd', background: '#f8f8f8', padding: '14px', marginBottom: 14 }}>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 10 }}>{flow.group}</p>
+              <div style={{ display: 'flex', alignItems: 'stretch', gap: 8, overflowX: 'auto' }}>
+                {flow.steps.map((step, i) => (
+                  <div key={step.label + i} style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+                    <div style={{ width: 200, minHeight: 340, border: '1.5px solid #ddd', background: '#ffffff', padding: 8, display: 'flex', flexDirection: 'column' }}>
+                      <div style={{ height: 230, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 6 }}>
+                        {'src' in step ? (
+                          <Image
+                            src={step.src}
+                            alt={`${flow.group} - ${step.label}`}
+                            width={1200}
+                            height={675}
+                            style={{ width: '100%', height: '100%', objectFit: 'contain', border: '1.5px solid #e0e0e0', display: 'block', background: '#ffffff' }}
+                          />
+                        ) : (
+                          <div style={{ width: '100%', height: '100%', background: '#f3f3f3', border: '1.5px dashed #e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#aaa', textAlign: 'center' }}>[ image ]</p>
+                          </div>
+                        )}
+                      </div>
+                      <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#666', textAlign: 'center', lineHeight: 1.4 }}>{step.desc}</p>
+                    </div>
+                    {i < flow.steps.length - 1 && <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc' }}>→</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Reveal>
     </Section>
   )
 }
@@ -1045,19 +1133,19 @@ function Testing() {
               {
                 finding: 'Finding 1 · Information Density',
                 action: 'Interview feedback (CJY): "The UI is clean and straightforward, but some pages feel text-heavy and lack clear color and font-size separation between sections."',
-                iteration: 'Before -> After: dense text blocks -> clearer section grouping with stronger typographic hierarchy and color separation between functional blocks.',
+                iteration: 'Provide clearer section grouping with stronger typographic hierarchy and color separation between functional blocks.',
                 accent: '#e63946'
               },
               {
                 finding: 'Finding 2 · Guidance Ambiguity in Later Tasks',
                 action: 'Maze & interview feedback (CJY): the last two tasks were harder because multiple blue-highlight prompts appeared simultaneously, making the next action unclear.',
-                iteration: 'Before -> After: multiple simultaneous highlight cues -> one primary next-action cue with clearer visual priority over secondary clickable elements.',
+                iteration: 'Provide one primary next-action cue with clearer visual priority over secondary clickable elements.',
                 accent: '#e63946'
               },
               {
                 finding: 'Finding 3 · Click Responsiveness & Affordance',
                 action: 'Interview feedback (WJT): some buttons felt unresponsive and required repeated taps; on the product list page, users were unsure which items were actually clickable.',
-                iteration: 'Before -> After: ambiguous clickable states -> stronger tap feedback (press/loading), clearer tappable boundaries, and explicit instructional cues for guided actions.',
+                iteration: 'Provide stronger tap feedback (press/loading), clearer tappable boundaries, and explicit instructional cues for guided actions.',
                 accent: '#e63946'
               },
             ].map((f, i) => (
