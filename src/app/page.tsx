@@ -84,10 +84,9 @@ function FigmaEmbed({ url, title, height = 500 }: { url: string; title: string; 
 ───────────────────────────────────────────── */
 const navItems = [
   { label: 'ORIGIN', href: '#origin' },
-  { label: 'ROLE', href: '#role' },
-  { label: 'PROBLEM', href: '#problem' },
+  { label: 'OVERVIEW', href: '#role' },
   { label: 'RESEARCH', href: '#research' },
-  { label: 'PROCESS', href: '#process' },
+  { label: 'TASKS', href: '#tasks' },
   { label: 'PROTOTYPE', href: '#prototype' },
   { label: 'AI', href: '#ai' },
   { label: 'TESTING', href: '#testing' },
@@ -342,7 +341,7 @@ function Origin() {
 }
 
 /* ─────────────────────────────────────────────
-   SECTION 2 — MY ROLE IN THE ECOSYSTEM
+   SECTION 2 — OVERVIEW
 ───────────────────────────────────────────── */
 function Role() {
   const services = [
@@ -357,18 +356,30 @@ function Role() {
     <Section id="role" bg="#E5F4FE">
       <Reveal>
         <SectionHeader
-          tag="02 · ECOSYSTEM ROLE"
-          title={<>MY ROLE IN THE <span style={{ color: '#0a0a0a' }}>ECOSYSTEM</span></>}
-          sub="PropBank is a super-app with five distinct services. I owned the Marketplace — the economic core of the ecosystem — plus the shared entry experience."
+          tag="02 · OVERVIEW"
+          title={<>ECOSYSTEM <span style={{ color: '#0a0a0a' }}>OVERVIEW</span></>}
+          sub="PropBank is a super-app built for Singapore's ACGN and cosplay community — a one-stop platform bridging creation, coordination, and community."
         />
       </Reveal>
 
+      {/* 1. What is PropBank */}
       <Reveal delay={0.05}>
-        <div style={{ border: '1.5px solid #1e96fc', background: '#ffffff', padding: '18px 22px', marginBottom: 24 }}>
-          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 8 }}>SERVICE BOUNDARY (INDIVIDUAL OWNERSHIP)</p>
-          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#444', lineHeight: 1.6 }}>
-            Owned scope: Gear Library & Marketplace end-to-end flows (Buy & Borrow, Sell & Rent, Swap, and PropMes coordination). Shared contribution: Opening and Landing entry screens.
-            Integrated touchpoints with CoNews, Workshop, PropScan, and Creator Hub are intentionally connected but not claimed as my owned service scope.
+        <div style={{ border: '1.5px solid #e63946', background: '#ffffff', padding: '24px 28px', marginBottom: 24 }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#e63946', marginBottom: 12 }}>WHAT IS PROPBANK?</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#333', lineHeight: 1.7 }}>
+            PropBank is a super-app for Singapore&apos;s ACGN (Anime, Comics, Games, Novels) and cosplay community.
+            It consolidates fragmented creator workflows — gear sourcing, skill-building, news discovery, and collaboration — into a single, cosplay-first platform.
+            The ultimate goal is to remove friction from creation and make the community more self-sufficient, connected, and trusted.
+          </p>
+        </div>
+      </Reveal>
+
+      {/* 2. What services does PropBank feature */}
+      <Reveal delay={0.08}>
+        <div style={{ marginBottom: 16 }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8', marginBottom: 10 }}>WHAT SERVICES DOES PROPBANK FEATURE?</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.6, marginBottom: 16 }}>
+            PropBank is built as a super-app with 5 distinct services, each owned and designed by a different team member:
           </p>
         </div>
       </Reveal>
@@ -402,27 +413,51 @@ function Role() {
         ))}
       </div>
 
-      {/* Group contributions */}
-      <Reveal delay={0.3}>
-        <div style={{ border: '1.5px solid #0a0a0a', background: '#ffffff', padding: '28px' }}>
-          <div className="section-tag">MY GROUP-LEVEL CONTRIBUTIONS</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20, marginTop: 16 }}>
+      {/* 3. Service boundary
+      <Reveal delay={0.1}>
+        <div style={{ border: '1.5px solid #1e96fc', background: '#ffffff', padding: '18px 22px', marginBottom: 24 }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 8 }}>SERVICE BOUNDARY (INDIVIDUAL OWNERSHIP)</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#444', lineHeight: 1.6, marginBottom: 12 }}>
+            Owned scope: Gear Library & Marketplace end-to-end flows (Buy & Borrow, Sell & Rent, Swap, and PropMes coordination). Shared contribution: Opening and Landing entry screens.
+            Integrated touchpoints with CoNews, Workshop, PropScan, and Creator Hub are intentionally connected but not claimed as my owned service scope.
+          </p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8', lineHeight: 1.6 }}>
+            → My primary focus: <strong>Marketplace</strong> — the economic and coordination core of the PropBank ecosystem.
+          </p>
+        </div>
+      </Reveal> */}
+
+      {/* 4. What is Marketplace */}
+      <Reveal delay={0.15}>
+        <div style={{ border: '1.5px solid #0a0a0a', background: '#ffffff', padding: '24px 28px', marginBottom: 32, boxShadow: '4px 4px 0 #1e96fc' }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 14 }}>WHAT IS MARKETPLACE?</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#333', lineHeight: 1.7, marginBottom: 20 }}>
+            The Gear Library & Marketplace is PropBank&apos;s economic core — a cosplay-first platform where users can{' '}
+            <strong style={{ color: '#1e96fc' }}>buy</strong>,{' '}
+            <strong style={{ color: '#1e96fc' }}>borrow</strong>,{' '}
+            <strong style={{ color: '#1e96fc' }}>sell</strong>,{' '}
+            <strong style={{ color: '#1e96fc' }}>rent</strong>, and{' '}
+            <strong style={{ color: '#1e96fc' }}>swap</strong>{' '}
+            cosplay props, costumes, and tools.
+            Unlike generic secondhand platforms (Carousell, eBay), Marketplace is built around trust signals specific to the cosplay community: item condition, seller reviews, sizing details, and in-app coordination via PropMes.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
             {[
-              { title: 'Key Insights Analysis', desc: 'Led synthesis of all 3 interview transcripts into 5 actionable design findings, framing the MVP priorities for the whole team.' },
-              { title: 'Group-Level Persona & Journey Map', desc: 'Created Shin Ip Seng — the cross-service persona — and mapped his end-to-end journey across all 5 services.' },
-              { title: 'Marketplace Persona & Journey Map', desc: 'Designed Chloe Tan persona and full user journey map for the Gear Library & Marketplace service.' },
-              { title: 'Hi-Fi Prototype Screens', desc: 'Designed and built the Opening Screen, Landing Screen, and PropMes screens as part of the hi-fi prototype.' },
-            ].map((c, i) => (
-              <div key={i} style={{ borderTop: '2px solid #1e96fc', paddingTop: 14 }}>
-                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 8, lineHeight: 1.7 }}>{c.title}</p>
-                <p style={{ fontFamily: '"Carter One"', fontSize: 20, lineHeight: 1.5, color: '#555' }}>{c.desc}</p>
+              { label: 'BUY & BORROW', desc: 'Browse listed items, message sellers, place orders', color: '#1e96fc' },
+              { label: 'SELL & RENT', desc: 'List gear with size, condition, and tag details', color: '#e63946' },
+              { label: 'SWAP', desc: 'Propose gear trades with cosplay-specific matching', color: '#072ac8' },
+              { label: 'PROPMES', desc: 'In-app chat and coordination across all flows', color: '#ffc600' },
+            ].map((item) => (
+              <div key={item.label} style={{ borderTop: `2px solid ${item.color}`, paddingTop: 12 }}>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: item.color, marginBottom: 6 }}>{item.label}</p>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.5 }}>{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </Reveal>
 
-      {/* Navigation workflow embed */}
+      {/* 5. Overall navigation workflow */}
       <Reveal delay={0.4} className="mt-8">
         <div style={{ marginTop: 32 }}>
           <FigmaEmbed
@@ -437,72 +472,7 @@ function Role() {
 }
 
 /* ─────────────────────────────────────────────
-   SECTION 3 — PROBLEM FRAMING
-───────────────────────────────────────────── */
-function Problem() {
-  const insights = [
-    {
-      num: '01',
-      title: 'Trust & Coordination Crisis',
-      body: 'Cosplay sourcing is not just a browsing problem — it\'s a trust and coordination problem. Users want reviews, seller location, chat, reservation, and item condition info.'
-    },
-    {
-      num: '02',
-      title: 'Fragmented Discovery',
-      body: 'Event discovery relies on Instagram algorithms and word-of-mouth. Marketplace items are scattered across Carousell, Telegram, and random shops. No cosplay-specific search exists.'
-    },
-    {
-      num: '03',
-      title: 'The "Can I Do It?" Problem',
-      body: '"Costumes these days add too many things." Users need to evaluate whether to make or buy, how long it takes, and if a guide is credible — before committing.'
-    },
-  ]
-
-  return (
-    <Section id="problem">
-      <Reveal>
-        <SectionHeader
-          tag="03 · PROBLEM FRAMING"
-          title={<>THE REAL <span style={{ color: '#0a0a0a' }}>PROBLEM</span> WE FOUND</>}
-          sub={`Three semi-structured interviews with cosplayers and convention-goers revealed that the core challenge isn't "finding items" — it's building enough trust to act.`}
-        />
-      </Reveal>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 32 }}>
-        {insights.map((ins, i) => (
-          <Reveal key={ins.num} delay={i * 0.12}>
-            <div style={{ border: '1.5px solid #0a0a0a', padding: '28px', height: '100%' }}>
-              <p style={{ fontFamily: '"Carter One"', fontSize: 32, color: '#1e96fc', marginBottom: 2 }}>{ins.num}</p>
-              <div style={{ width: 24, height: 2, background: '#e63946', marginBottom: 12 }} />
-              <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 12, lineHeight: 1.8 }}>
-                {ins.title}
-              </p>
-              <p style={{ fontFamily: '"Carter One"', fontSize: 20, lineHeight: 1.6, color: '#555' }}>
-                {ins.body}
-              </p>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-
-      <Reveal delay={0.4}>
-        <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', borderLeft: '4px solid #0a0a0a', padding: '24px 28px' }}>
-          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 10 }}>★ DESIGN DIRECTION</p>
-          <p style={{ fontFamily: '"Carter One"', fontSize: 22, lineHeight: 1.5, color: '#333' }}>
-            PropBank Marketplace should not look like a generic e-commerce feed. It must be built around{' '}
-            <strong style={{ color: '#1e96fc' }}>trust signals</strong>,{' '}
-            <strong style={{ color: '#1e96fc' }}>cosplay-specific filters</strong>, and{' '}
-            <strong style={{ color: '#1e96fc' }}>coordination tools</strong>{' '}
-            — from first browse to successful handoff.
-          </p>
-        </div>
-      </Reveal>
-    </Section>
-  )
-}
-
-/* ─────────────────────────────────────────────
-   SECTION 4 — USER RESEARCH & PERSONA
+   SECTION 3 — RESEARCH
 ───────────────────────────────────────────── */
 function Research() {
   const [expandedPersonas, setExpandedPersonas] = useState<Record<string, boolean>>({})
@@ -512,13 +482,21 @@ function Research() {
     <Section id="research" bg="#f7fbff">
       <Reveal>
         <SectionHeader
-          tag="04 · USER RESEARCH & PERSONA"
+          tag="03 · RESEARCH"
           title={<>KNOWING THE <span style={{ color: '#0a0a0a' }}>USER</span></>}
+          sub="Three semi-structured interviews with cosplayers and convention-goers — synthesised through affinity diagramming — shaped every design decision in Marketplace."
         />
       </Reveal>
 
-      {/* Research methods + quote */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 40 }}>
+      {/* ── PART 1: USER INTERVIEW ── */}
+      <Reveal delay={0.05}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#ffc600', marginBottom: 20, borderBottom: '2px solid #ffc600', paddingBottom: 8 }}>
+          01 · USER INTERVIEW
+        </p>
+      </Reveal>
+
+      {/* Research methods + participants */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 32 }}>
         <Reveal delay={0.1}>
           <div style={{ border: '1.5px solid #1e96fc', padding: '24px', background: '#ffffff' }}>
             <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 14 }}>RESEARCH METHODS</p>
@@ -535,14 +513,20 @@ function Research() {
           </div>
         </Reveal>
         <Reveal delay={0.2}>
-          <div style={{ border: '1.5px solid #0a0a0a', padding: '28px', background: '#ffffff', borderLeft: '4px solid #e63946' }}>
-            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 14 }}>KEY QUOTE</p>
-            <p style={{ fontFamily: '"Carter One"', fontSize: 26, lineHeight: 1.4, fontStyle: 'italic', color: '#333', marginBottom: 12 }}>
-              "I need reviews, sizing info, and seller location before I decide to buy. Otherwise, I don't trust the listing."
-            </p>
-            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#999' }}>
-              — User S, Interview 1
-            </p>
+          <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', background: '#ffffff', borderLeft: '4px solid #e63946' }}>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 14 }}>ABOUT THE PARTICIPANTS</p>
+            <div>
+              {[
+                { label: 'User S', desc: 'Experienced cosplayer, frequent convention-goer, heavy Carousell/Telegram user' },
+                { label: 'User C', desc: 'Mid-level cosplayer, buys and sells props, frustrated by lack of cosplay-specific filters' },
+                { label: 'User A', desc: 'Casual ACGN fan, uses prop images for identification, relies on reverse image search' },
+              ].map(p => (
+                <div key={p.label} style={{ borderBottom: '1px solid #E5F4FE', paddingBottom: 8, marginBottom: 8 }}>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 2 }}>{p.label}</p>
+                  <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.5 }}>{p.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </Reveal>
       </div>
@@ -555,6 +539,113 @@ function Research() {
             title="AFFINITY DIAGRAM"
             height={460}
           />
+        </div>
+      </Reveal>
+
+      {/* Key Findings */}
+      <Reveal delay={0.05}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8', marginBottom: 16 }}>KEY FINDINGS</p>
+      </Reveal>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 32 }}>
+        {[
+          {
+            num: '01',
+            title: 'Trust & Coordination Crisis',
+            body: 'Cosplay sourcing is not just a browsing problem — it\'s a trust and coordination problem. Users want reviews, seller location, chat, reservation, and item condition info.'
+          },
+          {
+            num: '02',
+            title: 'Fragmented Discovery',
+            body: 'Event discovery relies on Instagram algorithms and word-of-mouth. Marketplace items are scattered across Carousell, Telegram, and random shops. No cosplay-specific search exists.'
+          },
+          {
+            num: '03',
+            title: 'The "Can I Do It?" Problem',
+            body: '"Costumes these days add too many things." Users need to evaluate whether to make or buy, how long it takes, and if a guide is credible — before committing.'
+          },
+        ].map((ins, i) => (
+          <Reveal key={ins.num} delay={i * 0.12}>
+            <div style={{ border: '1.5px solid #0a0a0a', padding: '28px', height: '100%' }}>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 32, color: '#1e96fc', marginBottom: 2 }}>{ins.num}</p>
+              <div style={{ width: 24, height: 2, background: '#e63946', marginBottom: 12 }} />
+              <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 12, lineHeight: 1.8 }}>
+                {ins.title}
+              </p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 20, lineHeight: 1.6, color: '#555' }}>
+                {ins.body}
+              </p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
+      {/* Key Quotes — Marketplace relevant */}
+      <Reveal delay={0.05}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8', marginBottom: 16 }}>KEY QUOTES (MARKETPLACE RELEVANT)</p>
+      </Reveal>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20, marginBottom: 32 }}>
+        {[
+          {
+            quote: '"I need reviews, sizing info, and seller location before I decide to buy. Otherwise, I don\'t trust the listing."',
+            user: '— User S, Interview 1',
+            implication: 'Trust signals and location fields are non-negotiable for Marketplace listings.'
+          },
+          {
+            quote: '"Running around Singapore to meet a seller is annoying. I want to know where they are before I even message them."',
+            user: '— User S, Interview 1',
+            implication: 'Seller location must be a mandatory, upfront field — not buried in chat.'
+          },
+          {
+            quote: '"There\'s no platform that knows what cosplay sizing means. S on Carousell could mean anything."',
+            user: '— User C, Interview 2',
+            implication: 'Cosplay-specific fields (character accuracy, costume size, condition) are needed beyond generic filters.'
+          },
+        ].map((q, i) => (
+          <Reveal key={i} delay={i * 0.1}>
+            <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', background: '#ffffff', borderLeft: '4px solid #e63946', height: '100%' }}>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 20, lineHeight: 1.6, fontStyle: 'italic', color: '#333', marginBottom: 12 }}>
+                {q.quote}
+              </p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#999', marginBottom: 12 }}>
+                {q.user}
+              </p>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', lineHeight: 1.5 }}>
+                → {q.implication}
+              </p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
+      {/* Design Direction */}
+      <Reveal delay={0.3}>
+        <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', borderLeft: '4px solid #0a0a0a', padding: '24px 28px', marginBottom: 56 }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 10 }}>★ DESIGN DIRECTION FOR MARKETPLACE</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 22, lineHeight: 1.5, color: '#333' }}>
+            PropBank Marketplace should not look like a generic e-commerce feed. It must be built around{' '}
+            <strong style={{ color: '#1e96fc' }}>trust signals</strong>,{' '}
+            <strong style={{ color: '#1e96fc' }}>cosplay-specific filters</strong>, and{' '}
+            <strong style={{ color: '#1e96fc' }}>coordination tools</strong>{' '}
+            — from first browse to successful handoff.
+          </p>
+        </div>
+      </Reveal>
+
+      
+
+      {/* ── PART 3: USER PERSONA & JOURNEY MAP ── */}
+      <Reveal delay={0.05}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#ffc600', marginBottom: 20, borderBottom: '2px solid #ffc600', paddingBottom: 8 }}>
+          02 · USER PERSONA & USER JOURNEY MAP
+        </p>
+      </Reveal>
+
+      {/* Context note */}
+      <Reveal delay={0.08}>
+        <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', borderLeft: '4px solid #1e96fc', padding: '20px 24px', marginBottom: 32 }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8', lineHeight: 1.6 }}>
+            Although my primary service is <strong>Marketplace</strong>, I also created the <strong>Group-Level Persona</strong> (Shin Ip Seng) and the <strong>PropScan Persona</strong> (Aaron Lim) to contribute to cross-service alignment across the team — which is why these personas appear in my portfolio even though PropScan is not my owned service.
+          </p>
         </div>
       </Reveal>
 
@@ -660,14 +751,88 @@ function Research() {
           </div>
         )
       })}
+
+      {/* ── PART 2: HOW MIGHT WE ── */}
+      <Reveal delay={0.05}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#ffc600', marginBottom: 20, borderBottom: '2px solid #ffc600', paddingBottom: 8 }}>
+          03 · HOW MIGHT WE
+        </p>
+      </Reveal>
+
+      {/* HMW table — header */}
+      <Reveal delay={0.08}>
+        <div style={{ border: '1.5px solid #0a0a0a', marginBottom: 32, overflow: 'hidden' }}>
+          {/* Column headers */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', background: '#ffffff', borderBottom: '1.5px solid #0a0a0a' }}>
+            {[
+              { label: 'PAIN POINTS', color: '#e63946' },
+              { label: 'HOW MIGHT WE…?', color: '#1e96fc' },
+              { label: 'DESIGN DECISIONS', color: '#ffc600' },
+            ].map((col, i) => (
+              <div key={col.label} style={{
+                padding: '12px 16px',
+                borderRight: i < 2 ? '1px solid #333' : 'none',
+              }}>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: col.color, margin: 0 }}>{col.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Rows */}
+          {[
+            {
+              pain: 'Users cannot verify whether a seller or listing is trustworthy before committing to a transaction.',
+              hmw: 'HMW surface trust signals that help buyers confidently assess a seller before reaching out?',
+              decision: 'Seller profile pages aggregate star rating and review count. Listing cards surface a condensed trust badge so buyers can screen before opening a full listing.',
+              highlight: 'star rating, review count',
+            },
+            {
+              pain: 'Coordinating a purchase or exchange is slow and inconvenient — meetup logistics and slow replies cause friction.',
+              hmw: 'HMW reduce the coordination overhead between buyer and seller so a deal can be reached faster?',
+              decision: 'In-app chat is accessible directly from any listing page. Seller profiles display preferred meetup location. Reservation and "make an offer" interactions are built into the listing flow, reducing the need for negotiation outside the app.',
+              highlight: 'In-app chat',
+            },
+            {
+              pain: 'Searching general marketplaces (e.g. Carousell) by fandom, character, or prop type is inefficient — relevant items are hard to surface.',
+              hmw: 'HMW make it easy for users to find exactly what they need using cosplay-specific search and filter criteria?',
+              decision: 'Search and filter are built around cosplay-relevant dimensions: item type, size, price range, and transaction mode (buy / borrow / swap / rent). PropScan provides an additional visual entry point — uploading a prop image surfaces related listings without any keyword input.',
+              highlight: 'Search and filter',
+            },
+            {
+              pain: 'Users with limited budgets struggle to participate in cosplay — buying everything outright is expensive, and idle props go to waste.',
+              hmw: 'HMW lower the barrier to cosplay participation while keeping props in circulation within the community?',
+              decision: 'The marketplace is structured around three main tasks — Buy & Borrow (buyer-side), Sell & Rent (seller-side), and Swap — so users can choose the mode that fits their budget and intent. This supports PropBank\'s goal of a sustainable shared-resource ecosystem.',
+              highlight: 'Buy & Borrow, Sell & Rent, Swap',
+            },
+          ].map((row, i) => (
+            <div key={i} style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr 1fr',
+              borderTop: '1.5px solid #e0e0e0',
+              background: i % 2 === 0 ? '#ffffff' : '#fafafa',
+            }}>
+              <div style={{ padding: '16px', borderRight: '1px solid #e0e0e0' }}>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#333', lineHeight: 1.6, margin: 0 }}>{row.pain}</p>
+              </div>
+              <div style={{ padding: '16px', borderRight: '1px solid #e0e0e0', background: '#f0f7ff' }}>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8', lineHeight: 1.6, margin: 0 }}>{row.hmw}</p>
+              </div>
+              <div style={{ padding: '16px' }}>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#333', lineHeight: 1.6, margin: 0 }}>{row.decision}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+
     </Section>
   )
 }
 
 /* ─────────────────────────────────────────────
-   SECTION 5 — DESIGN PROCESS
+   SECTION 4 — TASKS
 ───────────────────────────────────────────── */
-function Process() {
+function Tasks() {
   const tasks = [
     { id: 'T1', label: 'Buy & Borrow' },
     { id: 'T2', label: 'Sell & Rent' },
@@ -676,19 +841,19 @@ function Process() {
   ]
 
   return (
-    <Section id="process">
+    <Section id="tasks">
       <Reveal>
         <SectionHeader
-          tag="05 · DESIGN PROCESS"
-          title={<>FROM SKETCH TO <span style={{ color: '#0a0a0a' }}>PROTOTYPE</span></>}
-          sub="The marketplace went through structured iteration: task workflow → lo-fi paper sketches → mid-fi digital wireframes."
+          tag="04 · TASKS"
+          title={<>TASK WORKFLOW & <span style={{ color: '#0a0a0a' }}>DESIGN DECISIONS</span></>}
+          sub="Defined the end-to-end task flows for each marketplace mode, mapped entry/exit paths, and translated user needs into concrete design decisions."
         />
       </Reveal>
 
-      {/* 1. Task workflow embed */}
+      {/* Task workflow embed */}
       <Reveal delay={0.1}>
         <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 14 }}>
-          STEP 1 · TASK WORKFLOW & USER TASKS
+          TASK WORKFLOW DIAGRAM
         </p>
         <div style={{ marginBottom: 32 }}>
           <FigmaEmbed
@@ -698,8 +863,6 @@ function Process() {
           />
         </div>
       </Reveal>
-
-
 
       {/* User tasks coverage */}
       <Reveal delay={0.15}>
@@ -721,6 +884,7 @@ function Process() {
         </div>
       </Reveal>
 
+      {/* Entry / Exit flow */}
       <Reveal delay={0.18}>
         <div style={{ border: '1.5px solid #0a0a0a', background: '#ffffff', padding: '20px 24px', marginBottom: 32 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 12, flexWrap: 'wrap' }}>
@@ -767,11 +931,11 @@ function Process() {
         </div>
       </Reveal>
 
-      {/* Design decisions */}
+      {/* Key Design Decisions */}
       <Reveal delay={0.2}>
         <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 20 }}>KEY DESIGN DECISIONS</p>
       </Reveal>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 0 }}>
         {[
           { decision: 'Trust Badge System', rationale: 'Users cited reviews and seller credibility as the #1 factor. Designed a visible trust score combining marketplace rating + guide reproducibility rating + transaction count — portable across services.' },
           { decision: 'Cosplay-Specific Filters', rationale: 'Generic filters (price, date) are insufficient. Added fandom, character, item type, size, and condition filters — mapping directly to what users said they needed.' },
@@ -793,16 +957,32 @@ function Process() {
           </Reveal>
         ))}
       </div>
+    </Section>
+  )
+}
 
-      <Reveal delay={0.2}>
-        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 14 }}>STEP 2 · LO-FI PAPER SKETCHES</p>
+/* ─────────────────────────────────────────────
+   SECTION 5 — PROTOTYPE
+───────────────────────────────────────────── */
+function Prototype() {
+  return (
+    <Section id="prototype" bg="#f7fbff">
+      <Reveal>
+        <SectionHeader
+          tag="05 · PROTOTYPE"
+          title={<>FROM SKETCH TO <span style={{ color: '#0a0a0a' }}>PROTOTYPE</span></>}
+          sub="The marketplace went through three rounds of iteration: lo-fi paper sketches → mid-fi digital wireframes → hi-fi interactive prototype."
+        />
+      </Reveal>
+
+      {/* ── 1. LO-FI ── */}
+      <Reveal delay={0.1}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#ffc600', marginBottom: 14, borderBottom: '2px solid #ffc600', paddingBottom: 8 }}>01 · LO-FI PAPER SKETCHES</p>
         <div style={{ border: '1.5px solid #0a0a0a', padding: '20px 24px', marginBottom: 20, width: '100%' }}>
-          <div>
-            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 8 }}>Paper Sketches</p>
-            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.5 }}>Task flows for Buy, Borrow, Sell, Swap drawn on paper. Focus on information hierarchy and trust signals.</p>
-          </div>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 8 }}>Paper Sketches</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.5 }}>Task flows for Buy, Borrow, Sell, Swap drawn on paper. Focus on information hierarchy and trust signals.</p>
         </div>
-        <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', marginBottom: 32 }}>
+        <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', marginBottom: 40 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             {[
               { label: 'Buy & Borrow', src: '/lo_buy_borrow.jpg' },
@@ -824,16 +1004,14 @@ function Process() {
         </div>
       </Reveal>
 
-      {/* 3. Mid-fi */}
-      <Reveal delay={0.2}>
-        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 14 }}>STEP 3 · MID-FI DIGITAL WIREFRAMES</p>
+      {/* ── 2. MID-FI ── */}
+      <Reveal delay={0.1}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#ffc600', marginBottom: 14, borderBottom: '2px solid #ffc600', paddingBottom: 8 }}>02 · MID-FI DIGITAL WIREFRAMES</p>
         <div style={{ border: '1.5px solid #0a0a0a', padding: '20px 24px', marginBottom: 20, width: '100%', background: '#ffffff' }}>
-          <div>
-            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 8 }}>Digital Wireframes</p>
-            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.5 }}>Translated to Figma. Defined card components, filter patterns, seller profile structure.</p>
-          </div>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 8 }}>Digital Wireframes</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.5 }}>Translated to Figma. Defined card components, filter patterns, seller profile structure.</p>
         </div>
-        <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', padding: '24px' }}>
+        <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', padding: '24px', marginBottom: 40 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
             {[
               { label: 'Landing & Search Page', src: '/mid_landing_search.png' },
@@ -857,22 +1035,10 @@ function Process() {
           </div>
         </div>
       </Reveal>
-    </Section>
-  )
-}
 
-/* ─────────────────────────────────────────────
-   SECTION 6 — PROTOTYPE SHOWCASE
-───────────────────────────────────────────── */
-function Prototype() {
-  return (
-    <Section id="prototype" bg="#f7fbff">
-      <Reveal>
-        <SectionHeader
-          tag="06 · HI-FI PROTOTYPE"
-          title={<>THE <span style={{ color: '#0a0a0a' }}>PROTOTYPE</span></>}
-          sub="Full interactive prototype built in Figma — covering the end-to-end marketplace experience including Opening Screen, Landing Page, Marketplace, and PropMes."
-        />
+      {/* ── 3. HI-FI ── */}
+      <Reveal delay={0.1}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#ffc600', marginBottom: 20, borderBottom: '2px solid #ffc600', paddingBottom: 8 }}>03 · HI-FI PROTOTYPE</p>
       </Reveal>
 
       {/* Interactive prototype embed */}
@@ -907,7 +1073,6 @@ function Prototype() {
           { label: 'Buy & Borrow', desc: 'Search & filter by cosplay-specific filters, trust badge, seller info.' },
           { label: 'Sell & Rent', desc: 'Publish flow with AI tag suggestions & transparent override.' },
           { label: 'Swap', desc: 'Publish item → send swap request → approval/pending status.' },
-          
         ].map((s, i) => (
           <Reveal key={s.label} delay={i * 0.05}>
             <div style={{ border: '1.5px solid #0a0a0a', borderTop: i < 4 ? '2px solid #1e96fc' : '2px solid #e63946', padding: '16px', background: '#ffffff' }}>
@@ -1028,7 +1193,7 @@ function AIFeature() {
     <Section id="ai">
       <Reveal>
         <SectionHeader
-          tag="07 · AI FEATURE"
+          tag="06 · AI FEATURE"
           title={<>AI-ASSISTED TAG <span style={{ color: '#0a0a0a' }}>GENERATION</span></>}
           sub="When a seller uploads a photo of their item, AI automatically generates relevant tags. Critically, the user stays in full control."
         />
@@ -1116,7 +1281,7 @@ function Testing() {
     <Section id="testing" bg="#f7fbff">
       <Reveal>
         <SectionHeader
-          tag="08 · USABILITY TESTING"
+          tag="07 · USABILITY TESTING"
           title={<>TESTING WITH <span style={{ color: '#0a0a0a' }}>REAL USERS</span></>}
           sub="Maze-based task testing and short follow-up interviews were used to evaluate flow clarity, interaction responsiveness, and onboarding guidance in the Marketplace prototype."
         />
@@ -1198,7 +1363,7 @@ function Reflect() {
     <Section id="reflect" bg="#E5F4FE">
       <Reveal>
         <SectionHeader
-          tag="09 · REFLECTION"
+          tag="08 · REFLECTION"
           title={<>WHAT I <span style={{ color: '#0a0a0a' }}>LEARNED</span></>}
         />
       </Reveal>
@@ -1316,11 +1481,9 @@ export default function Page() {
         <div className="section-divider" />
         <Role />
         <div className="section-divider" />
-        <Problem />
-        <div className="section-divider" />
         <Research />
         <div className="section-divider" />
-        <Process />
+        <Tasks />
         <div className="section-divider" />
         <Prototype />
         <div className="section-divider" />
