@@ -116,7 +116,7 @@ body {
 }
 
 /* ── Scrollbar ── */
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar { width: 17px; }
 ::-webkit-scrollbar-track { background: #f8f8f8; }
 ::-webkit-scrollbar-thumb { background: var(--blue); }
 

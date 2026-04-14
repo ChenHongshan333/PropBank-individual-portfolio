@@ -923,7 +923,7 @@ function Prototype() {
           <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 14 }}>END-TO-END WORKFLOW</p>
           {[
             {
-              group: 'Buy & Borrow',
+              group: 'Buy',
               steps: [
                 { label: 'Marketplace Home', src: '/b_marketplace_home.png', desc: 'Enter marketplace homepage.' },
                 { label: 'Search & Browse', src: '/b_search_browse.png', desc: 'Search and filter relevant items.' },
@@ -937,7 +937,17 @@ function Prototype() {
               ],
             },
             {
-              group: 'Sell & Rent',
+              group: 'Borrow',
+              steps: [
+                { label: 'Home Page', src: '/br_home%20page.png', desc: 'Start from marketplace homepage.' },
+                { label: 'Search & Browse', src: '/br_search%20%26%20browse%20for%20items.png', desc: 'Search and browse items available to borrow.' },
+                { label: 'View Item Details', src: '/br_view%20the%20details%20of%20item%20to%20borrow.png', desc: 'Review borrow terms, duration, and condition.' },
+                { label: 'Add Borrow Details', src: '/br_add%20borrow%20details.png', desc: 'Specify borrow period and submit request.' },
+                { label: 'Borrow Request Sent', src: '/br_borrow%20request%20sent.png', desc: 'Borrow request sent and awaiting confirmation.' },
+              ],
+            },
+            {
+              group: 'Sell',
               steps: [
                 { label: 'Home Page', src: '/s_home_page.png', desc: 'Start from marketplace homepage.' },
                 { label: 'Publish an Item', src: '/s_publish_item.png', desc: 'Open the publish listing flow.' },
@@ -948,6 +958,19 @@ function Prototype() {
                 { label: 'Delivery', src: '/s_delivery.png', desc: 'Arrange delivery for confirmed order.' },
                 { label: 'View My Orders', src: '/s_view_orders.png', desc: 'Track order records and statuses.' },
                 { label: 'Selling Successful', src: '/s_selling_successful.png', desc: 'Transaction is completed successfully.' },
+              ],
+            },
+            {
+              group: 'Rent',
+              steps: [
+                { label: 'Home Page', src: '/r_home%20page.png', desc: 'Start from marketplace homepage.' },
+                { label: 'Upload Item Image', src: '/r_upload%20the%20image%20of%20the%20item%20to%20rent%20out.png', desc: 'Upload a photo of the item to rent out.' },
+                { label: 'Add Name, Color, Size & Tags', src: '/r_add%20the%20name%2C%20color%2C%20size%2C%20and%20ai-generated%20tags.png', desc: 'Fill in details and review AI-generated tags.' },
+                { label: 'Finalize & Publish', src: '/r_finalize%20the%20uploading%20and%20publish%20the%20item.png', desc: 'Review listing and publish to marketplace.' },
+                { label: 'View Published Item', src: '/r_detailed%20info%20of%20the%20item%20you%20published%2C%20with%20viewing%20number%20and%20the%20number%20of%20people%20contacting%20you%20seen.png', desc: 'See view count and contact interest on your listing.' },
+                { label: 'Seller Profile', src: '/r_seller%20view%20of%20your%20profile.png', desc: 'View your seller profile and active listings.' },
+                { label: 'Your Cart', src: '/r_your%20cart.png', desc: 'Review cart before confirming the rental order.' },
+                { label: 'Confirm Shipment', src: '/r_confirming%20shipment%20details.png', desc: 'Confirm shipment details and dispatch item.' },
               ],
             },
             {
@@ -966,7 +989,7 @@ function Prototype() {
               <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 10 }}>{flow.group}</p>
               <div style={{ display: 'flex', alignItems: 'stretch', gap: 8, overflowX: 'auto' }}>
                 {flow.steps.map((step, i) => (
-                  <div key={step.label + i} style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+                  <div key={step.label + i} style={{ display: 'flex', alignItems: 'stretch', gap: 8, flexShrink: 0 }}>
                     <div style={{ width: 200, minHeight: 340, border: '1.5px solid #ddd', background: '#ffffff', padding: 8, display: 'flex', flexDirection: 'column' }}>
                       <div style={{ height: 230, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 6 }}>
                         {'src' in step ? (
@@ -985,7 +1008,7 @@ function Prototype() {
                       </div>
                       <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#666', textAlign: 'center', lineHeight: 1.4 }}>{step.desc}</p>
                     </div>
-                    {i < flow.steps.length - 1 && <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc' }}>→</span>}
+                    {i < flow.steps.length - 1 && <div style={{ display: 'flex', alignItems: 'center' }}><span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc' }}>→</span></div>}
                   </div>
                 ))}
               </div>
@@ -1106,7 +1129,7 @@ function Testing() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 32 }}>
         {[
           { metric: '01', label: 'Visual Clarity Is Good Overall', note: 'Participants described the interface as clean and easy to read at first glance.' },
-          { metric: '02', label: 'Late-Task Guidance Needs Improvement', note: 'Maze flow feedback showed that final tasks created more hesitation and navigation uncertainty.' },
+          { metric: '02', label: 'Swap Task Guidance Needs Improvement', note: 'Maze flow feedback showed that swap task created more hesitation and navigation uncertainty.' },
           { metric: '03', label: 'Interaction Feedback Must Be Stronger', note: 'Users reported uncertainty when taps seemed unresponsive or when multiple hints flashed at once.' },
         ].map((m, i) => (
           <Reveal key={m.label} delay={i * 0.1}>
@@ -1221,7 +1244,7 @@ function Reflect() {
       <Reveal delay={0.4}>
         <div style={{ border: '1.5px solid #0a0a0a', background: '#ffffff', padding: '40px', textAlign: 'center' }}>
           <div className="mascot-float" style={{ marginBottom: 20 }}>
-            <Image src="/mascot.png" alt="mascot" width={72} height={72}
+            <Image src="/mascot_new.png" alt="mascot" width={72} height={72}
               style={{ imageRendering: 'pixelated', margin: '0 auto' }} />
           </div>
           <div style={{ width: 32, height: 2, background: '#e63946', margin: '0 auto 16px' }} />
