@@ -1206,8 +1206,8 @@ function Prototype() {
               steps: [
                 { label: 'Marketplace Home', src: '/b_marketplace_home.png', desc: 'Enter marketplace homepage.' },
                 { label: 'Search & Browse', src: '/b_search_browse.png', desc: 'Search and filter relevant items.' },
-                { label: 'Item Details', src: '/b_item_detail.png', desc: 'Review details, condition, and trust signals.' },
-                { label: 'Add to Cart', src: '/b_add_to_cart.png', desc: 'Add selected item for checkout.' },
+                { label: 'Item Details', src: '/1.png', desc: 'Review details, condition, and trust signals.' },
+                { label: 'Add to Cart', src: '/2.png', desc: 'Add selected item for checkout.' },
                 { label: 'View Cart', src: '/b_view_cart.png', desc: 'Confirm selected item(s) before payment.' },
                 { label: 'Contact Seller', src: '/b_contact_seller.png', desc: 'Open seller contact options.' },
                 { label: 'Chat with Seller', src: '/b_chat_seller.png', desc: 'Negotiate and confirm logistics.' },
@@ -1500,12 +1500,11 @@ function Integration() {
           <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, border: '1.5px solid #0a0a0a', padding: '20px', background: '#ffffff', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 12 }}>
             <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#888', flexShrink: 0 }}>SCREENSHOTS</p>
             {[
-              { label: 'Home Page', src: '/p_home_page.png' },
-              { label: 'View Swappable Items', src: '/p_view_swappable_items.png' },
-              { label: 'Item Details', src: '/p_item_detail.png' },
-              { label: 'Fill Swap Request', src: '/p_fill_swap_request.png' },
-              { label: 'List My Swap Item', src: '/p_list_swap_item_send_request.png' },
-              { label: 'Swap Request Sent', src: '/p_swap_request_sent.png' },
+              { label: 'Opening Page', src: '/scan_opening page.png' },
+              { label: 'Upload an Image', src: '/scan_upload an image.png' },
+              { label: 'Confirm the Image', src: '/scan_confirm the image.png' },
+              { label: 'AI Analyses & Recommends Items', src: '/scan_ai analyze the image and recommend you with relative marketplace items.png' },
+              { label: 'Tap Card → Marketplace Detail', src: '/scan_click the card and it brings you to the detailed info page of the item in market place.png' },
             ].map((item, i) => (
               <div key={i} style={{ border: '1.5px solid #ddd', background: '#f8f8f8', padding: '12px', flexShrink: 0 }}>
                 <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#888', marginBottom: 8 }}>{item.label}</p>
