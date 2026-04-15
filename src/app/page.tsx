@@ -89,6 +89,7 @@ const navItems = [
   { label: 'TASKS', href: '#tasks' },
   { label: 'PROTOTYPE', href: '#prototype' },
   { label: 'AI', href: '#ai' },
+  { label: 'INTEGRATION', href: '#integration' },
   { label: 'TESTING', href: '#testing' },
   { label: 'REFLECT', href: '#reflect' },
 ]
@@ -631,7 +632,7 @@ function Research() {
         </div>
       </Reveal>
 
-      
+
 
       {/* ── PART 3: USER PERSONA & JOURNEY MAP ── */}
       <Reveal delay={0.05}>
@@ -1099,9 +1100,30 @@ function Prototype() {
       {/* ── 2. MID-FI ── */}
       <Reveal delay={0.1}>
         <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#ffc600', marginBottom: 14, borderBottom: '2px solid #ffc600', paddingBottom: 8 }}>02 · MID-FI DIGITAL WIREFRAMES</p>
-        <div style={{ border: '1.5px solid #0a0a0a', padding: '20px 24px', marginBottom: 20, width: '100%', background: '#ffffff' }}>
-          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 8 }}>Digital Wireframes</p>
-          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.5 }}>Translated to Figma. Defined card components, filter patterns, seller profile structure.</p>
+        <div style={{ border: '1.5px solid #0a0a0a', padding: '20px 24px', marginBottom: 20, width: '100%', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
+          <div>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 8 }}>Digital Wireframes</p>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.5 }}>Translated to Figma. Defined card components, filter patterns, seller profile structure.</p>
+          </div>
+          <a
+            href="https://www.figma.com/design/niKTkgo0Os7xrRoC5cmn4p/HS---mid-fi-prototype?node-id=0-1&t=sJf1zGNIth89CXFq-1"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              flexShrink: 0,
+              fontFamily: '"Carter One"',
+              fontSize: 16,
+              color: '#0a0a0a',
+              background: '#ffc600',
+              border: '2px solid #0a0a0a',
+              padding: '10px 22px',
+              textDecoration: 'none',
+              letterSpacing: 1,
+              whiteSpace: 'nowrap',
+            }}
+          >
+            OPEN IN FIGMA →
+          </a>
         </div>
         <div style={{ background: '#E5F4FE', border: '1.5px solid #a2d6f9', padding: '24px', marginBottom: 40 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
@@ -1366,6 +1388,367 @@ function AIFeature() {
 }
 
 /* ─────────────────────────────────────────────
+   SECTION 7 — SERVICE INTEGRATION
+───────────────────────────────────────────── */
+function Integration() {
+  return (
+    <Section id="integration">
+      <Reveal>
+        <SectionHeader
+          tag="07 · SERVICE INTEGRATION"
+          title={<>CONNECTED <span style={{ color: '#0a0a0a' }}>SERVICES</span></>}
+          sub="Marketplace doesn't operate in isolation — it integrates with every service in the PropBank ecosystem to create a seamless, cross-service user experience."
+        />
+      </Reveal>
+
+      {/* ── 1. Marketplace & Workshop ── */}
+      <Reveal delay={0.05}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#ffc600', marginBottom: 20, borderBottom: '2px solid #ffc600', paddingBottom: 8 }}>
+          01 · MARKETPLACE × WORKSHOP
+        </p>
+      </Reveal>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 48 }}>
+        <Reveal delay={0.1}>
+          <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', background: '#ffffff' }}>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 14 }}>COSPLAY PLAN — BUY VS. MAKE</p>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#333', lineHeight: 1.7, marginBottom: 16 }}>
+              On any item's detail page in Marketplace, users see a <strong style={{ color: '#1e96fc' }}>＋ button</strong> that lets them add the item to a <strong>Cosplay Plan</strong> — a personal collection for planning a full cosplay look.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[
+                { label: 'Add to Plan', desc: 'Tap ＋ on any listing to add it into an existing or new Cosplay Plan.' },
+                { label: 'Compare Options', desc: 'Within the plan, each item shows its Marketplace listing alongside a matching Workshop tutorial — same prop, two routes.' },
+                { label: 'Time vs. Cost', desc: 'Users can weigh buying ready-made (Marketplace) against making it themselves with a guide (Workshop), factoring in price, effort, and deadline.' },
+              ].map((row, i) => (
+                <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', borderBottom: '1px solid #E5F4FE', paddingBottom: 10 }}>
+                  <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', flexShrink: 0 }}>{i + 1}.</span>
+                  <div>
+                    <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a' }}>{row.label} — </span>
+                    <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.5 }}>{row.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: 16, background: '#E5F4FE', border: '1.5px solid #a2d6f9', padding: '12px 16px' }}>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8', lineHeight: 1.6 }}>
+                → Integration point: Cosplay Plan bridges Marketplace listings and Workshop tutorials in a single decision view.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+        <div style={{ position: 'relative' }}>
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, border: '1.5px solid #0a0a0a', padding: '20px', background: '#ffffff', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#888', flexShrink: 0 }}>SCREENSHOTS</p>
+            {[
+              { label: 'Add to a Plan', src: '/w_add to a plan.png' },
+              { label: 'Pop-up Message', src: '/w_pop up msg.png' },
+              { label: 'Choose an Existing Plan', src: '/w_choose an existing plan to add.png' },
+              { label: 'Add to an Existing Plan', src: '/w_add to an existing plan.png' },
+            ].map((item, i) => (
+              <div key={i} style={{ border: '1.5px solid #ddd', background: '#f8f8f8', padding: '12px', flexShrink: 0 }}>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#888', marginBottom: 8 }}>{item.label}</p>
+                <Image
+                  src={item.src}
+                  alt={item.label}
+                  width={1200}
+                  height={675}
+                  style={{ width: '100%', height: 'auto', objectFit: 'contain', border: '1.5px solid #e0e0e0', display: 'block', background: '#ffffff' }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── 2. Marketplace & PropScan ── */}
+      <Reveal delay={0.05}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#ffc600', marginBottom: 20, borderBottom: '2px solid #ffc600', paddingBottom: 8 }}>
+          02 · MARKETPLACE × PROPSCAN
+        </p>
+      </Reveal>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 48 }}>
+        <Reveal delay={0.1}>
+          <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', background: '#ffffff' }}>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 14 }}>SCAN → FIND → BUY</p>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#333', lineHeight: 1.7, marginBottom: 16 }}>
+              After a user uploads an image and PropScan's AI identifies the character and props, the results page automatically surfaces <strong style={{ color: '#1e96fc' }}>matching Marketplace listings</strong> — items currently for sale or rent that match the identified prop.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[
+                { label: 'Upload Image', desc: 'User uploads a photo of a cosplay prop or costume they saw online or at an event.' },
+                { label: 'AI Recognition', desc: 'PropScan identifies the character, franchise, and prop details from the image.' },
+                { label: 'Marketplace Recommendations', desc: 'Matched Marketplace listings (buy or rent) appear directly in the PropScan results — no separate search needed.' },
+                { label: 'One-Tap Jump', desc: 'User taps any item card to land directly on that item\'s Marketplace detail page.' },
+              ].map((row, i) => (
+                <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', borderBottom: '1px solid #E5F4FE', paddingBottom: 10 }}>
+                  <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', flexShrink: 0 }}>{i + 1}.</span>
+                  <div>
+                    <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a' }}>{row.label} — </span>
+                    <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.5 }}>{row.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: 16, background: '#E5F4FE', border: '1.5px solid #a2d6f9', padding: '12px 16px' }}>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8', lineHeight: 1.6 }}>
+                → Integration point: PropScan turns visual discovery directly into a purchase opportunity without leaving the app.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+        <div style={{ position: 'relative' }}>
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, border: '1.5px solid #0a0a0a', padding: '20px', background: '#ffffff', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#888', flexShrink: 0 }}>SCREENSHOTS</p>
+            {[
+              { label: 'Home Page', src: '/p_home_page.png' },
+              { label: 'View Swappable Items', src: '/p_view_swappable_items.png' },
+              { label: 'Item Details', src: '/p_item_detail.png' },
+              { label: 'Fill Swap Request', src: '/p_fill_swap_request.png' },
+              { label: 'List My Swap Item', src: '/p_list_swap_item_send_request.png' },
+              { label: 'Swap Request Sent', src: '/p_swap_request_sent.png' },
+            ].map((item, i) => (
+              <div key={i} style={{ border: '1.5px solid #ddd', background: '#f8f8f8', padding: '12px', flexShrink: 0 }}>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#888', marginBottom: 8 }}>{item.label}</p>
+                <Image
+                  src={item.src}
+                  alt={item.label}
+                  width={1200}
+                  height={675}
+                  style={{ width: '100%', height: 'auto', objectFit: 'contain', border: '1.5px solid #e0e0e0', display: 'block', background: '#ffffff' }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── 3. Marketplace & Creator Hub ── */}
+      <Reveal delay={0.05}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#ffc600', marginBottom: 20, borderBottom: '2px solid #ffc600', paddingBottom: 8 }}>
+          03 · MARKETPLACE × CREATOR HUB
+        </p>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', background: '#ffffff', marginBottom: 48 }}>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 14 }}>TAG ITEMS IN COMMUNITY POSTS</p>
+          <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#333', lineHeight: 1.7, marginBottom: 16 }}>
+            Within Creator Hub — PropBank's community space for posts, project showcases, and help requests — users can <strong style={{ color: '#1e96fc' }}>tag Marketplace listings directly inside their posts</strong>. This turns community content into a discovery channel for the Marketplace.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+            {[
+              { title: 'For Creators', desc: 'Share the exact props used in a cosplay post — readers can tap the tag to view or purchase the item directly in Marketplace.' },
+              { title: 'For Buyers', desc: 'Discover items organically through community content rather than just browsing search results.' },
+              { title: 'For Sellers', desc: 'Community engagement drives organic visibility to Marketplace listings without paid promotion.' },
+            ].map((c, i) => (
+              <div key={i} style={{ borderTop: '2px solid #1e96fc', paddingTop: 12 }}>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 6 }}>{c.title}</p>
+                <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.5 }}>{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+
+      {/* ── 4. Cross-Service Navigation ── */}
+      <Reveal delay={0.05}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#ffc600', marginBottom: 20, borderBottom: '2px solid #ffc600', paddingBottom: 8 }}>
+          04 · CROSS-SERVICE NAVIGATION
+        </p>
+      </Reveal>
+
+      {/* 4.1 Bottom Nav Bar */}
+      <Reveal delay={0.1}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8', marginBottom: 14 }}>4.1 BOTTOM NAVIGATION BAR</p>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 32, alignItems: 'start' }}>
+          <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', background: '#ffffff', boxShadow: '4px 4px 0 #1e96fc' }}>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 14 }}>PERSISTENT SERVICE ACCESS</p>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#333', lineHeight: 1.7 }}>
+              The bottom navigation bar provides persistent access to PropBank&apos;s five main services — CoNews, PropScan, Marketplace, Workshop, and Creator Hub. Users tap an icon to jump between services at any point in their workflow.
+            </p>
+          </div>
+          <div style={{ border: '1.5px solid #ddd', background: '#f8f8f8', padding: '12px' }}>
+            <Image
+              src="/bottom_navi_bar.png"
+              alt="Bottom Navigation Bar"
+              width={1200}
+              height={675}
+              style={{ width: '100%', height: 'auto', objectFit: 'contain', border: '1.5px solid #e0e0e0', display: 'block', background: '#ffffff' }}
+            />
+          </div>
+        </div>
+      </Reveal>
+
+      {/* 4.2 Side Bar */}
+      <Reveal delay={0.1}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8', marginBottom: 14 }}>4.2 SIDE BAR — UTILITY SERVICES</p>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 32, alignItems: 'start' }}>
+          <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', background: '#ffffff', boxShadow: '4px 4px 0 #1e96fc' }}>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 14 }}>CROSS-SERVICE UTILITIES</p>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#333', lineHeight: 1.7 }}>
+              Separate from the bottom nav, the side bar houses utility services that span across all five main services: <strong style={{ color: '#0a0a0a' }}>Schedule</strong>, <strong style={{ color: '#0a0a0a' }}>PropMes</strong>, <strong style={{ color: '#0a0a0a' }}>Cosplay Plans</strong>, <strong style={{ color: '#0a0a0a' }}>Inbox</strong>, and <strong style={{ color: '#0a0a0a' }}>Settings</strong>. These are accessible from anywhere in the app.
+            </p>
+          </div>
+          <div style={{
+            border: '1.5px solid #ddd',
+            background: '#f8f8f8',
+            padding: '12px',
+            maxHeight: '400px',
+            overflow: 'hidden',
+            display: 'flex',           // ← 加这个
+            alignItems: 'center',      // ← 垂直居中
+            justifyContent: 'center'   // ← 水平居中
+          }}>
+            <Image
+              src="/side_bar.png"
+              alt="Side Bar"
+              width={1200}
+              height={675}
+              style={{
+                width: 'auto',         // ← 改为 auto
+                height: '100%',        // ← 高度撑满容器
+                maxHeight: '376px',    // ← 400px - 24px padding
+                objectFit: 'contain',  // ← 保持比例
+                border: '1.5px solid #e0e0e0',
+                display: 'block',
+                background: '#ffffff'
+              }}
+            />
+          </div>
+        </div>
+      </Reveal>
+
+      {/* 4.3 PropMes */}
+      <Reveal delay={0.1}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#072ac8', marginBottom: 14 }}>4.3 PROPMES — IN-APP CHAT</p>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, alignItems: 'start' }}>
+          <div style={{ border: '1.5px solid #0a0a0a', padding: '24px', background: '#ffffff', boxShadow: '4px 4px 0 #1e96fc' }}>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', marginBottom: 14 }}>THE COORDINATION LAYER</p>
+            <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#333', lineHeight: 1.7, marginBottom: 16 }}>
+              PropMes is PropBank's built-in chat system — and a service I designed end-to-end. Every transaction, collaboration, or coordination across the app routes through PropMes, keeping users inside the ecosystem rather than jumping to WhatsApp or Telegram.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[
+                { label: 'Marketplace', desc: 'Buyers message sellers, confirm meetup details, make offers, and request reservations — all within PropMes.' },
+                { label: 'Workshop', desc: 'Learners can reach out to tutorial uploaders with questions or collaboration requests.' },
+                { label: 'Creator Hub', desc: 'Community members DM each other from posts, building connections through content.' },
+                { label: 'Cross-Service', desc: 'PropMes threads are unified — one inbox regardless of which service initiated the conversation.' },
+              ].map((row, i) => (
+                <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', borderBottom: '1px solid #E5F4FE', paddingBottom: 10 }}>
+                  <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#1e96fc', flexShrink: 0 }}>✦</span>
+                  <div>
+                    <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a' }}>{row.label} — </span>
+                    <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.5 }}>{row.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div style={{ border: '1.5px solid #ddd', background: '#f8f8f8', padding: '12px' }}>
+            <Image
+              src="/propMes.png"
+              alt="PropMes In-App Chat"
+              width={1200}
+              height={675}
+              style={{ width: '100%', height: 'auto', objectFit: 'contain', border: '1.5px solid #e0e0e0', display: 'block', background: '#ffffff' }}
+            />
+          </div>
+        </div>
+      </Reveal>
+
+      {/* ── 5. Entry & Exit Point Summary ── */}
+      <Reveal delay={0.05}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#ffc600', marginBottom: 20, borderBottom: '2px solid #ffc600', paddingBottom: 8, marginTop: 48 }}>
+          05 · ENTRY &amp; EXIT POINT SUMMARY
+        </p>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#555', lineHeight: 1.6, marginBottom: 28 }}>
+          Marketplace is the commercial core of PropBank — but it never operates as a closed silo. Other services actively feed users into it, and it actively hands users off to services that continue their journey beyond the transaction.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 48 }}>
+
+          {/* ENTRY */}
+          <div style={{ border: '2px solid #0a0a0a', background: '#ffffff', padding: '24px', boxShadow: '5px 5px 0 #1e96fc' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
+              <span style={{ fontFamily: '"Carter One"', fontSize: 22, background: '#1e96fc', color: '#ffffff', padding: '4px 14px', letterSpacing: 1 }}>ENTRY</span>
+              <span style={{ fontFamily: '"Carter One"', fontSize: 18, color: '#888' }}>→ into Marketplace</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {[
+                {
+                  num: '1',
+                  title: 'Workshop',
+                  desc: 'When browsing a tutorial or guide in Workshop, users encounter props and materials they may not want to make themselves. A direct link surfaces matching Marketplace listings — same prop, ready-made — so the user can switch from maker mode to buyer mode in one tap.',
+                },
+                {
+                  num: '2',
+                  title: 'PropScan',
+                  desc: 'After PropScan AI identifies a prop from an uploaded image, matching Marketplace listings (buy or rent) are surfaced automatically in the results page. Visual discovery becomes a purchase funnel with zero additional search effort.',
+                },
+                {
+                  num: '3',
+                  title: 'Creator Hub',
+                  desc: 'Community posts in Creator Hub can embed tagged Marketplace listings. Readers who discover an item through a post, showcase, or help thread are one tap away from its full Marketplace listing — turning organic content into a discovery channel.',
+                },
+              ].map((row, i) => (
+                <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', borderBottom: '1px solid #E5F4FE', paddingBottom: 14 }}>
+                  <span style={{ fontFamily: '"Carter One"', fontSize: 22, color: '#1e96fc', flexShrink: 0, minWidth: 24 }}>{row.num}.</span>
+                  <div>
+                    <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 4 }}>{row.title}</p>
+                    <p style={{ fontFamily: '"Carter One"', fontSize: 18, color: '#555', lineHeight: 1.55 }}>{row.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: 16, background: '#E5F4FE', border: '1.5px solid #a2d6f9', padding: '12px 16px' }}>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 18, color: '#072ac8', lineHeight: 1.6 }}>
+                → All three entry points reduce friction by delivering users to the right listing at the right moment, without requiring them to open Marketplace separately.
+              </p>
+            </div>
+          </div>
+
+          {/* EXIT */}
+          <div style={{ border: '2px solid #0a0a0a', background: '#ffffff', padding: '24px', boxShadow: '5px 5px 0 #ffc600' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
+              <span style={{ fontFamily: '"Carter One"', fontSize: 22, background: '#ffc600', color: '#0a0a0a', padding: '4px 14px', letterSpacing: 1 }}>EXIT</span>
+              <span style={{ fontFamily: '"Carter One"', fontSize: 18, color: '#888' }}>← out of Marketplace</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {[
+                {
+                  num: '1',
+                  title: 'Workshop — Add to Cosplay Plan',
+                  desc: 'On any item detail page, users can tap ＋ to add the listing to a Cosplay Plan. Inside the plan, each item surfaces a paired Workshop tutorial for the same prop — letting users pivot from buying to learning without leaving their plan. The decision to buy, make, or do both stays in one place.',
+                },
+                {
+                  num: '2',
+                  title: 'PropMes — Direct Seller Chat',
+                  desc: 'Whenever a user wants to ask a question, negotiate a price, or confirm a meetup, they are routed into PropMes — PropBank\u2019s unified in-app chat. This keeps all transaction communication inside the ecosystem, avoiding the friction of external messaging apps and keeping conversation history tied to the listing context.',
+                },
+              ].map((row, i) => (
+                <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', borderBottom: '1px solid #fff8e1', paddingBottom: 14 }}>
+                  <span style={{ fontFamily: '"Carter One"', fontSize: 22, color: '#ffc600', flexShrink: 0, minWidth: 24 }}>{row.num}.</span>
+                  <div>
+                    <p style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a', marginBottom: 4 }}>{row.title}</p>
+                    <p style={{ fontFamily: '"Carter One"', fontSize: 18, color: '#555', lineHeight: 1.55 }}>{row.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: 16, background: '#fff8e1', border: '1.5px solid #ffc600', padding: '12px 16px' }}>
+              <p style={{ fontFamily: '"Carter One"', fontSize: 18, color: '#7a5c00', lineHeight: 1.6 }}>
+                → Exit points are designed to deepen engagement, not end it — every handoff continues the user's goal in the most appropriate service.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </Reveal>
+    </Section>
+  )
+}
+
+/* ─────────────────────────────────────────────
    SECTION 8 — USABILITY TESTING
 ───────────────────────────────────────────── */
 function Testing() {
@@ -1373,7 +1756,7 @@ function Testing() {
     <Section id="testing" bg="#f7fbff">
       <Reveal>
         <SectionHeader
-          tag="07 · USABILITY TESTING"
+          tag="08 · USABILITY TESTING"
           title={<>TESTING WITH <span style={{ color: '#0a0a0a' }}>REAL USERS</span></>}
           sub="Maze-based task testing and short follow-up interviews were used to evaluate flow clarity, interaction responsiveness, and onboarding guidance in the Marketplace prototype."
         />
@@ -1480,7 +1863,7 @@ function Reflect() {
     <Section id="reflect" bg="#E5F4FE">
       <Reveal>
         <SectionHeader
-          tag="08 · REFLECTION"
+          tag="09 · REFLECTION"
           title={<>WHAT I <span style={{ color: '#0a0a0a' }}>LEARNED</span></>}
         />
       </Reveal>
@@ -1605,6 +1988,8 @@ export default function Page() {
         <Prototype />
         <div className="section-divider" />
         <AIFeature />
+        <div className="section-divider" />
+        <Integration />
         <div className="section-divider" />
         <Testing />
         <div className="section-divider" />
