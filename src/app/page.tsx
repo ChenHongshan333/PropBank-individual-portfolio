@@ -113,7 +113,7 @@ function Nav() {
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '14px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
           <span style={{ fontFamily: '"Carter One"', fontSize: 20, color: '#0a0a0a' }}>
-            PROP<span style={{ color: '#e63946' }}>BANK</span>
+            MARKET<span style={{ color: '#e63946' }}>PLACE</span>
           </span>
         </a>
         <div className="hidden md:flex" style={{ gap: 24 }}>
