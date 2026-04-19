@@ -1,6 +1,6 @@
 # CS3240 Interaction Design — Individual Portfolio
 
-This is my **individual portfolio** for the CS3240 Interaction Design module at NUS, documenting my personal contributions and reflections on one of the main services - MarketPlace - of the group project **PropBank** — a supper app dedicated to cosplay-rooted ecosystem.
+This is my **individual portfolio** for the CS3240 Interaction Design module at NUS, documenting my personal contributions and reflections on one of the main services - MarketPlace - of the group project **PropBank**, a supper app dedicated to cosplay-rooted ecosystem.
 
 The group project portfolio is hosted at: **https://cs3240-group-portfolio.vercel.app/**
 
